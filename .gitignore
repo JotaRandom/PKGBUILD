@@ -1,0 +1,33 @@
+# no pkg or src.pkg
+*.pkg.tar*
+*.src.tar.gz
+
+# no build stuff
+src/
+pkg/
+*/*.bz2
+*/*.deb
+*/*.exe
+*/*.gz
+*/*.rpm
+*/*.tgz
+*/*.xz
+*/*.zip
+*/pkg/
+*/src/
+
+# no backups
+*~
+*.bak
+*.swp
+
+# no sources, hoping this won't be to vague
+*.tar*
+*.zip
+
+# where did that come from?
+.directory
+
+# only in case
+*._*
+.DS_Store

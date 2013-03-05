@@ -1,0 +1,28 @@
+# Contributor: Jon Nordby <jononor@gmail.com>
+# Maintainer: Pablo Lezaeta <prflr88@gmail.com_
+
+pkgname=dracut
+pkgver=025
+pkgrel=1
+pkgdesc="Generic, modular, cross-distribution initramfs generation tool"
+arch=('i686' 'x86_64')
+url="https://dracut.wiki.kernel.org/"
+license=('GPL')
+depends=('cpio' 'dash' 'kbd' 'kmod' 'util-linux' )
+optdepends=('cryptsetup' 'dmraid' 'lvm2' 'mdadm')
+makedepends=('docbook-xsl' 'asciidoc')
+backup=('etc/dracut.conf')
+source=(http://www.kernel.org/pub/linux/utils/boot/dracut/$pkgname-$pkgver.tar.xz)
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+  make sysconfdir=/etc prefix=/usr
+}
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+  make DESTDIR="${pkgdir}" sysconfdir=/etc prefix=/usr install
+} 
+
+
+md5sums=('62bb8de340afbe19756e40a846f935de')
