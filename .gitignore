@@ -15,6 +15,7 @@ pkg/
 */*.zip
 */pkg/
 */src/
+*/*.swf
 
 # no backups
 *~
