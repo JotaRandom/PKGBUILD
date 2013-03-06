@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 license=('BSD')
 url="http://landley.net/toybox/"
 makedepends=('')
-source('http://landley.net/toybox/downloads/toybox-0.4.3.tar.bz2')
+source=('http://landley.net/toybox/downloads/toybox-0.4.3.tar.bz2')
 
 build() {
   cd $srcdir/$pkgname-$pkgver
@@ -23,6 +23,8 @@ package() {
   cd $srcdir/$pkgname-$pkgver
   make install
   msg "installing license"
-  install -m755 $srcdir/$pkgname/toybox $pkgdir/usr/bin/
-  cp $srcdir/$pkgname/LICENSE $pkgdir/usr/share/licenses/toybox/
+  install -m755 $srcdir/$pkgname-$pkgver/toybox $pkgdir/usr/bin/
+  cp $srcdir/$pkgname-$pkgver/LICENSE $pkgdir/usr/share/licenses/toybox/
 }
+
+md5sums=('05249eb58412e521bcff3eb5297485d1')
