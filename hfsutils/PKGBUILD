@@ -1,0 +1,30 @@
+# Maintainer: Pablo Lezaeta <prflr88@gmail.com>
+
+pkgname=hfsutils
+pkgver=3.2.6
+pkgrel=1
+pkgdesc="Comprehensive software package being developed to permit manipulation of HFS volumes from UNIX and other systems"
+arch=('i686' 'x86_64')
+license=('GPL2')
+url="http://www.mars.org/home/rob/proj/hfs/"
+makedepends=('')
+source=('ftp://ftp.mars.org/pub/hfs/hfsutils-3.2.6.tar.gz'
+	'http://patch-tracker.debian.org/patch/debianonly/dl/hfsutils/3.2.6-11')
+
+optdeps=('tcl: Graphical interface, need rebuild'
+	'tk: Graphical interface, neeed rebuild')
+
+build() {
+	cd $srcdir/$pkgname-$pkgver
+	patch -Np1 -i ../3.2.6-11
+	./configure --prefix=/usr
+ 	make
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+  make install DESTDIR=$pkgdir
+}
+
+md5sums=('fa572afd6da969e25c1455f728750ec4'
+         'eeb21111b3da6227f9227338e79c9483')
