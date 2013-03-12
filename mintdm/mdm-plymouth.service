@@ -9,12 +9,12 @@ After=plymouth-quit.service
 
 [Service]
 ExecStart=/usr/sbin/mdm --nodaemon
-ExecReload=/usr/sbin/mdm-restart
+ExecReload=/usr/sbin/mdm-safe-restart
 ExecStop=/usr/sbin/mdm-stop
 Restart=always
 RestartSec=1s
 TimeoutStopSec=5s
-StandardOutput=syslog
+IgnoreSIGPIPE=no
 
 [Install]
 WantedBy=graphical.target
