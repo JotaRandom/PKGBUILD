@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta name="Content-Language" content="ja">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Tue, 12 Mar 2013 05:57:36 GMT">
+<!--[if lte IE 6]><style type="text/css">body {behavior: url(/css/csshover.htc);}</style><![endif]-->
+<link rel="stylesheet" type="text/css" href="http://static.sourceforge.jp/css/sfx.net.css?t=1326270278">
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="http://static.sourceforge.jp/css/iestyles.net.css?t=1310107459"><![endif]-->
+<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="http://static.sourceforge.jp/css/ie6styles.net.css?t=1309147888"><![endif]-->
+<link rel="stylesheet" type="text/css" href="http://static.sourceforge.jp/css/sf.jp.theme.css?t=1341226682">
+<link rel="stylesheet" type="text/css" href="http://static.sourceforge.jp/sfwiki/css/wiki.css?t=1360059775">
+<link rel="stylesheet" type="text/css" href="http://static.sourceforge.jp/css/wiki-compact.css?t=1270636999">
+<link rel="stylesheet" type="text/css" href="http://static.sourceforge.jp/css/print.css?t=1220439204" media="print">
+<link rev="MADE" href="mailto:webmaster@sourceforge.jp">
+<link rel="INDEX" href="http://sourceforge.jp/">
+<link rel="CONTENTS" href="http://sourceforge.jp/">
+<link rel="SHORTCUT ICON" href="http://static.sourceforge.jp/favicon.ico" type="image/x-icon">
+<meta name="description" content="Yet Another Shell プロジェクト の yash-2.34.tar.xz の無料ダウンロードページ。Yet another shell (yash) は POSIX 準拠のコマンドラインシェルです。Bash や zsh などよりも厳密に POSIX に準拠するとともに、対話シェルとして普段使えるようなものを作ることを目指しています。
+シェルの機能はほとんど実装が完了しており、現在はコマンドライン補完をより使いやすくするためのスクリプトの作成を行っています。">
+<meta name="keywords" content="オープンソース,フリー,ソフトウェア,ソフト,Open Source,OSS,開発者,Developer,リポジトリ,ダウンロード,GPL,CVS,SVN,Git">
+<link rel="alternate" title="Recent project news" href="http://sourceforge.jp/projects/yash/news/rss" type="application/rss+xml">
+<link rel="alternate" title="Recent release" href="http://sourceforge.jp/projects/yash/releases/rss" type="application/rss+xml">
+<link rel="alternate" title="Project wiki updates" href="http://sourceforge.jp/projects/yash/wiki/!feeds/diff" type="application/rss+xml">
+<link rel="alternate" title="Recent wiki page list" href="http://sourceforge.jp/projects/yash/wiki/!feeds/list" type="application/rss+xml">
+<link rel="alternate" title="Project History" href="http://sourceforge.jp/projects/yash/history/rss" type="application/rss+xml">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="yash-2.34.tar.xzをダウンロード - Yet Another Shell (イェット アナダー シェル) - SourceForge.JP" />
+<meta property="fb:app_id" content="224902477537179" />
+<meta property="og:image" content="http://static.sourceforge.jp/sfjp_icon_125x125.png" />
+<meta http-equiv="refresh" content="1; url=/frs/redir.php?m=jaist&amp;f=%2Fyash%2F58183%2Fyash-2.34.tar.xz">
+<script language="JavaScript" type="text/javascript" src="http://static.sourceforge.jp/js/sfjp-adsense.js?t=1270632419"></script><script language="JavaScript" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script><script language="JavaScript" type="text/javascript" src="http://static.sourceforge.jp/js/jquery/jquery.scrollTo-min.js?t=1260340409"></script><script language="JavaScript" type="text/javascript" src="http://static.sourceforge.jp/js/social_buttons.js?t=1309147887"></script><script language="JavaScript" type="text/javascript" src="http://static.sourceforge.jp/js/jquery/jquery.cluetip.js?t=1237357526"></script><script language="JavaScript" type="text/javascript" src="http://static.sourceforge.jp/js/user_info.js?t=1348041636"></script><link rel="canonical" href="http://sourceforge.jp/projects/yash/downloads/58183/yash-2.34.tar.xz/" />
+<title>yash-2.34.tar.xzをダウンロード - Yet Another Shell (イェット アナダー シェル) - SourceForge.JP</title>
+<!-- START: additional_headers -->
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+var rurl = location.href;
+if (jQuery('link[rel=canonical]')[0]) rurl = $('link[rel=canonical]').attr('href');
+rurl=rurl.replace("http://sourceforge.jp", "");
+googletag.cmd.push(function() {
+googletag.defineSlot('/2679892/sf_down_728', [728, 90], 'gpt-sf_down_728').addService(googletag.pubads());
+googletag.defineSlot('/2679892/sf_down_text', [800, 19], 'gpt-sf_down_text').addService(googletag.pubads());
+googletag.defineSlot('/2679892/sf_down_728-bottom', [728, 90], 'gpt-sf_down_728-bottom').addService(googletag.pubads());
+googletag.pubads().setTargeting("url", rurl);
+googletag.pubads().collapseEmptyDivs();
+googletag.enableServices();
+});
+</script>
+
+<style type="text/css">
+#ad-leaderboard {
+height:90px;
+overflow:hidden;
+}
+#ad-superbanner {
+width:728px;
+font-size:0;
+line-height:0;
+display:inline-block;
+}
+#ad-headerbox {
+display:inline-block;
+border:none;
+margin:0 0 0 96px;
+height:90px;
+width:98px;
+font-size:13px;
+font-weight:bold;
+line-height:16px;
+text-align:justify;
+vertical-align:top;
+}
+#ltie8 #ad-superbanner,
+#ltie8 #ad-headerbox {
+display:inline;
+zoom: 1;
+}
+
+#after-download-ad {
+clear:both;
+text-align:center;
+}
+
+#after-download-ad .after-download-ad-rec{display:inline-block;}
+#gpt-sf_down_rec-left, #gpt-sf_down_rec-center{margin-right:16px;}
+#gpt-sf_down_728-middle{margin:8px auto;}
+
+#gpt-sf_down_rec-footer-left {
+float: left;
+margin-right: 32px;
+}
+
+#head-ad-text iframe, #head-ad-text div {
+display:block
+}
+
+#head-ad-text iframe {float:left;}
+
+#head-ad-text #___plusone_0 {float:left !important;}
+</style>
+<!--[if lt IE 8 ]>
+<style>
+#after-download-ad .after-download-ad-rec{display:inline;}
+</style>
+<![endif]--><!-- END: additional_headers -->
+</head>
+<body>
+
+<div id="main_header">
+<div id="first_head">
+<h1 id="sitelogo"><a href="http://sourceforge.jp/">オープンソース・ソフトウェアの開発とダウンロード</a></h1>
+<div id="user-menu"><span class="menu-item"><a href="https://sourceforge.jp/account/login.php?return_to=%2Fprojects%2Fyash%2Fdownloads%2F58183%2Fyash-2.34.tar.xz%2F">ログイン</a></span><span class="menu-item"><a href="/account/register.php">アカウント作成</a></span><span class="menu-item"><a href="/docs/FrontPage">ヘルプ</a></span><span class="menu-item"><a href="http://sourceforge.jp/projects/yash/downloads/58183/yash-2.34.tar.xz/" title="auto" alt="auto"><span class="spclass-nontext spimg-auto"></span></a></span><span class="menu-item"><a href="http://en.sourceforge.jp/projects/yash/downloads/58183/yash-2.34.tar.xz/"><span class="spclass-nontext spimg-en"></span></a></span><span class="menu-item"><a href="http://zh.sourceforge.jp/projects/yash/downloads/58183/yash-2.34.tar.xz/"><span class="spclass-nontext spimg-zh"></span></a></span><span class="menu-item"><a href="http://de.sourceforge.jp/projects/yash/downloads/58183/yash-2.34.tar.xz/"><span class="spclass-nontext spimg-de"></span></a></span><span class="menu-item"><a href="http://fr.sourceforge.jp/projects/yash/downloads/58183/yash-2.34.tar.xz/"><span class="spclass-nontext spimg-fr"></span></a></span><span class="menu-item"><a href="http://ko.sourceforge.jp/projects/yash/downloads/58183/yash-2.34.tar.xz/"><span class="spclass-nontext spimg-ko"></span></a></span><span class="menu-item"><a href="http://es.sourceforge.jp/projects/yash/downloads/58183/yash-2.34.tar.xz/"><span class="spclass-nontext spimg-es"></span></a></span><span class="menu-item"><a href="http://pt.sourceforge.jp/projects/yash/downloads/58183/yash-2.34.tar.xz/"><span class="spclass-nontext spimg-pt"></span></a></span></div>
+</div><!-- first_head -->
+
+<div id="ad-leaderboard"><!--[if lt IE 8]><div id="ltie8"><![endif]--><!--[if lt IE 7]><div id="ltie7"><![endif]-->
+<div id="ad-superbanner">
+<div id='gpt-sf_down_728'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('gpt-sf_down_728'); });
+</script>
+</div>
+</div>
+<div id="ad-headerbox">
+<div id='gpt-sf_down_btn'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('gpt-sf_down_btn'); });
+</script>
+</div>
+</div>
+<!--[if lt IE 7]></div><![endif]--><!--[if lt IE 8]></div><![endif]--></div><!-- id="ad-leaderboard" --><div id="second_head">
+<div class="bar_left"></div><div class="bar_right"></div><div id="main_nav"><span class="menu-item"><a href="/my/">MY SF.JP</a></span><span class="separater"></span><span class="menu-item"><a href="/softwaremap/">ソフトウェアを探す</a></span><span class="separater"></span><span class="menu-item"><a href="http://sourceforge.jp/magazine/">Magazine</a></span><span class="separater"></span><span class="menu-item"><a id="main_menu_develop_link" href="/develop/">開発</a></span><span class="separater"></span></div><!-- #main_nav --><div id="search"><form name="searchform" action="/search/" method="GET" id="searchform">
+			<input type="hidden" name="ie" value="UTF-8" />
+			<span class="top_search" id="top_search_select">
+			<select name="t" onChange="switch (this.options[this.selectedIndex].value) {
+			case 'soft': case 'people': case 'personalforge': document.getElementById('searchform').action='/search/'; break;
+			case 'magazine': document.getElementById('searchform').action='/magazine/search/'; break;
+			case 'wiki': document.getElementById('searchform').action='/wiki/!search'; break;
+			}">
+			<option value="soft">ソフトウェア</option>
+			<option value="people">人物</option>
+			<option value="personalforge">PersonalForge</option>
+			<option value="magazine" >Magazine</option>
+			<option value="wiki" >Wiki</option>
+			</select>
+			</span><!-- #top_search_select -->
+			<input type="hidden" name="scope" value="all">
+			<span class="top_search" id="top_search_text">
+			<input type="text" value="" id="searchbox" name="q" tabindex="1" />
+			</span><!-- #top_search_text -->
+			<span class="top_search" id="top_search_submit">
+			<input type="submit" title="検索" value="検索" id="searchsubmit" tabindex="0" />
+			</span><!-- #top_search_submit -->
+			</form></div><!-- #search -->
+</div><!-- #second_head -->
+<div id="head-ad-text"><div id='gpt-sf_down_text'>
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('gpt-sf_down_text'); });
+</script>
+</div>
+</div><!-- #head-ad-text -->
+</div><!-- #main_header -->
+
+<div id="frame">
+<div id="innerframe"><div id="breadcrumbs"><a href="/">SourceForge.JP</a> &gt; <a href="/softwaremap/">ソフトウェアを探す</a> &gt; <a href="/projects/yash/">Yet Another Shell</a> &gt; <a href="/projects/yash/releases/">ダウンロードファイル一覧</a> &gt; <b><a>ダウンロード</a></b></div><a name="content"></a><div class="topnav"><h2>Yet Another Shell</h2></div>
+<!-- START: main_content -->
+<table id="main-contents-table" cellspacing="0" border="0">
+<tr>
+	<!-- START: main_column -->
+	<td width="100%" valign="top" align="left" id="main-content">
+
+			      <!-- START: site_announce --><!-- *このコメントは消さない* -->
+<!-- 内容がない場合は、div ごと全部コメントアウトすること -->
+<!--
+<div class="site-announce"
+  style="padding: 3px; border: thin ridge #9cf;
+  background-color: #def;
+  margin-bottom: 0.3em; line-height: 1;">
+<a href="/forum/forum.php?forum_id=28266">2012/2/1(水) 14:00〜15:00 サイト緊急メンテナンスによりサービスが停止します</a>
+</div>
+--><!-- END: site_annouce --><style type="text/css"><!--
+#misc-info {
+ margin: 10px 10% 0 10%;
+ }
+
+#misc-info h4{
+font-size:16px;
+line-height:1;
+color:#000;
+}
+
+#project-desc h4, #project-keywords h4 {
+  margin: 0;
+  margin-top: 10px;
+}
+
+#breadcrumbs {
+font-size:14px;
+line-height:1;
+margin:0;
+padding:0;
+}
+
+
+#main-content {
+padding-right:0;
+}
+
+.topnav {
+margin-right:300px;
+}
+
+.topnav h2 {
+font-size:30px;
+line-height:1;
+margin:2px;
+padding:0;
+}
+
+
+#after-download-main{
+font-size:16px;
+line-height:20px;
+color:#333;
+}
+
+#after-download-main p{
+margin:0 0 8px;
+padding:0;
+font-size:16px;
+line-height:20px;
+word-break:break-all;
+word-wrap:break-word;
+}
+
+
+#mirror-info{
+float:right;
+width:300px;
+margin:-32px 0 6px 6px;
+border: 1px solid #D3D3D3;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+-o-border-radius: 6px;
+border-radius: 6px;
+font-size: 13px;
+line-height:17px;
+position:relative;
+background-color: #fff;
+}
+
+#mirror-info-title{
+height:22px;
+background: none repeat scroll 0 0 #F0F0F0;
+border-bottom: 1px solid #D3D3D3;
+-moz-border-radius: 6px 6px 0 0;
+-webkit-border-radius: 6px 6px 0 0;
+-o-border-radius: 6px 6px 0 0;
+border-radius: 6px 6px 0 0;
+border-top: medium none;
+margin:0;
+padding:0;
+overflow:hidden;
+}
+
+#mirror-info h3{
+font-size:14px;
+padding:3px 6px;
+}
+
+#mirror-info h3 img{
+vertical-align:top;
+margin-top:-1px;
+}
+
+#mirror-info-body{
+margin:2px 4px;
+}
+
+#mirror-info-body select{
+padding-left:2px;
+}
+
+#mirror_select_box {
+height: 34px;
+overflow: hidden;
+}
+
+.dl_mirror_site{
+width:296px;
+}
+
+.dl_mirror_site .download_link {
+padding:10px 5px 0 0;
+float: right;
+}
+
+#after-download-ad iframe{
+display:inline;
+}
+
+#select-mirror-host-selector {
+	font-size: 12px;
+	width: 100%;
+}
+
+--></style>
+
+<div id="mirror-info">
+<div id="mirror-info-title">
+<h3>
+ミラー選択<span class="tooltips-link"><a id="__cluetips_mirror_select" href="/tips/download/mirror_select_ja.html" rel="/tips/download/mirror_select_ja.html"><img src="http://static.sourceforge.jp/dotnet/icons/silk/help.png" border="0" alt="" width="16" height="16"></a>
+</span><script>
+// <!-- 
+jQuery(document).ready(function() {
+jQuery('#__cluetips_mirror_select').cluetip({"arrows":"true","width":400,"cluetipClass":"jtip","cluezIndex":10100});
+});
+// !--> 
+</script>
+</h3>
+</div>
+
+<div id="mirror-info-body">
+<form id="mirror-select-save" method="GET" action="/projects/yash/downloads/58183/yash-2.34.tar.xz">
+  <select name="use_default">
+    <option id="mirror-select-save-auto" value="auto"  selected >
+      自動(ランダム)    </option>
+    <option id="mirror-select-save-host" value="jaist" >
+      現在の選択に固定    </option>
+    <option id="mirror-select-save-none" value="none" >
+      選択なし    </option>
+  </select>
+  <input type="submit" value="保存">
+</form>
+
+
+<div id="mirror_select_box">
+    <div class="dl_mirror_site listodd selected" id="mirror_jaist">
+        <div class="download_link">
+      <a href="/projects/yash/downloads/58183/yash-2.34.tar.xz?use_mirror=jaist">
+	Link
+      </a>
+    </div>
+        <a class="logo" target="_blank" href="http://www.jaist.ac.jp/">
+      <img src="http://static.sourceforge.jp/downloads/jaist_100x34.png" border="0" alt="">    </a>
+  </div>
+    <div class="dl_mirror_site listeven" id="mirror_keihanna">
+        <div class="download_link">
+      <a href="/projects/yash/downloads/58183/yash-2.34.tar.xz?use_mirror=keihanna">
+	Link
+      </a>
+    </div>
+        <a class="logo" target="_blank" href="http://www.ksc.gr.jp">
+      <img src="http://static.sourceforge.jp/downloads/keihanna_100x34.png" border="0" alt="">    </a>
+  </div>
+    <div class="dl_mirror_site listodd" id="mirror_iij">
+        <div class="download_link">
+      <a href="/projects/yash/downloads/58183/yash-2.34.tar.xz?use_mirror=iij">
+	Link
+      </a>
+    </div>
+        <a class="logo" target="_blank" href="http://www.iij.ad.jp/">
+      <img src="http://static.sourceforge.jp/downloads/iij_162x34.png" border="0" alt="">    </a>
+  </div>
+    <div class="dl_mirror_site listeven" id="mirror_osdn">
+        <div class="download_link">
+      <a href="/projects/yash/downloads/58183/yash-2.34.tar.xz?use_mirror=osdn">
+	Link
+      </a>
+    </div>
+        <a class="logo" target="_blank" href="http://osdn.jp/">
+      <img src="http://static.sourceforge.jp/downloads/osdn_124x34.png" border="0" alt="">    </a>
+  </div>
+  </div>
+
+<select id="select-mirror-host-selector" onChange="jQuery('#mirror-select-save-host').val(jQuery('option:selected', this).val()); jQuery('#mirror_select_box').scrollTo(jQuery('#mirror_' + jQuery('option:selected', this).val()), 800);">
+    <option value="jaist" selected="selected">北陸先端科学技術大学院大学</option>
+    <option value="keihanna" >けいはんなインターネット研究会</option>
+    <option value="iij" >株式会社インターネットイニシアティブ</option>
+    <option value="osdn" >OSDN</option>
+  </select>
+</div>
+</div>
+
+<p>
+yash 2.34 (629,576 バイト/MD5: a94c5899200ad2f156ed5e8dd893372d)のダウンロードが開始されます。開始されない場合，<a class="mirror_link" href="/frs/redir.php?m=jaist&f=%2Fyash%2F58183%2Fyash-2.34.tar.xz">yash-2.34.tar.xz</a>をクリックしてください。</p>
+
+<div id='after-download-ad'>
+	<div id='gpt-sf_down_vga'></div>
+	<div id='gpt-sf_down_rec-left' class='after-download-ad-rec'></div>
+	<div id='gpt-sf_down_rec-center' class='after-download-ad-rec'></div>
+	<div id='gpt-sf_down_rec-right' class='after-download-ad-rec'></div>
+	<div id='gpt-sf_down_728-middle'></div>
+</div>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.pubads().display('/2679892/sf_down_vga', [640, 480], 'gpt-sf_down_vga');
+});
+
+function cvga() {
+	c=setTimeout('cvga()', 50);
+	if ($("#gpt-sf_down_vga").css("display") == "none") {
+		googletag.cmd.push(function() {
+		googletag.pubads().display('/2679892/sf_down_rec-left', [300, 250], 'gpt-sf_down_rec-left');
+		googletag.pubads().display('/2679892/sf_down_rec-center', [300, 250], 'gpt-sf_down_rec-center');
+		googletag.pubads().display('/2679892/sf_down_rec-right', [300, 250], 'gpt-sf_down_rec-right');
+		googletag.pubads().display('/2679892/sf_down_728-middle', [728, 90], 'gpt-sf_down_728-middle');
+		});
+		clearTimeout(c);
+	}
+};
+cvga();
+setTimeout(function(){clearTimeout(c)}, 9999);
+</script>
+
+
+<div id="misc-info">
+<div id="project-desc">
+  <h4>プロジェクト概要</h4>
+  Yet another shell (yash) は POSIX 準拠のコマンドラインシェルです。Bash や zsh などよりも厳密に POSIX に準拠するとともに、対話シェルとして普段使えるようなものを作ることを目指しています。
+シェルの機能はほとんど実装が完了しており、現在はコマンドライン補完をより使いやすくするためのスクリプトの作成を行っています。</div>
+
+<div id="project-keywords">
+  <h4>検索キーワード</h4>
+  <div><strong>shell</strong>, <strong>yet</strong>, <strong>大小比較</strong>, <strong>シェル</strong>, <strong>xgetopt</strong>, <strong>redir.html</strong>, <strong>linux</strong>, <strong>another</strong>, <strong>nullをコピー</strong>, <strong>リダイレクト</strong> ...</div></div>
+
+</div> <!-- misc-info -->
+
+<div id="gpt-sf_down_728-bottom" style="width:728px; height:90px; margin:8px 10%;">
+<script type='text/javascript'>
+googletag.cmd.push(function() { googletag.display('gpt-sf_down_728-bottom'); });
+</script>
+</div>
+
+<div id="place_holder" style="display: none;">
+  </div>
+
+<script type="text/javascript">
+	var social_button_url = 'http://sourceforge.jp/projects/yash/';
+	var social_button_title = 'Yet Another Shell プロジェクト日本語トップページ - SourceForge.JP';
+</script>
+<!-- vim: set filetype=php: -->
+</TD>
+</tr></table>
+
+</div></div>
+
+<!-- START: page_foot -->
+<div id="osdnsitefooter">
+<div class="cols">
+<div class="col first">
+<span>サイト情報</span>
+<ul><li><a href="/news/?group_id=1">サイトアナウンス</a></li><li><a href="/docs/SourceForge.JP%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">SourceForge.JPについて</a></li><li><a href="http://osdn.jp/about.shtml">OSDNについて</a></li><li><a rel="nofollow" href="http://osdn.jp/privacy.shtml">プライバシー</a></li><li><a rel="nofollow" href="http://osdn.jp/pp.shtml">個人情報保護方針</a></li><li><a href="http://osdn.jp/advertise-vender.shtml">広告事業者のポリシー</a></li><li><a href="http://osdn.jp/jobs">採用情報</a></li></ul>
+</div>
+<div class="col">
+<span>ソフトウェアを探す</span>
+<ul><li><a href="/search/">検索</a></li><li><a href="/softwaremap/">カテゴリで探す</a></li><li><a href="/top/topdl.php?type=downloads_day">ダウンロードランキング</a></li><li><a href="/top/overview.php">プロジェクトランキング</a></li>
+<li><a href="http://sourceforge.jp/license-online/">ライセンス購入</a></li></ul>
+</div>
+<div class="col">
+<span>ソフトウェアを作る</span>
+<ul><li><a href="/develop/?nr=1">プロジェクト作成</a></li><li><a href="/develop/whatsnew.php">最新動向</a></li><li><a href="/recent-approved.php">新規登録プロジェクト</a></li><li><a href="/softwaremap/personalforge.php">作業部屋マップ</a></li></ul>
+</div>
+<div class="col">
+<span>コミュニティ</span>
+<ul><li><a href="http://b.sourceforge.jp/">SourceForge.JPブログ</a></li><li><a href="http://twitter.com/sfjp_magazine">@sfjp_magazine on Twitter</a></li><li><a href="http://twitter.com/sourceforgejp">@sourceforgejp on Twitter</a></li>
+<li><a href="http://www.facebook.com/SourceForge.JP.Magazine">SFJP Magazine on Facebook</a></li>
+<li><a href="http://friendfeed.com/sourceforgejp">SF.JP on FriendFeed</a></li><li><a href="http://slashdot.jp/">スラッシュドット</a></li></ul>
+</div>
+<div class="col">
+<span>ヘルプ</span>
+<ul><li><a rel="nofollow" href="/tos.php">利用規約</a></li><li><a href="/docs/FrontPage">ヘルプドキュメント</a></li><li><a rel="nofollow" href="/docs/SourceForge.JP%E3%81%AE%E9%80%A3%E7%B5%A1%E5%85%88">運営への連絡先</a></li><li><a href="http://osdn.jp/advertise/">広告掲載</a></li></ul>
+</div>
+<div class="spacer"></div>
+</div>
+<div id="copyright">
+Copyright &copy;<a href="http://osdn.co.jp/">OSDN Corporation</a>
+</div>
+</div><!-- #osdnsitefooter -->
+<!-- END: page_foot --><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(["_setAccount", "UA-739864-3"]);
+_gaq.push(["_trackPageview"]);
+(function() {
+	var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+	ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+	var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<script type="text/javascript">window.___gcfg = {lang: 'ja'};(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script></body></html>
