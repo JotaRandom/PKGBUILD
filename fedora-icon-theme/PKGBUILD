@@ -1,0 +1,21 @@
+# Contributor: Daniel Wuensch <tombhadAC@gmx.de>
+# Maintainer: Pablo Lezaeta <prflr88@gmail.com> 
+
+pkgname=fedora-icon-theme
+pkgver=1.0.0
+pkgrel=12
+pkgdesc="Fedora icon theme"
+arch=('any')
+url="http://fedoraproject.org/"
+license=('GPL')
+makedepends=('rpmextract')
+source=(ftp://ftp.tu-chemnitz.de/pub/linux/fedora/linux/releases/17/Fedora/i386/os/Packages/f/$pkgname-$pkgver-$pkgrel.fc17.noarch.rpm
+ftp://ftp.tu-chemnitz.de/pub/linux/fedora/linux/releases/17/Fedora/i386/os/Packages/e/echo-icon-theme-0.3.89.0-0.15.20081003gitcc6da5b.fc17.noarch.rpm)
+sha1sums=('293fecd764bcb70c8d8dd337e8aef5db293ba976'
+'65c48bccc9c66bd69186d636f1bd05f1f950b540')
+
+package() {
+	cd $pkgdir
+	rpmextract.sh $srcdir/$pkgname-$pkgver-$pkgrel.fc17.noarch.rpm
+	rpmextract.sh $srcdir/echo-icon-theme-0.3.89.0-0.15.20081003gitcc6da5b.fc17.noarch.rpm
+}
