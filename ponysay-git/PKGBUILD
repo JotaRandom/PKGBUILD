@@ -1,0 +1,53 @@
+# AUR Maintainer: Daniel Wallace <daniel.wallace at gatech dot edu> <- In AUR this have 4690 votes
+# CCR Maintainer: Pablo Lezaeta <prflr88 @ gmail . com> (Pony Provider)
+
+pkgname=ponysay-git
+_pkgname=ponysay
+pkgver=20130427
+pkgrel=2
+pkgdesc="Cowsay reimplementation for ponies."
+arch=('any')
+url="https://github.com/erkin/ponysay"
+license=('WTFPL')
+depends=('python3' 'coreutils' )
+provides=('ponysay')
+conflicts=('ponysay' 'ponysay-git')
+optdepends=('util-say:  Improved TTY support utilising KMS and support for PNG files')
+makedepends=('git' 'texinfo' 'python3-distribute')
+screenshot="http://i.imgur.com/xOJbE.png"
+
+_gitroot=git://github.com/erkin/ponysay.git
+_gitname=ponysay
+
+build() {
+	cd "$srcdir"
+	msg "Connecting to GIT server...."
+
+	if [[ -d "$_gitname" ]]; then
+		cd "$_gitname" && git pull origin
+		msg "The local files are updated."
+	else
+		git clone "$_gitroot" "$_gitname"
+	fi
+
+	msg "GIT checkout done or server timeout"
+	msg "Starting build..."
+
+	rm -rf "$srcdir/$_gitname-build"
+	git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+
+}
+
+package() {
+	cd "$srcdir/$_gitname-build"
+	python3  ./setup.py --prefix=/usr \
+			--everything \
+			--with-pdf-manual=/usr/share/doc/$_pkgname \
+			--without-pdf-manual-compression \
+			--dest-dir="$pkgdir" install \
+			--bin-dir=/usr/bin
+
+	install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+
+# vim:set ts=2 sw=2 et:
