@@ -3,7 +3,7 @@
 
 pkgname=ponysay-dev-git
 _pkgname=ponysay
-pkgver=20130327
+pkgver=20130403
 pkgrel=1
 pkgdesc="Pony wrapper for cowsay. (develop branch)"
 arch=('any')
@@ -13,7 +13,7 @@ depends=('python3' 'coreutils')
 provides=('ponysay')
 conflict=('ponysay' 'ponysay-git' 'ponysay-free')
 optdepends=('util-say: tty2colourfultty, ponysay2ttyponysay.pony; the possibility to use .png like any .pony file')
-makedepends=('git' 'texinfo' 'python-distribute' 'util-say-git')
+makedepends=('git' 'texinfo' 'python-distribute' 'util-say-git' 'zip')
 
 _gitroot=git://github.com/erkin/ponysay.git
 _gitname=ponysay
