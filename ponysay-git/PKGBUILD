@@ -3,17 +3,17 @@
 
 pkgname=ponysay-git
 _pkgname=ponysay
-pkgver=20130427
-pkgrel=2
+pkgver=20130403
+pkgrel=1
 pkgdesc="Cowsay reimplementation for ponies."
 arch=('any')
 url="https://github.com/erkin/ponysay"
-license=('WTFPL')
+license=('GPL3' 'FDL')
 depends=('python3' 'coreutils' )
 provides=('ponysay')
 conflicts=('ponysay' 'ponysay-git')
 optdepends=('util-say:  Improved TTY support utilising KMS and support for PNG files')
-makedepends=('git' 'texinfo' 'python3-distribute')
+makedepends=('git' 'texinfo' 'python-distribute')
 screenshot="http://i.imgur.com/xOJbE.png"
 
 _gitroot=git://github.com/erkin/ponysay.git
@@ -45,7 +45,7 @@ package() {
 			--with-pdf-manual=/usr/share/doc/$_pkgname \
 			--without-pdf-manual-compression \
 			--dest-dir="$pkgdir" install \
-			--bin-dir=/usr/bin
+			--bin-dir=/usr/bin --freedom=partial
 
 	install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }

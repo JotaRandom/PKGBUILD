@@ -1,0 +1,30 @@
+# Arch Maintainer: Sven-Hendrik Haase <sh@lutzhaase.com> (Upstream Devel)
+# Contributor: Erkin Batu Altunbaş <erkinbatu@gmail.com> (Project Leader)
+# CCR Maintainer: Pablo Lezaeta <prflr 88 @ gmail . com> (Pony Provider)
+
+pkgname=ponysay
+pkgver=3.0
+pkgrel=1
+pkgdesc='Cowsay reimplementation for ponies'
+url="https://github.com/erkin/ponysay"
+arch=('any')
+license=('GPL3' 'FDL')
+depends=('python3' 'coreutils')
+makedepends=('texinfo')
+provides=('ponysay')
+conflicts=('ponysay' 'ponysay-git')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/erkin/ponysay/tarball/$pkgver")
+screenshot="http://i.imgur.com/xOJbE.png"
+
+package() {
+	cd "$srcdir/erkin-ponysay-"*
+
+	python3 ./setup.py --prefix=/usr \
+			--dest-dir=$pkgdir \
+			--with-pdf-manual=/usr/share/doc/$pkgname \
+			--everything \
+			--without-pdf-manual-compression install \
+			--bin-dir=/usr/bin --freedom=partial
+}
+
+md5sums=('729a275bd43ed257d2cf27b572943cb7')
