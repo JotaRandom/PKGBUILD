@@ -3,7 +3,7 @@
 # CCR Maintainer: Pablo Lezaeta <prflr 88 @ gmail . com> (Pony Provider)
 
 pkgname=ponysay
-pkgver=3.0
+pkgver=3.0.1
 pkgrel=1
 pkgdesc='Cowsay reimplementation for ponies'
 url="https://github.com/erkin/ponysay"
@@ -27,4 +27,4 @@ package() {
 			--bin-dir=/usr/bin --freedom=partial
 }
 
-md5sums=('729a275bd43ed257d2cf27b572943cb7')
+md5sums=('3fac23eb1a3a9d0640ecebd1919b4390')

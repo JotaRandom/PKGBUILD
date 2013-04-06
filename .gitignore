@@ -33,3 +33,6 @@ pony-creator/pony_creator_full_version_by_generalzoi-d47efz4.png
 # only in case
 *._*
 .DS_Store
+
+# verioning number standalone
+util-say/3.*

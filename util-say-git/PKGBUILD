@@ -2,7 +2,7 @@
 
 pkgname=util-say-git
 pkgver=20130405
-pkgrel=1
+pkgrel=2
 pkgdesc="Tools for creating ponies for cowsay and cowsay-like programs"
 arch=('any')
 url="https://github.com/maandree/util-say"
