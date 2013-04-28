@@ -17,10 +17,9 @@ makedepends=('git' 'texinfo' 'python-distribute')
 screenshot="http://i.imgur.com/xOJbE.png"
 source=("$_pkgname::git+https://github.com/erkin/ponysay")
 md5sums=("SKIP")
-
 pkgver(){
 	cd $_pkgname
-	echo "$(git rev-list --count HEAD).r$(git describe --always | sed 's/-/./g')"
+	echo "$(git describe --always | sed 's/-/./g' ).r0.$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 package() {

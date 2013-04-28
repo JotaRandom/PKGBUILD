@@ -6,8 +6,7 @@ _pkgname=ponysay
 pkgver=0.1878.3.0.1
 pkgver(){
 	cd $_pkgname
-	echo "0.$(git rev-list --count HEAD).$(git describe --always)"
-}
+	echo "$(git describe --always | sed 's/-/./g').r0.$(git rev-list --count HEAD | sed 's/-/./g')"
 pkgrel=1
 pkgdesc="Pony wrapper for cowsay. (develop branch)"
 arch=('any')
