@@ -1,5 +1,5 @@
 # AUR Maintainer: Daniel Wallace <daniel.wallace at gatech dot edu> <- In AUR this have 4690 votes
-# CCR Maintainer: Pablo Lezaeta <prflr88 @ gmail . com> (Pony Provider)
+# Maintainer: Pablo Lezaeta <prflr88 @ gmail . com> (Pony Provider)
 
 pkgname=ponysay-git
 _pkgname=ponysay
@@ -15,39 +15,22 @@ conflicts=('ponysay' 'ponysay-git')
 optdepends=('util-say:  Improved TTY support utilising KMS and support for PNG files')
 makedepends=('git' 'texinfo' 'python-distribute')
 screenshot="http://i.imgur.com/xOJbE.png"
+source=("$_pkgname::git+https://github.com/erkin/ponysay")
+md5sums=("SKIP")
 
-_gitroot=git://github.com/erkin/ponysay.git
-_gitname=ponysay
-
-build() {
-	cd "$srcdir"
-	msg "Connecting to GIT server...."
-
-	if [[ -d "$_gitname" ]]; then
-		cd "$_gitname" && git pull origin
-		msg "The local files are updated."
-	else
-		git clone "$_gitroot" "$_gitname"
-	fi
-
-	msg "GIT checkout done or server timeout"
-	msg "Starting build..."
-
-	rm -rf "$srcdir/$_gitname-build"
-	git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-
+pkgver(){
+	cd $_pkgname
+	echo "$(git rev-list --count HEAD).r$(git describe --always | sed 's/-/./g')"
 }
 
 package() {
-	cd "$srcdir/$_gitname-build"
+	cd $srcdir/$_pkgname
 	python3  ./setup.py --prefix=/usr \
 			--everything \
 			--with-pdf-manual=/usr/share/doc/$_pkgname \
 			--without-pdf-manual-compression \
-			--dest-dir="$pkgdir" install \
-			--bin-dir=/usr/bin --freedom=partial
-
-	install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+			--dest-dir="$pkgdir" \
+			--bin-dir=/usr/bin --freedom=partial install
 }
 
 # vim:set ts=2 sw=2 et:
