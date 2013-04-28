@@ -1,9 +1,9 @@
-# AUR Maintainer: Daniel Wallace <daniel.wallace at gatech dot edu> <- In AUR this have 4690 votes
+# AUR Maintainer: Daniel Wallace <daniel.wallace at gatech dot edu> <- In AUR this have 4690 votes, but was a troll and now fixed
 # Maintainer: Pablo Lezaeta <prflr88 @ gmail . com> (Pony Provider)
 
 pkgname=ponysay-git
 _pkgname=ponysay
-pkgver=20130403
+pkgver=3.0.1~50~g2af2543.1928
 pkgrel=1
 pkgdesc="Cowsay reimplementation for ponies."
 arch=('any')
@@ -19,7 +19,7 @@ source=("$_pkgname::git+https://github.com/erkin/ponysay")
 md5sums=("SKIP")
 pkgver(){
 	cd $_pkgname
-	echo "$(git describe --always | sed 's/-/./g' ).r0.$(git rev-list --count HEAD | sed 's/-/./g' )"
+	echo "$(git describe --always | sed 's/-/~/g' ).$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 package() {

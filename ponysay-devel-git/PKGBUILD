@@ -3,10 +3,11 @@
 
 pkgname=ponysay-dev-git
 _pkgname=ponysay
-pkgver=0.1878.3.0.1
+pkgver=3.0.1~52~ga4be5c6.1930
 pkgver(){
 	cd $_pkgname
-	echo "$(git describe --always | sed 's/-/./g').r0.$(git rev-list --count HEAD | sed 's/-/./g')"
+	echo "$(git describe --always | sed 's/-/~/g' ).$(git rev-list --count HEAD | sed 's/-/./g' )"
+}
 pkgrel=1
 pkgdesc="Pony wrapper for cowsay. (develop branch)"
 arch=('any')
@@ -15,7 +16,6 @@ license=('GPL3' 'FDL')
 depends=('python3' 'coreutils')
 provides=('ponysay')
 conflict=('ponysay' 'ponysay-git' 'ponysay-free')
-optdepends=('util-say: tty2colourfultty, ponysay2ttyponysay.pony; the possibility to use .png like any .pony file')
 makedepends=('git' 'texinfo' 'python-distribute' 'util-say-git')
 branch=("develop")
 source=("$_pkgname::git+https://github.com/erkin/ponysay#branch=$branch")
@@ -23,7 +23,7 @@ md5sums=("SKIP")
 
 package() {
 	cd $srcdir/$_pkgname
-#	./dev/dist.sh ttyponies
+	./dev/dist.sh ttyponies
 	python3 ./setup.py --freedom=partial --prefix=/usr --dest-dir=$pkgdir --everything --with-pdf=/usr/share/doc/ponysay --without-pdf-compression install
 	install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
