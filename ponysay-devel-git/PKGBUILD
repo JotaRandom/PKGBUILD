@@ -1,13 +1,9 @@
 # Contributor: Daniel Wallace <daniel.wallace at gatech dot edu>
-# MAintainer: Pablo Lezaeta <prflr88 (arroba) gmail (punto) com>
+# Maintainer: Pablo Lezaeta <prflr88 (arroba) gmail (punto) com>
 
 pkgname=ponysay-dev-git
 _pkgname=ponysay
 pkgver=3.0.1~52~ga4be5c6.1930
-pkgver(){
-	cd $_pkgname
-	echo "$(git describe --always | sed 's/-/~/g' ).$(git rev-list --count HEAD | sed 's/-/./g' )"
-}
 pkgrel=1
 pkgdesc="Pony wrapper for cowsay. (develop branch)"
 arch=('any')
@@ -21,11 +17,18 @@ branch=("develop")
 source=("$_pkgname::git+https://github.com/erkin/ponysay#branch=$branch")
 md5sums=("SKIP")
 
+pkgver(){
+	cd $_pkgname
+	echo "$(git describe --always | sed 's/-/~/g' ).$(git rev-list --count HEAD | sed 's/-/~/g' )"
+}
+
 package() {
 	cd $srcdir/$_pkgname
+
+	# For prevent missing ttyponies
 	./dev/dist.sh ttyponies
+
 	python3 ./setup.py --freedom=partial --prefix=/usr --dest-dir=$pkgdir --everything --with-pdf=/usr/share/doc/ponysay --without-pdf-compression install
-	install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
 
 # vim:set ts=2 sw=2 et:

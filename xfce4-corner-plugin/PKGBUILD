@@ -1,0 +1,31 @@
+# Contributor: AqD <aquila.deus@gmail.com>
+# Maintainer: Pablo Lezaeta <prflr88@gmail.com>
+
+pkgname=xfce4-corner-plugin
+pkgver=1.0.2
+pkgrel=1
+pkgdesc="Mac-style menubar corner plugin for xfce panel (4.4+)"
+arch=('i686' 'x86_64')
+url="http://aquila.deus.googlepages.com/"
+depends=('xfce4-panel>=4.3.99.2')
+makedeends=('pkgconfig')
+options=(!libtool)
+license=(LGPL)
+source=("$pkgname.c"
+	"$pkgname.desktop")
+
+build(){
+	cd $srcdir
+	gcc -std=c99 -Wall -DFOR_XFCE `pkg-config --cflags --libs libxfce4panel-1.0` $CFLAGS $LDFLAGS -o $pkgname $pkgname.c
+}
+
+package(){
+	cd $pkgdir
+	mkdir -p $pkgdir/usr/lib/xfce4/panel-plugins
+	mkdir -p $pkgdir/usr/share/xfce4/panel-plugins
+	cp -f $srcdir/$pkgname $pkgdir/usr/lib/xfce4/panel-plugins/
+	cp -f $srcdir/$pkgname.desktop $pkgdir/usr/share/xfce4/panel-plugins/
+}
+
+md5sums=('23a327a22c9a6666bb40353219a90f75'
+         'd806754931980ecdfdfe882db0d073f1')

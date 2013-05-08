@@ -40,3 +40,5 @@ util-say/3.*
 *ata*ony.png
 ponysay-devel-git/ponysay
 ponysay-git/ponysay
+util-say-git/util-say
+*/*.rpm
