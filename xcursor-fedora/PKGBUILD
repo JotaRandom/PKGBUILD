@@ -12,6 +12,10 @@ license=('GPL')
 source=('http://opendesktop.org/CONTENT/content-files/50533-fedora%20core%206.tar.gz'
 	'http://opendesktop.org/CONTENT/content-files/50534-fedora%20core%206%20inverse.tar.gz')
 
+prepare() {
+	find -name '*.png' -exec optipng -quiet -force -fix {} +
+}
+
 build() {
   cd $srcdir
 

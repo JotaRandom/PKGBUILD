@@ -1,21 +1,27 @@
-# Contributor: Daniel Wuensch <tombhadAC@gmx.de>
-# Maintainer: Pablo Lezaeta <prflr88@gmail.com> 
+# Maintainer: Pablo Lezaeta <prflr88@gmail.com>
 
 pkgname=fedora-icon-theme
 pkgver=1.0.0
-pkgrel=12
-pkgdesc="Fedora icon theme"
+_pkgver=1.0.0-14.fc19
+pkgrel=1
+pkgdesc="Set of icons based from Fedora and RedHat"
 arch=('any')
-url="http://fedoraproject.org/"
-license=('GPL')
-makedepends=('rpmextract')
-source=(ftp://ftp.tu-chemnitz.de/pub/linux/fedora/linux/releases/17/Fedora/i386/os/Packages/f/$pkgname-$pkgver-$pkgrel.fc17.noarch.rpm
-ftp://ftp.tu-chemnitz.de/pub/linux/fedora/linux/releases/17/Fedora/i386/os/Packages/e/echo-icon-theme-0.3.89.0-0.15.20081003gitcc6da5b.fc17.noarch.rpm)
-sha1sums=('293fecd764bcb70c8d8dd337e8aef5db293ba976'
-'65c48bccc9c66bd69186d636f1bd05f1f950b540')
+url="http://http://www.redhat.com/"
+license=('GPL3')
+depends=('mist-icon-theme')
+source=("http://rpmfind.net/linux/fedora/linux/development/rawhide/source/SRPMS/f/fedora-icon-theme-$_pkgver.src.rpm")
 
-package() {
-	cd $pkgdir
-	rpmextract.sh $srcdir/$pkgname-$pkgver-$pkgrel.fc17.noarch.rpm
-	rpmextract.sh $srcdir/echo-icon-theme-0.3.89.0-0.15.20081003gitcc6da5b.fc17.noarch.rpm
+build() {
+	cd $srcdir
+	tar xvjf $pkgname-$pkgver.tar.bz2
+	cd $pkgname-$pkgver
+	./configure --prefix=/usr --bindir=/usr/bin --sbindir=/usr/bin  --libexecdir=/usr/lib/$pkgname
+	make
 }
+
+package(){
+	cd $srcdir/$pkgname-$pkgver
+	make install DESTDIR=$pkgdir sbindir=/usr/bin
+}
+
+md5sums=('b0a0cdd426cf98eed140795e7accbcd4')
