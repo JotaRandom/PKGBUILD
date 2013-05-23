@@ -2,7 +2,7 @@
 
 pkgname=util-say-git
 _pkgname=util-say
-pkgver=3.2~6~gbf2c838.265
+pkgver=3.2.git6.gitgbf2c838.265
 pkgrel=1
 pkgdesc="Tools for creating ponies for cowsay and cowsay-like programs"
 arch=('any')
@@ -17,7 +17,7 @@ source=("$_pkgname::git+https://github.com/maandree/util-say")
 md5sums=("SKIP")
 pkgver(){
 	cd $_pkgname
-	echo "$(git describe --always | sed 's/-/~/g' ).$(git rev-list --count HEAD | sed 's/-/./g' )"
+	echo "$(git describe --always | sed 's/-/.git/g' ).$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 package() {
