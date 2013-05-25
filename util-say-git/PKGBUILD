@@ -15,6 +15,7 @@ provides=('util-say')
 conflicts=('util-say')
 source=("$_pkgname::git+https://github.com/maandree/util-say")
 md5sums=("SKIP")
+
 pkgver(){
 	cd $_pkgname
 	echo "$(git describe --always | sed 's/-/.git/g' ).$(git rev-list --count HEAD | sed 's/-/./g' )"
