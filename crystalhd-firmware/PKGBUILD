@@ -3,9 +3,9 @@
 
 pkgname=crystalhd-firmware
 pkgver=20120110
-pkgrel=1
+pkgrel=2
 pkgdesc="Crystal HD Video Decoder firmware"
-arch=('i686' 'x86_64')
+arch=('any')
 url="http://www.broadcom.com/support/crystal_hd/"
 license=('GPL2')
 # Debian have more updated sources
