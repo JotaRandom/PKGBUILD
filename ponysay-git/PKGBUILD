@@ -3,7 +3,7 @@
 
 pkgname=ponysay-git
 _pkgname=ponysay
-pkgver=3.0.1.git50~g2af2543.1928
+pkgver=3.0.1.git50
 pkgrel=1
 pkgdesc="Cowsay reimplementation for ponies."
 arch=('any')
@@ -17,9 +17,10 @@ makedepends=('git' 'texinfo' 'python3-distribute')
 screenshot="http://i.imgur.com/xOJbE.png"
 source=("$_pkgname::git+https://github.com/erkin/ponysay")
 md5sums=("SKIP")
+
 pkgver(){
 	cd $_pkgname
-	echo "$(git describe --always | sed 's/-/.git/g' ).$(git rev-list --count HEAD | sed 's/-/./g' )"
+	echo "$(git describe --always --abbrev=0 ).$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 package() {
