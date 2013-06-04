@@ -18,7 +18,7 @@ md5sums=("SKIP")
 
 pkgver(){
 	cd $_pkgname
-	echo "$(git describe --abbrev=0 | sed 's/-/./g' ).git$(git rev-list --count HEAD | sed 's/-/~/g' )"
+	echo "$(git describe --abbrev=0 ).git$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 package() {
