@@ -7,7 +7,7 @@
 pkgname=gufw
 pkgver=13.10.0
 _pkgver=13.04.0
-pkgrel=3
+pkgrel=4
 pkgdesc="An easy, intuitive way to manage your Linux firewall"
 arch=('any')
 url="http://gufw.org"
@@ -15,7 +15,7 @@ license=('GPL3')
 depends=('dbus' 'dbus-python' 'gtk3' 'gnome-icon-theme-symbolic' 'webkitgtk' 'notification-daemon' 'polkit' 'python2-netifaces' 'python2-gobject' 'ufw')
 makedepends=('python2-distutils-extra' 'intltool' 'bzr')
 install=$pkgname.install
-source=("$pkgname::http://ubuntuone.com/4Fy4zRyPxiaZFd5JtroVyT")
+source=("$pkgname::")
 
 prepare() {
   cd "${srcdir}/gui-ufw-$_pkgver"
@@ -24,7 +24,7 @@ prepare() {
     -e "s|#![ ]*/usr/bin/env python$|#!/usr/bin/env python2|" \
     $(find . -name '*.py')
   sed -i "s|python ${LOCATIONS[${i}]}|python2 ${LOCATIONS[${i}]}|" bin/gufw
-  sed -i "s|python ${LOCATIONS[${i}]}|python2 ${LOCATIONS[${i}]}|" bin/gufw-pkexec
+#  sed -i "s|python ${LOCATIONS[${i}]}|python2 ${LOCATIONS[${i}]}|" bin/gufw-pkexec
 }
 
 package(){
@@ -36,9 +36,9 @@ package(){
   find "${pkgdir}" -type f | xargs chmod 644
   chmod -R 755 "${pkgdir}/usr/bin"
 
-  # Remove gufw.cfg is the prescence of this give you problems
+  # Remove gufw.cfg if the prescence of this give you problems
   #rm $pkgdir/etc/gufw/gufw.cfg
 
 }
 
-md5sums=('d001f108da9591abd2bea3cfbc8c8798')
+md5sums=('59c220d030ec11b5fb0b9affa9e833a2')
