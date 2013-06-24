@@ -4,24 +4,27 @@
 # Contributor: kiefer <jorgelmadrid@gmail.com>
 # Maintainer: Roland Singer <roland@manjaro.org>
 
-pkgname=lxdm
+pkgname=lxdm-manjaro
+_pkgname=lxdm
 pkgver=0.4.1
-pkgrel=27
+pkgrel=1
 pkgdesc='Lightweight X11 Display Manager'
 arch=('i686' 'x86_64')
 url="http://sourceforge.net/projects/lxdm/"
 license=('GPL')
 groups=('lxde')
+replaces=('lxdm')
+provides=('lxdm')
+conflicts=('lxdm')
 depends=('gtk2' 'xorg-server' 'adwaita-manjaro-themes' 'lxdm-manjaro-theme')
 optdepends=('polkit-gnome: to run lxdm-config directly from menu')
 makedepends=('intltool')
-install=${pkgname}.install
-
+install=${_pkgname}.install
 backup=('etc/lxdm/lxdm.conf' 'etc/pam.d/lxdm' 'etc/lxdm/Xsession'
         'etc/lxdm/PreLogin' 'etc/lxdm/LoginReady' 'etc/lxdm/PostLogin'
         'etc/lxdm/PostLogout' 'etc/lxdm/PreReboot' 'etc/lxdm/PreShutdown')
 
-source=(http://downloads.sourceforge.net/lxde/$pkgname-$pkgver.tar.gz
+source=(http://downloads.sourceforge.net/lxde/$_pkgname-$pkgver.tar.gz
 		lxdm.pam  lxdm.service
 		lxdm-0.4.1-Xsession-source-profile.patch
 		lxdm-0.4.1-conf.patch
@@ -40,7 +43,7 @@ source=(http://downloads.sourceforge.net/lxde/$pkgname-$pkgver.tar.gz
 
 prepare() {
 
-    cd $srcdir/$pkgname-$pkgver
+    cd $srcdir/$_pkgname-$pkgver
     patch -Np1 -i $srcdir/lxdm-0.4.1-event-check-bug.patch
     patch -Np1 -i $srcdir/lxdm-0.4.1-nolang-show-sessions.patch
     patch -Np1 -i $srcdir/lxdm-0.4.1-pam-env-vars.patch
@@ -55,7 +58,7 @@ prepare() {
 
 build() {
 
-    cd $srcdir/$pkgname-$pkgver
+    cd $srcdir/$_pkgname-$pkgver
     ./configure --sysconfdir=/etc --prefix=/usr --libexecdir=/usr/lib/lxdm \
     --bindir=/usr/bin \
     --sbindir=/usr/bin
@@ -71,7 +74,7 @@ build() {
 
 package() {
 
-    cd $srcdir/$pkgname-$pkgver
+    cd $srcdir/$_pkgname-$pkgver
     make DESTDIR=$pkgdir sbindir=/usr/bin install
     install -m644 $srcdir/lxdm.pam $pkgdir/etc/pam.d/lxdm
     install -Dm644 $srcdir/lxdm.service $pkgdir/usr/lib/systemd/system/lxdm.service
@@ -85,7 +88,7 @@ package() {
     rm -r $pkgdir/var/run
 
     # Fix logout behavior
-    echo '#!/bin/sh' > "${pkgdir}/etc/lxdm/PostLogout"
+    echo '#!/usr/bin/env sh' > "${pkgdir}/etc/lxdm/PostLogout"
     echo '' >> "${pkgdir}/etc/lxdm/PostLogout"
     echo '# Kills all your processes when you log out.' >> "${pkgdir}/etc/lxdm/PostLogout"
     echo 'killall --user $USER -TERM' >> "${pkgdir}/etc/lxdm/PostLogout"
@@ -97,13 +100,13 @@ package() {
     install -Dm644 "${srcdir}/org.manjaro.pkexec.lxdm-config.policy" "${pkgdir}/usr/share/polkit-1/actions/org.manjaro.pkexec.lxdm-config.policy"
 
     # Install launcher script
-    echo '#!/bin/sh' > ${pkgdir}/usr/bin/lxdm-config-pkexek
+    echo '#!/usr/bin/env sh' > ${pkgdir}/usr/bin/lxdm-config-pkexek
     echo 'user=$(whoami)' >> ${pkgdir}/usr/bin/lxdm-config-pkexec
     echo 'pkexec "/usr/bin/lxdm-config" --user "$user" "$@"' >> ${pkgdir}/usr/bin/lxdm-config-pkexec
     chmod 755 ${pkgdir}/usr/bin/lxdm-config-pkexec
 
     # Install desktop file
-    install -Dm644 $srcdir/${pkgname}-config.desktop $pkgdir/usr/share/applications/${pkgname}-config.desktop
+    install -Dm644 $srcdir/${_pkgname}-config.desktop $pkgdir/usr/share/applications/${_pkgname}-config.desktop
 
 }
 
