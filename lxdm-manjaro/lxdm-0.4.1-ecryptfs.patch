@@ -1,0 +1,13 @@
+--- a/src/lxdm.c	2011-07-29 15:42:33.000000000 +0200
++++ b/src/lxdm.c	2013-04-06 17:59:33.078916328 +0200
+@@ -1464,6 +1464,10 @@ void lxdm_do_login(struct passwd *pw, ch
+ #endif
+ 	char** env, *path;
+ 	int n_env,i;
++	/* workaround to the lxdm-binary 100% cpu problem with pam ecryptfs
++	 https://sourceforge.net/tracker/?func=detail&aid=3548688&group_id=180858&atid=894869 */
++	for(i=2;i<256;i++)
++		g_source_remove(i);
+ 	n_env  = g_strv_length(environ);
+ 	/* copy all environment variables and override some of them */
+ 	env = g_new(char*, n_env + 1 + 13);

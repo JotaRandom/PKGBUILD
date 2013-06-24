@@ -1,0 +1,44 @@
+#Maintainer: Roland Singer
+
+pkgname=lxdm-manjaro-theme
+pkgver=20121105
+pkgrel=1
+pkgdesc="Manjaro Linux LXDM Theme"
+dependes=('manjaro-artwork')
+arch=(any)
+license=('GPL')
+url="git://git.manjaro.org/manjaro-linux-graphics/lxdm-manjaro-theme.git"
+_git=yes
+md5sums=('SKIP')
+
+getsource() {
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [ -d $1 ] ; then
+    if [ "$_git" == "yes" ] ; then
+       cd $1 && git pull origin master
+    else
+       cd $1 && git pull origin master && git checkout -b $pkgver
+    fi
+    msg "The local files are updated."
+  else
+    git clone $2 $1
+    if [ "$_git" != "yes" ] ; then
+       cd $1 && git checkout -b $pkgver $pkgver
+    fi
+  fi
+
+  msg "GIT checkout done or server timeout"
+}
+
+
+package () {
+	getsource "${pkgname}" "git://git.manjaro.org/manjaro-linux-graphics/lxdm-manjaro-theme.git"
+
+	mkdir -p ${pkgdir}/usr/share/lxdm/themes/
+	cp -r ${srcdir}/${pkgname}/Manjaro ${pkgdir}/usr/share/lxdm/themes/
+	ln -sf "/usr/share/backgrounds/manjaro.jpg" "${pkgdir}/usr/share/lxdm/themes/Manjaro/background-image"
+}
+
+

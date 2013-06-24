@@ -1,0 +1,123 @@
+# $Id: PKGBUILD 74703 2012-08-02 08:45:29Z bpiotrowski $
+# Contributor: Bartłomiej Piotrowski <nospam@bpiotrowski.pl>
+# Contributor: AndyRTR <andyrtr@archlinux.org>
+# Contributor: kiefer <jorgelmadrid@gmail.com>
+# Maintainer: Roland Singer <roland@manjaro.org>
+
+pkgname=lxdm
+pkgver=0.4.1
+pkgrel=27
+pkgdesc='Lightweight X11 Display Manager'
+arch=('i686' 'x86_64')
+url="http://sourceforge.net/projects/lxdm/"
+license=('GPL')
+groups=('lxde')
+depends=('gtk2' 'xorg-server' 'adwaita-manjaro-themes' 'lxdm-manjaro-theme')
+optdepends=('polkit-gnome: to run lxdm-config directly from menu')
+makedepends=('intltool')
+install=${pkgname}.install
+
+backup=('etc/lxdm/lxdm.conf' 'etc/pam.d/lxdm' 'etc/lxdm/Xsession'
+        'etc/lxdm/PreLogin' 'etc/lxdm/LoginReady' 'etc/lxdm/PostLogin'
+        'etc/lxdm/PostLogout' 'etc/lxdm/PreReboot' 'etc/lxdm/PreShutdown')
+
+source=(http://downloads.sourceforge.net/lxde/$pkgname-$pkgver.tar.gz
+		lxdm.pam  lxdm.service
+		lxdm-0.4.1-Xsession-source-profile.patch
+		lxdm-0.4.1-conf.patch
+		lxdm-0.4.1-event-check-bug.patch
+		lxdm-0.4.1-industrial-greeter-ui.patch
+		lxdm-0.4.1-modern-systems.patch
+		lxdm-0.4.1-nolang-show-sessions.patch
+		lxdm-0.4.1-pam-env-vars.patch
+		lxdm-0.4.1-ecryptfs.patch
+		org.manjaro.pkexec.lxdm-config.policy
+                lxdm-config.desktop
+                #####################################
+                ## Custom Manjaro Login Pane Patch ##
+                #####################################
+                lxdm.login_pane.patch)
+
+prepare() {
+
+    cd $srcdir/$pkgname-$pkgver
+    patch -Np1 -i $srcdir/lxdm-0.4.1-event-check-bug.patch
+    patch -Np1 -i $srcdir/lxdm-0.4.1-nolang-show-sessions.patch
+    patch -Np1 -i $srcdir/lxdm-0.4.1-pam-env-vars.patch
+    patch -Np1 -i $srcdir/lxdm-0.4.1-ecryptfs.patch
+
+    #####################################
+    ## Custom Manjaro Login Pane Patch ##
+    #####################################
+    patch -Np0 -i $srcdir/lxdm.login_pane.patch
+
+}
+
+build() {
+
+    cd $srcdir/$pkgname-$pkgver
+    ./configure --sysconfdir=/etc --prefix=/usr --libexecdir=/usr/lib/lxdm \
+    --bindir=/usr/bin \
+    --sbindir=/usr/bin
+
+    make
+  	
+    patch -Np0 -i $srcdir/lxdm-0.4.1-modern-systems.patch
+    patch -Np0 -i $srcdir/lxdm-0.4.1-conf.patch
+    patch -Np0 -i $srcdir/lxdm-0.4.1-Xsession-source-profile.patch
+    patch -Np0 -i $srcdir/lxdm-0.4.1-industrial-greeter-ui.patch
+
+}
+
+package() {
+
+    cd $srcdir/$pkgname-$pkgver
+    make DESTDIR=$pkgdir sbindir=/usr/bin install
+    install -m644 $srcdir/lxdm.pam $pkgdir/etc/pam.d/lxdm
+    install -Dm644 $srcdir/lxdm.service $pkgdir/usr/lib/systemd/system/lxdm.service
+    install -d $pkgdir/var/{lib,run}/lxdm
+
+    # fix the greeter location
+    sed -i -e 's/local\/libexec/lib\/lxdm/' $pkgdir/etc/lxdm/lxdm.conf
+    sed -i 's:sbin:bin:' $pkgdir/usr/bin/lxdm
+
+    # avoid conflict with filesystem>=2012.06
+    rm -r $pkgdir/var/run
+
+    # Fix logout behavior
+    echo '#!/bin/sh' > "${pkgdir}/etc/lxdm/PostLogout"
+    echo '' >> "${pkgdir}/etc/lxdm/PostLogout"
+    echo '# Kills all your processes when you log out.' >> "${pkgdir}/etc/lxdm/PostLogout"
+    echo 'killall --user $USER -TERM' >> "${pkgdir}/etc/lxdm/PostLogout"
+    echo '' >> "${pkgdir}/etc/lxdm/PostLogout"
+    echo '# Sets the desktop background to solid black. Useful if you have multiple monitors.' >> "${pkgdir}/etc/lxdm/PostLogout"
+    echo 'xsetroot -solid black' >> "${pkgdir}/etc/lxdm/PostLogout"
+
+    # Install policy file
+    install -Dm644 "${srcdir}/org.manjaro.pkexec.lxdm-config.policy" "${pkgdir}/usr/share/polkit-1/actions/org.manjaro.pkexec.lxdm-config.policy"
+
+    # Install launcher script
+    echo '#!/bin/sh' > ${pkgdir}/usr/bin/lxdm-config-pkexek
+    echo 'user=$(whoami)' >> ${pkgdir}/usr/bin/lxdm-config-pkexec
+    echo 'pkexec "/usr/bin/lxdm-config" --user "$user" "$@"' >> ${pkgdir}/usr/bin/lxdm-config-pkexec
+    chmod 755 ${pkgdir}/usr/bin/lxdm-config-pkexec
+
+    # Install desktop file
+    install -Dm644 $srcdir/${pkgname}-config.desktop $pkgdir/usr/share/applications/${pkgname}-config.desktop
+
+}
+
+sha256sums=('9e0d0a5672fcf31a18de8178ce73eab1723d6ae7097dfe41e9fe2c46e180cf08'
+            '9a63e118215f0492e5b7c049173a1994c1d86f00726f615c0757ea0a663deaf1'
+            '28b8a9b1c18943529187973a4fdd9b8afe1050d45219886a46e4074e4bd4ea88'
+            'b901a2141f3becea005952f59d54c13357c0ba12e9ebbde24cf395a50ce748e2'
+            'f2f60852f0b556c49ec95c1b1cbf575e88ebe049718137aca068cd6fbec01189'
+            'c6a766502f18b6e073aa021d680bbb351791bf2646f6bdf6c9093ad2a83ddcbc'
+            'dbec8a2ea9f2366b9423537401595b0207c88675a254428c1402995f412cc3e4'
+            'c4dbea49b6b4cab407d621e868e1bda0111df1012a244abde36cac54ea4a5735'
+            '029c77c53c42188ce9fc3372c77aac942517e449d77be13717bb79108f9d4971'
+            'dd18af5704a9b52d0730508a7dae8604ae4e62c12a04dc386138fa082a5faff9'
+            'f7db74b542a6d614bc8cf2da4395e526e9c460a335dc558d15f6c0aeb1d321ac'
+            '21288b1de0354dfa3ee45c9c91552c3abb1e58aba48c70eb7b604b6e07e33ea1'
+            'ced6936b00b8e7cfd67b7be960e5e0f447581a03c1b19e34783257ed4b602db7'
+            '8f2112373bd0cca9509c0cfade7543dc875f5340bf9e796bc06a6d7e41149cf5')
