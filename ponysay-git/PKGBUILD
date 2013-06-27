@@ -3,7 +3,7 @@
 
 pkgname=ponysay-git
 _pkgname=ponysay
-pkgver=3.0.1.git2039
+pkgver=3.0.1.git2042
 pkgrel=1
 epoch=1
 pkgdesc="Cowsay reimplementation for ponies."
