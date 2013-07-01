@@ -18,7 +18,7 @@ build(){
 
 package(){
   mkdir -p $pkgdir/usr/lib/firmware
-  mv $srcdir/lib/firmware/*.bin $pkgdir/usr/lib/firmware/
+  cp -rav $srcdir/lib/firmware/*.bin $pkgdir/usr/lib/firmware/
   install -Dm644 $srcdir/usr/share/doc/$pkgname-$pkgver/LICENSE $pkgdir/usr/share/doc/$pkgname/LICENSE
 }
 

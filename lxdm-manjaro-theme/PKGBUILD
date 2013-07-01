@@ -1,44 +1,25 @@
-#Maintainer: Roland Singer
+#Contributor: Roland Singer
+#Maintainer: Pablo Lezaeta <prflr88@gmail.com>
 
 pkgname=lxdm-manjaro-theme
-pkgver=20121105
+pkgver=20133006
 pkgrel=1
+#epoch=1
 pkgdesc="Manjaro Linux LXDM Theme"
 dependes=('manjaro-artwork')
 arch=(any)
 license=('GPL')
-url="git://git.manjaro.org/manjaro-linux-graphics/lxdm-manjaro-theme.git"
-_git=yes
+url="http://git.manjaro.org/manjaro-linux-graphics/lxdm-manjaro-theme"
+source=("$pkgname::git://git.manjaro.org/manjaro-linux-graphics/lxdm-manjaro-theme.git")
 md5sums=('SKIP')
 
-getsource() {
-  cd "$srcdir"
-  msg "Connecting to GIT server...."
-
-  if [ -d $1 ] ; then
-    if [ "$_git" == "yes" ] ; then
-       cd $1 && git pull origin master
-    else
-       cd $1 && git pull origin master && git checkout -b $pkgver
-    fi
-    msg "The local files are updated."
-  else
-    git clone $2 $1
-    if [ "$_git" != "yes" ] ; then
-       cd $1 && git checkout -b $pkgver $pkgver
-    fi
-  fi
-
-  msg "GIT checkout done or server timeout"
+pkgver(){
+	cd $pkgname
+	echo "0.git$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
-
-package () {
-	getsource "${pkgname}" "git://git.manjaro.org/manjaro-linux-graphics/lxdm-manjaro-theme.git"
-
-	mkdir -p ${pkgdir}/usr/share/lxdm/themes/
-	cp -r ${srcdir}/${pkgname}/Manjaro ${pkgdir}/usr/share/lxdm/themes/
-	ln -sf "/usr/share/backgrounds/manjaro.jpg" "${pkgdir}/usr/share/lxdm/themes/Manjaro/background-image"
+package() {
+	mkdir -p $pkgdir/usr/share/lxdm/themes/
+	cp -vr $srcdir/$pkgname/Manjaro $pkgdir/usr/share/lxdm/themes/
+	ln -sf "/usr/share/backgrounds/manjaro.jpg" "$pkgdir/usr/share/lxdm/themes/Manjaro/background-image"
 }
-
-

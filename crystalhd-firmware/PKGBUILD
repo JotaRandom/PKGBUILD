@@ -13,7 +13,7 @@ source=("$pkgname-$pkgver.tar.gz::http://ftp.de.debian.org/debian/pool/non-free/
 
 package() {
 	mkdir -p $pkgdir/usr/lib/firmware/fwbin
-	cp -a $srcdir/firmware-crystalhd-0.0~git20120110.fdd2f19/firmware/fwbin/* $pkgdir/usr/lib/firmware/fwbin/
+	cp -av $srcdir/firmware-crystalhd-0.0~git20120110.fdd2f19/firmware/fwbin/* $pkgdir/usr/lib/firmware/fwbin/
 }
 
 md5sums=('e8a0dfad78eacd6bde2c3ff0f217a6c6')

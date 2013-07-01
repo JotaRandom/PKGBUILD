@@ -2,7 +2,7 @@
 # Contributor: ThinCarrotShrimp <christoph.r.martin+arch at gmail dot com>
 
 pkgname=oh-my-zsh-git
-pkgver=20130628_b0e4381471
+pkgver=20130628.git1848
 pkgrel=1
 pkgdesc="A community-driven framework for managing your zsh configuration."
 arch=('any')
@@ -12,7 +12,6 @@ depends=('zsh')
 makedepends=('git')
 optdepends=('ruby: for some plugin functionality')
 install='oh-my-zsh-git.install'
- 
 _gitname=oh-my-zsh
 source=("$_gitname::git://github.com/robbyrussell/oh-my-zsh.git#branch=master")
 md5sums=('SKIP')
@@ -20,17 +19,7 @@ md5sums=('SKIP')
 # pacman 4.1 - retrieve version from git
 pkgver() {
   cd $_gitname
- 
-  d="$(git describe --always | sed 's/-/./g')"
-  h="$(git show --format="%h" HEAD)"
- 
-  if [[ "$d" = "$h" ]]; then
-    # If describe just delivers the short hash, set pkgver to <date>_<hash>,
-    # e.g. 20130412_85426a5
-    echo "$(git show --date=short --format="%cd_%h" | sed 's/-//g')"
-  else
-    echo "$d"
-  fi
+  echo "$(git show --date=short --format="%cd.git$(git rev-list --count HEAD)" | sed 's/-//g' )"
 }
  
 build() {
