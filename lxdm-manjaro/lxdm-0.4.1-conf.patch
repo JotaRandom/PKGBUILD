@@ -16,7 +16,7 @@
   
   [display]
   ## gtk theme used by greeter
-! gtk_theme=Adwaita-Manjaro-dark
+! gtk_theme=Greybird
   
   ## background of the greeter
 ! # bg=/usr/share/backgrounds/default.png
