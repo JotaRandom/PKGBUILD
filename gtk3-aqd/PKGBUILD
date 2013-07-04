@@ -1,0 +1,49 @@
+# $Id$
+# Maintainer: Victor Aurélio <victoraur.santos@gmail.com>
+
+pkgname=gtk3-aqd
+pkgver=3.8.2
+pkgrel=1
+pkgdesc="GObject-based multi-platform GUI toolkit (v3)"
+arch=('i686' 'x86_64')
+url="http://www.gtk.org/"
+install=gtk3.install
+depends=('atk>=2.7.5' 'glib2>=2.35.3' 'gdk-pixbuf2>=2.27.1' 'cairo' 'gtk-update-icon-cache' 'libcups' 'libxcursor' 'libxinerama' 'libxrandr' 'libxi' 'libxcomposite' 'libxdamage' 'pango' 'shared-mime-info' 'colord' 'at-spi2-atk')
+makedepends=('gobject-introspection')
+provides=('gtk3')
+replaces=('gtk3')
+conflicts=('gtk3')
+options=('!libtool')
+backup=(etc/gtk-3.0/settings.ini)
+license=('LGPL')
+source=(http://ftp.gnome.org/pub/gnome/sources/gtk+/${pkgver%.*}/gtk+-$pkgver.tar.xz
+        settings.ini
+        gtk-gtkmenubar.patch)
+sha256sums=('f43e7c7d7a0e2417225509e88f67799534c69abfbb6f615fc7a895bf15e31255'
+            'c214d3dcdcadda3d642112287524ab3e526ad592b70895c9f3e3733c23701621'
+            'eea5316dddceddfd5a493aa25ae708481fb8f9012a2b5e7c6a842146acb039dd')
+
+build() {
+    cd "gtk+-$pkgver"
+
+    ## Apply "aqd" patch
+    patch -Np0 < $startdir/gtk-gtkmenubar.patch
+
+    CXX=/bin/false ./configure --prefix=/usr \
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        --enable-gtk2-dependency \
+        --disable-schemas-compile
+
+    #https://bugzilla.gnome.org/show_bug.cgi?id=655517
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+    make
+}
+
+package() {
+    cd "gtk+-$pkgver"
+    make DESTDIR="$pkgdir" install
+
+    install -Dm644 "$srcdir/settings.ini" "$pkgdir/etc/gtk-3.0/settings.ini"
+}
