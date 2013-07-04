@@ -1,0 +1,17 @@
+# Contributor: Pablo Lezaeta <prflr88@gmail.com>
+
+pkgname=gtk-theme-windows-8
+pkgver=1
+pkgrel=0
+pkgdesc="Windows 8 like."
+arch=("any")
+url="http://xfce-look.org/content/show.php/?content=155906"
+license=('CC')
+source=("$pkgname.tar.bz2::http://xfce-look.org/CONTENT/content-files/155906-Windows-8.tar.bz2"
+	"$pkgname-icon.tar.gz::https://dl.dropbox.com/u/44612640/PublicThemes/Win8.tar.gz")
+
+build() {
+  cd $srcdir
+  
+}
+
