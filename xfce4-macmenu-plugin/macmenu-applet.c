@@ -17,11 +17,11 @@
 #include "macmenu-tslist.h"
 
 typedef XfcePanelPlugin AppletType;
-const gchar* MAIN_LABEL_TEXT = "ArchLinux";
+const gchar* MAIN_LABEL_TEXT = "Escritorio";
 
 const char* TS_LIST_FILENAME = ".macmenu-tslist";
-const int MAX_LABEL_WIDTH_N_CHARS = 15;
-const int SHORTCUT_SPACING = 8;
+const int MAX_LABEL_WIDTH_N_CHARS = 64;
+const int SHORTCUT_SPACING = 1;
 
 typedef struct {
     AppletType* applet;
@@ -43,7 +43,7 @@ typedef struct {
 
 static int handle_x_error (Display* display, XErrorEvent* error)
 {
-    printf("Caught stupid X error, ignore it...");
+    printf("Caught stupid X11 error, ignore it...");
     return 0;
 }
 

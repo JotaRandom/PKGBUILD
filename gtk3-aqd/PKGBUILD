@@ -19,31 +19,36 @@ license=('LGPL')
 source=(http://ftp.gnome.org/pub/gnome/sources/gtk+/${pkgver%.*}/gtk+-$pkgver.tar.xz
         settings.ini
         gtk-gtkmenubar.patch)
-sha256sums=('f43e7c7d7a0e2417225509e88f67799534c69abfbb6f615fc7a895bf15e31255'
-            'c214d3dcdcadda3d642112287524ab3e526ad592b70895c9f3e3733c23701621'
-            'eea5316dddceddfd5a493aa25ae708481fb8f9012a2b5e7c6a842146acb039dd')
 
-build() {
-    cd "gtk+-$pkgver"
+prepare() {
+    cd $srcdir/gtk+-$pkgver
 
     ## Apply "aqd" patch
-    patch -Np0 < $startdir/gtk-gtkmenubar.patch
+    patch -Np0 < $srcdir/gtk-gtkmenubar.patch
+}
 
-    CXX=/bin/false ./configure --prefix=/usr \
-        --sysconfdir=/etc \
-        --localstatedir=/var \
-        --enable-gtk2-dependency \
-        --disable-schemas-compile
+build(){
+cd $srcdir/gtk+-$pkgver
+CXX=/bin/false ./configure --prefix=/usr \
+        --sysconfdir=/etc --libdir=/usr/lib \
+        --localstatedir=/var --libexecdir=/usr/lib/gtk-3.0 \
+        --enable-gtk2-dependency --sbindir=/usr/bin \
+        --disable-schemas-compile --bindir=/usr/bin \
+	--enable-x11-backend --enable-broadway-backend \
+	--enable-wayland-backend
+    
+#https://bugzilla.gnome.org/show_bug.cgi?id=655517
+sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
 
-    #https://bugzilla.gnome.org/show_bug.cgi?id=655517
-    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
-
-    make
+make
 }
 
 package() {
     cd "gtk+-$pkgver"
-    make DESTDIR="$pkgdir" install
+    make DESTDIR="$pkgdir" sbindir=/usr/bin install
 
     install -Dm644 "$srcdir/settings.ini" "$pkgdir/etc/gtk-3.0/settings.ini"
 }
+md5sums=('8e878e18fc385f2b813419dc7b40a968'
+         '085ece008fa3a0b7a72e9fe3dda3631a'
+         '54b6bf2d97ca977de248a38eae8e9619')

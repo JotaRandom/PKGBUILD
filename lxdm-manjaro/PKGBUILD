@@ -16,7 +16,7 @@ groups=('lxde')
 replaces=('lxdm')
 provides=('lxdm')
 conflicts=('lxdm')
-depends=('gtk2' 'xorg-server' 'lxdm-manjaro-theme')
+depends=('gtk2' 'xorg-server' 'lxdm-arch-theme')
 optdepends=('polkit-gnome: to run lxdm-config directly from menu')
 makedepends=('intltool')
 install=${_pkgname}.install
@@ -114,7 +114,7 @@ md5sums=('8da1cfc2be6dc9217c85a7cf51e1e821'
          '9cc734228696a3c6f06d91bba61b03c1'
          'b86317143ae44d7ed38c150fe4f25502'
          'd2e4a4a22ee2aa1a986be154c647b6c6'
-         '2586e639c5e72c3c6f2d102881fd80e3'
+         'f17f3b9a84ecc96885d69acbc2f479c6'
          'a1e3c46a8bef691bc544028f5b6cfe22'
          '2c4afdbe3532be4f90d8f6240d352766'
          'baed9055e8825a5511712bc095197519'

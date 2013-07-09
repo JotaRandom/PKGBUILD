@@ -5,20 +5,17 @@
 
 pkgname=xfce4-macmenu-plugin
 pkgver=1.0.15
-pkgrel=6
+pkgrel=7
 pkgdesc="Mac-style menubar plugin for xfce panel (4.4+)"
 arch=(i686 x86_64)
 url="http://aquila.deus.googlepages.com/"
-depends=('xfce4-panel>=4.3.99.2' 'libwnck>=2.16.1' 'fontconfig-ubuntu')
+depends=('xfce4-panel>=4.3.99.2' 'libwnck>=2.16.1' 'fontconfig')
 makedepends=(pkgconfig)
 options=()
 license=(LGPL)
 source=('macmenu-applet.c'
 	'macmenu-tslist.h'
 	$pkgname.desktop)
-md5sums=('b0792f81cd87aa7338fe362e40f98f97'
-         '442128110d99a35da54df6fd58b8c405'
-         '92c76560a05aefb645874b27039b7bbc')
 
 build() {
   cd $srcdir
@@ -27,8 +24,11 @@ build() {
 
 package(){
   cd $pkgdir
-  mkdir -p $pkgdir/usr/lib/xfce4/xfce4/panel-plugins
+  mkdir -p $pkgdir/usr/lib/xfce4/panel-plugins
   mkdir -p $pkgdir/usr/share/xfce4/panel-plugins
-  cp -f $srcdir/$pkgname $pkgdir/usr/lib/xfce4/xfce4/panel-plugins/
+  cp -f $srcdir/$pkgname $pkgdir/usr/lib/xfce4/panel-plugins/
   cp -f $srcdir/$pkgname.desktop $pkgdir/usr/share/xfce4/panel-plugins/
 }
+md5sums=('b0792f81cd87aa7338fe362e40f98f97'
+         '442128110d99a35da54df6fd58b8c405'
+         '79d6be381c15ca0ecddf71310218b252')

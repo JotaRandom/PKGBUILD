@@ -30,6 +30,7 @@ pkgver(){
 
 build(){
 	cd $srcdir/$realname
+	mkdir -p m4
 	./autogen.sh --prefix=/usr --sysconfdir=/etc --libexecdir=/usr/lib/$realname \
 	--localstatedir=/var --disable-debug --bindir=/usr/bin --sbindir=/usr/bin \
 	--libdir=/usr/lib 

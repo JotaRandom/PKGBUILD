@@ -24,34 +24,36 @@ source=("http://ftp.gnome.org/pub/GNOME/sources/gtk+/2.24/gtk+-$pkgver.tar.xz"
         xid-collision-debug.patch
         gtk-gtkmenubar.patch)
 backup=(etc/gtk-2.0/gtkrc)
-sha256sums=('15b8bf463eba99abfa58270662914e8e9b83568ab4945b5f0ef1aa29e90becb8'
-            'b9ed556b30184e81d53c9c6eadd150a323c6aea53031c70f5052f947b36bf976'
-            '0403ed66e82babc1c8f2ce9b7f201fa263e91784d32e12e942af96e2885ec603')
 
-build() {
-    cd gtk+-$pkgver
-
+prepare() {
+    cd $srcdir/gtk+-$pkgver
     ## Apply Patches
-    patch -Np0 < ${startdir}/xid-collision-debug.patch
-    patch -Np0 < ${startdir}/gtk-gtkmenubar.patch
+    patch -Np0 < $srcdir/xid-collision-debug.patch
+    patch -Np0 < $srcdir/gtk-gtkmenubar.patch
+}
 
-
-    CXX=/bin/false ./configure --prefix=/usr \
-                                --sysconfdir=/etc \
-                                --localstatedir=/var \
-                                --with-xinput=yes
+build(){
+    cd $srcdir/gtk+-$pkgver
+    CXX=/bin/false ./configure --prefix=/usr --bindir=/usr/bin \
+                                --sysconfdir=/etc --sbindir=/usr/bin \
+                                --localstatedir=/var --libdir=/usr/lib \
+                                --with-xinput=yes --libexecdir=/usr/lib/gtk-2.0 
 
     sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool                                
     make
 }
 
 package() {
-    cd gtk+-$pkgver
+    cd $srcdir/gtk+-$pkgver
 
-    make DESTDIR="$pkgdir" install
+    make DESTDIR="$pkgdir" sbindir=/usr/bin install
     sed -i "s#env python#env python2#" $pkgdir/usr/bin/gtk-builder-convert
     echo 'gtk-fallback-icon-theme = "gnome"' > "$pkgdir/etc/gtk-2.0/gtkrc"
 
     #split this out to use with gtk3 too
     rm $pkgdir/usr/bin/gtk-update-icon-cache
 }
+
+md5sums=('9d7833331d7accd80668e29d7f567ce5'
+         '6c39627284d656fc70fae7c557ddc718'
+         'f684703385e424343faeceb560e1fe02')
