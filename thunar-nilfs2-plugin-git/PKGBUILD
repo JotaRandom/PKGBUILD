@@ -8,11 +8,10 @@ pkgdesc="You can see a list of checkpoints created by NILFS2 in Thunar"
 arch=('i686' 'x86_64')
 url="https://github.com/kazuki/thunar-nilfs2-plugin" 
 license=('GPL3')
-depends=('python3' 'coreutils' 'nilfs-utils')
+depends=('nilfs-utils')
 provides=('thunar-nilfs2-plugin')
 conflicts=('thunar-nilfs2-plugin' 'thunar-nilfs2-plugin-git')
-makedepends=('git' 'texinfo' 'thunar' 'xfce4-dev-tools')
-screenshot="http://i.imgur.com/xOJbE.png"
+makedepends=('git' 'thunar' 'xfce4-dev-tools')
 source=("$_pkgname::git+https://github.com/jristz/thunar-nilfs2-plugin.git")
 md5sums=("SKIP")
 
