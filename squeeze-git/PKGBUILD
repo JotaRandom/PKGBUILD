@@ -20,7 +20,7 @@ provides=("squeeze" "squeeze-git")
 options=('!libtool')
 install=squeeze.install
 branch=("stephan/new-ui")
-source=("$realname::git+git://git.xfce.org/apps/squeeze#branch=$branch")
+source=("$realname::git+http://git.xfce.org/apps/squeeze#branch=$branch")
 md5sums=('SKIP')
 
 pkgver(){
