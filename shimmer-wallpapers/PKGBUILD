@@ -24,7 +24,9 @@ optdepends=('elementary-xfce-icons: matching icon set'
     'xfce-theme-albatross: matching Shimmer Project Xfce theme'
     'xfce-theme-bluebird: matching Shimmer Project Xfce theme'
     'xfce-theme-greybird: matching Shimmer Project Xfce theme')
-source=(git://github.com/shimmerproject/$_pkgname.git#commit=ba134cbfa7130e88822f07b18c454a8791d504b8)
+commit=ba134cbfa7130e88822f07b18c454a8791d504b8
+source=(git://github.com/shimmerproject/$_pkgname.git#commit=$commit)
+#source=(git://github.com/shimmerproject/$_pkgname.git)
 sha256sums=('SKIP')
 sha512sums=('SKIP')
 
