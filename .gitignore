@@ -63,3 +63,8 @@ xfce-theme-albatross-git/Albatross
 owl-git/owl
 android-udev/android-udev
 midori-bzr/midori
+exfat-git/exfat*
+systemd-user-session-units-git/systemd-user-session-*
+systemd-xorg-launch-helper-git/systemd-xorg-launch-*
+systemd-user-session-units-git/user-session-unit*
+systemd-xorg-launch-helper-git/xorg-launch-helpe*
