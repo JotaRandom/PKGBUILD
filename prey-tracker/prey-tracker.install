@@ -1,0 +1,26 @@
+## arg 1:  the new package version
+post_install() {
+  # Tell user about the README
+  echo "
+  ##############
+  #   README   #
+  ##############
+  For comprehensive instructions:
+
+  /usr/share/prey/README
+
+  You need to:
+  - Add keys to and edit /usr/share/prey/config
+  - Add a crontab entry for root similar to this (from the README)
+
+    */20 * * * * /usr/share/prey/prey.sh > /var/log/prey.log  
+
+      OR
+
+  - Enable the systemd-timer by executing:
+    # systemctl --system daemon-reload
+    # systemctl enable prey-tracker.timer
+  "
+}
+
+# vim:set ts=2 sw=2 et:
