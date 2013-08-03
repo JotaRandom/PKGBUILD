@@ -7,7 +7,7 @@
 # Contributor: Johannes Krampf <wuischke.at.amule.dot.org>
 
 pkgname=midori-bzr
-pkgver=6293
+pkgver=6312
 pkgrel=1
 pkgdesc='Lightweight web browser based on WebKit (development version)'
 arch=('x86_64' 'i686')
