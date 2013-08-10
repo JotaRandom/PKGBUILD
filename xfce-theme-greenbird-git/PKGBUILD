@@ -1,10 +1,11 @@
+# Mantainer: Diego <cdprincipe@at@gmail@dot@com>
 # Contributor: Philip Müller <philm_at_manjaro_dot_org>
-# Maintainer: Pablo Lezaeta <prflr88 (arroba) gmail (dot) com>
+# Contributor: Pablo Lezaeta <prflr88 (arroba) gmail (dot) com>
 
-pkgname=xfce-theme-greenbird
+_pkgname=xfce-theme-greenbird
+pkgname=xfce-theme-greenbird-git
 pkgver=9.f023ace
 pkgrel=1
-epoch=1
 pkgdesc="Desktop theme for Xfce based on Graybird, used on Manjaro"
 arch=('any')
 url="git://git.manjaro.org/manjaro-linux-graphics/greenbird.git"
@@ -14,15 +15,18 @@ makedepends=('git')
 optdepends=('faenza-green-icon-theme: matching icon theme'
             'lightdm-gtk-greeter: lightdm theme'
             'lightdm-unity-greeter: lightdm unity theme')
-source=("$pkgname::git+git://git.manjaro.org/manjaro-linux-graphics/greenbird.git")
+provides=(xfce-theme-greenbird)
+conflicts=(xfce-theme-greenbird)
+source=("$_pkgname::git+git://git.manjaro.org/manjaro-linux-graphics/greenbird.git")
 md5sums=("SKIP")
+
 pkgver(){
-	cd $pkgname
-	echo "$(git rev-list --count HEAD | sed 's/-/0.git/g' ).$(git describe --always | sed 's/-/~/g' )"
+  cd $_pkgname
+  echo "$(git rev-list --count HEAD | sed 's/-/0.git/g' ).$(git describe --always | sed 's/-/~/g' )"
 }
 
 package() {
-  cd "$srcdir/$pkgname"
+  cd "$srcdir/$_pkgname"
 
   # create theme dirs
   install -d -m 755 "$pkgdir"/usr/share/themes/Greenbird{,-compact/xfwm4}
@@ -37,4 +41,3 @@ package() {
   cp -r . $pkgdir/usr/share/themes/Greenbird/
 }
 
-# vim:set ts=2 sw=2 et:

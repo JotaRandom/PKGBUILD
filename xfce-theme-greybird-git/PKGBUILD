@@ -1,7 +1,7 @@
 # Maintainer: Alessio Sergi <asergi at archlinux dot us>
 
 pkgname=xfce-theme-greybird-git
-pkgver=1.1.1_34_gfc6f248
+pkgver=1.1.1_36_g564c240
 pkgrel=1
 pkgdesc="Desktop suite for Xfce"
 arch=('any')
