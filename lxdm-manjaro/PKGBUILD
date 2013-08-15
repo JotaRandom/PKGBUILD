@@ -2,7 +2,7 @@
 # Contributor: Bartłomiej Piotrowski <nospam@bpiotrowski.pl>
 # Contributor: AndyRTR <andyrtr@archlinux.org>
 # Contributor: kiefer <jorgelmadrid@gmail.com>
-# Maintainer: Roland Singer <roland@manjaro.org>
+# Contributor: Roland Singer <roland@manjaro.org>
 
 pkgname=lxdm-manjaro
 _pkgname=lxdm
@@ -36,18 +36,22 @@ source=(http://downloads.sourceforge.net/lxde/$_pkgname-$pkgver.tar.gz
 		lxdm-0.4.1-ecryptfs.patch
 		org.manjaro.pkexec.lxdm-config.policy
                 lxdm-config.desktop
-                #####################################
-                ## Custom Manjaro Login Pane Patch ##
-                #####################################
-                lxdm.login_pane.patch)
+	lxdm-0.4.1-kill_user_processes.patch
+	#####################################
+	## Custom Manjaro Login Pane Patch ##
+	#####################################
+	lxdm.login_pane.patch
+	
+)
 
 prepare() {
-
     cd $srcdir/$_pkgname-$pkgver
+
     patch -Np1 -i $srcdir/lxdm-0.4.1-event-check-bug.patch
     patch -Np1 -i $srcdir/lxdm-0.4.1-nolang-show-sessions.patch
     patch -Np1 -i $srcdir/lxdm-0.4.1-pam-env-vars.patch
     patch -Np1 -i $srcdir/lxdm-0.4.1-ecryptfs.patch
+	patch -Np1 -i $srcdir/lxdm-0.4.1-kill_user_processes.patch
 
     #####################################
     ## Custom Manjaro Login Pane Patch ##
@@ -60,8 +64,7 @@ build() {
 
     cd $srcdir/$_pkgname-$pkgver
     ./configure --sysconfdir=/etc --prefix=/usr --libexecdir=/usr/lib/lxdm \
-    --bindir=/usr/bin \
-    --sbindir=/usr/bin
+    --bindir=/usr/bin --sbindir=/usr/bin --libdir=/uar/lib
 
     make
   	
