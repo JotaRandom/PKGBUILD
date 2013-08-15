@@ -18,6 +18,8 @@ pkg/
 */*.swf
 */*.bin
 pony-creator/pony_creator_full_version_by_generalzoi-d47efz4.png
+*/*.tbz2
+*/*.run
 
 # no backups
 *~
@@ -34,6 +36,9 @@ pony-creator/pony_creator_full_version_by_generalzoi-d47efz4.png
 # only in case
 *._*
 .DS_Store
+
+# icc profiles
+*.icc
 
 # verioning number standalone
 util-say/3.*
