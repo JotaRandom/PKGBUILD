@@ -12,7 +12,7 @@ url="http://www.linuxmint.com"
 license=('GPL')
 groups=()
 depends=('pam>=1.0.2' 'libdmx' 'gtk2>=2.6' 'libgnomecanvas>=1.109.0' 'librsvg>=1.1.1' 'libxml2>=2.4.12' 'libart-lgpl>=2-0'
-'dbus-glib>=0.80' 'libwebkit')
+'dbus-glib>=0.80' 'libwebkit' 'xdg-su')
 makedepends=('gnome-common' 'intltool>=0.35.0' 'perl>=5.8.1' 'gnome-doc-utils>=0.3.2' 'xorg-server' 'pango' 'zenity' 'popt')
 optdepends=('webkitgtk: mdm-theme-emulator' 'xorg-server-xnest: mdmthemetester')
 provides=('gdm' 'gdm-old' "mintdm=$pkgver")
@@ -80,7 +80,7 @@ msg2 'Adding faces'
 
 msg2 'Adding aplications'
 	#Fix gdmsetup.desktop
-	sed -i -e 's|^Exec=gksu|Exec=pkexec |' $pkgdir/usr/share/mdm/applications/mdmsetup.desktop
+	sed -i -e 's|^Exec=gksu|Exec=xdg-su |' $pkgdir/usr/share/mdm/applications/mdmsetup.desktop
 	sed -i -e 's|^NoDisplay=true|NoDisplay=false |' $pkgdir/usr/share/mdm/applications/mdmphotosetup.desktop
 
 #Fix erroneous path for certain aplications
