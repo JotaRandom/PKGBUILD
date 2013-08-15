@@ -1,0 +1,39 @@
+# Maintainer: DavidK <david_king at softhome dot net>
+# Contributor: jsteel <mail at jsteel dot org>
+# Contributor: Christoph Zeiler <rabyte*gmail>
+# Contributor: Ronan Rabouin <darkbaboon*gmail>
+
+pkgname=freedoom
+pkgver=0.8.beta1
+pkgrel=2
+pkgdesc="Completely free Doom IWADs (game data)"
+arch=('any')
+url="http://nongnu.org/freedoom"
+license=('BSD')
+makedepends=('deutex-devel' 'python2' 'imagemagick')
+install=$pkgname.install
+options=(!makeflags)
+source=("http://savannah.nongnu.org/download/$pkgname/source/$pkgname-0.8-beta1.tar.gz"
+        "patches")
+md5sums=('e567dfbbcdb5b07a6247c73829e1bf0d'
+         'f352e5ac42bec19dc76d9c791ae9cc0f')
+
+prepare() {
+    cd "$srcdir"/freedoom-0.8-beta1
+    patch -p1 < "$srcdir/patches"
+    cd graphics/titlepic
+    sed -i "s/PKGBUILDVERSION/0.8-Beta1/" create_caption
+}
+
+build() {
+    cd "$srcdir"/$pkgname-0.8-beta1
+    make
+}
+
+package() {
+    cd "$srcdir"/$pkgname-0.8-beta1
+
+    install -dm755 "$pkgdir"/usr/share/freedoom
+    install -m644 wads/{doom,doom2,freedm}.wad "$pkgdir"/usr/share/freedoom/
+    install -Dm644 COPYING "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
+}
