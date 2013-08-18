@@ -1,29 +1,15 @@
 # Maintainer: rtfreedman  <rob<d0t>til<d0t>freedman< T>googlemail<d0t>com>
-#
-# The code and the license of this repository is of unkown origin.
-# Using it might be a problem in your country - in most others it isn't ;)
-#
-# If you're unsure, use it only on your own private systems
-# and not inside your company or systems facing the public.
-#
-# This PKGBUILD will be available as long as the repository is public.
-#
-# For discussions about the git repo, see:
-# http://phoronix.com/forums/showthread.php?81642-Native-Linux-Kernel-Module-Is-Out-For-Microsoft-exFAT
-#
 
 pkgname=exfat-git
-pkgver=37.3782f98
+pkgver=60.c00c4c1
 pkgrel=1
 url='https://github.com/rxrz/exfat-nofuse'
 pkgdesc='Native kernel module for extended fat support'
-license=('Samsung Proprietary')
-#
+license=('GPL2')
 arch=('i686' 'x86_64')
 depends=('linux>=3.8' 'linux<3.11')
 makedepends=('linux-headers' 'git')
 options=('!strip')
-#
 install="${pkgname}.install"
 source=("${pkgname}::git+https://github.com/rxrz/exfat-nofuse.git")
 md5sums=('SKIP')
@@ -36,11 +22,11 @@ pkgver() {
 #
 # Put back gpl symbol for private & testing purpose only
 #
-prepare() {
-  cd "${pkgname}"
-  sed 's|MODULE_LICENSE("Samsung Proprietary")|MODULE_LICENSE("GPL")|' \
-   -i exfat_api.c exfat_super.c
-}
+#prepare() {
+#  cd "${pkgname}"
+#  sed 's|MODULE_LICENSE("Samsung Proprietary")|MODULE_LICENSE("GPL")|' \
+#   -i exfat_api.c exfat_super.c
+#}
 
 # Find all kernels and extramodule directories
 KERNELS=`cat /usr/lib/modules/extramodules*/version`

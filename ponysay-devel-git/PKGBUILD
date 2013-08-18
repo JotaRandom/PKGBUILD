@@ -3,7 +3,7 @@
 
 pkgname=ponysay-dev-git
 _pkgname=ponysay
-pkgver=3.0.1.git2053
+pkgver=3.0.1.git2141
 pkgrel=1
 pkgdesc="Pony wrapper for cowsay. (develop branch)"
 arch=('any')
@@ -12,7 +12,7 @@ license=('GPL3' 'FDL')
 depends=('python3' 'coreutils')
 provides=('ponysay')
 conflict=('ponysay' 'ponysay-git' 'ponysay-free')
-makedepends=('git' 'texinfo' 'python-distribute' 'util-say-git')
+makedepends=('git' 'texinfo' 'auto-auto-complete>=3' 'util-say-git')
 branch=("develop")
 source=("$_pkgname::git+https://github.com/erkin/ponysay#branch=$branch")
 md5sums=("SKIP")
