@@ -21,6 +21,9 @@ pony-creator/pony_creator_full_version_by_generalzoi-d47efz4.png
 */*.tbz2
 */*.run
 
+# no partially downloads
+*/*.part
+
 # no backups
 *~
 *.bak
@@ -80,5 +83,9 @@ micropolis-git/micropolis
 x265-hg/x265
 box-theme/Bo*.png
 snes9x-git/snes9x
-fontconfig-infinality-ultimate-git
+fontconfig-infinality-ultimate-git/
 packer/packer*
+srgb-icc/ICC_White_Paper_26_Using_the_V4_sRGB_ICC_profile.pdf
+fish-shell-git/fish-shell
+flashplayer-standalone/*.pdf
+zsh-z-git/z
