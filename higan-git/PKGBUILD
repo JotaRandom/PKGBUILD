@@ -11,12 +11,13 @@ replaces=('bsnes')
 conflicts=('higan')
 depends=('openal' 'libgl')
 optdepends=('alsa' 'pulseaudio' 'sdl')
-source=('higan_gcc.patch' 'ananke_gcc.patch')
+source=('higan::git+git://gitorious.org/bsnes/bsnes.git'
+	'higan_gcc.patch'
+	'ananke_gcc.patch')
 install=higan.install
-md5sums=('049b514c1c3ca847b7efae50dcd0e3b6' '8431814f9ff3d8e5b2f438816efa1ef5')
-
-_gitroot="git://gitorious.org/bsnes/bsnes.git"
-_gitname="bsnes"
+md5sums=('SKIP'
+		'049b514c1c3ca847b7efae50dcd0e3b6'
+		'8431814f9ff3d8e5b2f438816efa1ef5')
 
 build() {
 	cd "${srcdir}"

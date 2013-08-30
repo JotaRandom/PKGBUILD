@@ -1,6 +1,6 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=elementary-xfce-icons-git
-pkgver=0.3_28_g9b44d4e
+pkgver=0.3_36_g7f4c545
 pkgrel=1
 pkgdesc='Elementary icons with better Xfce support'
 arch=('any')

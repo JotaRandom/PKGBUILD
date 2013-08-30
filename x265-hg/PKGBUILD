@@ -3,7 +3,7 @@
 
 pkgname=x265-hg
 pkgrel=1
-pkgver=3594.fc12faa1672e
+pkgver=3749.291cbb41ab47
 pkgdesc="free H265/HEVC video encoder"
 arch=('i686' 'x86_64')
 license=('GPL')

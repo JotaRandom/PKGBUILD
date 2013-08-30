@@ -1,4 +1,5 @@
 # Maintainer: Leif Warner <abimelech@gmail.co>
+
 pkgname=zsh-z-git
 pkgrel=1
 pkgver=20120909
@@ -10,9 +11,8 @@ depends=('zsh')
 makedepends=('git')
 provides=('zsh-z')
 conflicts=('zsh-z')
-
-_gitroot=https://github.com/rupa/z.git
-_gitname=z
+source=("z::git+https://github.com/rupa/z.git")
+md5sumd=("SKIP")
 
 build() {
   cd "$srcdir"
