@@ -3,7 +3,7 @@
 
 pkgname=ponysay-git
 _pkgname=ponysay
-pkgver=3.0.1.git2140
+pkgver=3.0.1.git2151
 pkgrel=1
 epoch=2
 pkgdesc="Cowsay reimplementation for ponies."
@@ -16,7 +16,7 @@ conflicts=('ponysay' 'ponysay-git')
 optdepends=('util-say:  Improved TTY support utilising KMS and support for PNG files')
 makedepends=('git' 'texinfo')
 screenshot="http://i.imgur.com/xOJbE.png"
-source=("$_pkgname::git+https://github.com/erkin/ponysay")
+source=("$_pkgname::git+https://github.com/erkin/ponysay.git")
 md5sums=("SKIP")
 
 pkgver(){
