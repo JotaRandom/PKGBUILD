@@ -16,7 +16,6 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd xorg-launch-helper
-
   git rev-list --count HEAD
 }
 

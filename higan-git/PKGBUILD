@@ -16,39 +16,26 @@ source=('higan::git+git://gitorious.org/bsnes/bsnes.git'
 	'ananke_gcc.patch')
 install=higan.install
 md5sums=('SKIP'
-		'049b514c1c3ca847b7efae50dcd0e3b6'
-		'8431814f9ff3d8e5b2f438816efa1ef5')
+	'049b514c1c3ca847b7efae50dcd0e3b6'
+	'8431814f9ff3d8e5b2f438816efa1ef5')
 
-build() {
-	cd "${srcdir}"
-	msg2 "Connecting to GIT server..."
-		if [[ -d "$_gitname" ]]; then
-			cd "$_gitname" && git pull origin
-			msg2 "The local files are updated."
-		else
-			git clone "$_gitroot" "$_gitname"
-		fi
-	msg2 "GIT checkout done or server timeout."
-
-	rm -rf "$srcdir/$_gitname-build"
-	git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-	cd "$srcdir/$_gitname-build"
-	
-	msg2 "Patching..."
-	cd "${srcdir}/$_gitname-build/higan/nall"
+prepare(){
+	cd "${srcdir}/higan/higan/nall"
 	patch -p0 -i ${srcdir}/higan_gcc.patch
-	cd "${srcdir}/$_gitname-build/higan"
+	cd "${srcdir}/higan/higan"
 	make clean && make profile=performance
-	cd "${srcdir}/$_gitname-build/ananke/nall"
+	cd "${srcdir}/higan/ananke/nall"
 	patch -p0 -i ${srcdir}/ananke_gcc.patch
-	cd "${srcdir}/$_gitname-build/ananke"
+}
+
+build(){
+	cd "${srcdir}/higan/ananke"
 	make clean && make
 }
 
-package()
-{
+package(){
   # Install higan
-  cd "${srcdir}/$_gitname-build/higan"
+  cd "${srcdir}/higan/higan"
   install -D -m 755 out/higan ${pkgdir}/usr/bin/higan
   install -D -m 644 data/higan.png ${pkgdir}/usr/share/pixmaps/higan.png
   install -D -m 644 data/higan.desktop ${pkgdir}/usr/share/applications/higan.desktop

@@ -15,12 +15,12 @@ makedepends=('intltool' 'nasm' 'mesa' 'git' 'autogen')
 provides=('snes9x' 'snes9x-gtk')
 conflicts=('snes9x' 'snes9x-gtk')
 install=snes9x-git.install
-source=('git://github.com/snes9xgit/snes9x.git')
+source=('$_gitname::git+http://github.com/snes9xgit/snes9x')
 md5sums=('SKIP')
 
 pkgver() {
   cd ${srcdir}/${_gitname}
-  git describe --always | sed 's/-/./g'
+	echo "$(git describe --always --abbrev=0 ).git$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 build() {
