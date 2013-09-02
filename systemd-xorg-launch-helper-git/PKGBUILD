@@ -1,6 +1,7 @@
 # Maintainer: Alucryd <alucryd at gmail dot com>
 
 pkgname=systemd-xorg-launch-helper-git
+_gitname=systemd-xorg-launch-helper
 pkgver=28
 pkgrel=1
 pkgdesc="A wrapper in C to make X.Org function as a proper systemd unit"
@@ -11,25 +12,24 @@ depends=('systemd' 'xorg-server')
 makedepends=('git')
 provides=('xorg-launch-helper')
 conflicts=('xorg-launch-helper')
-source=('git+https://github.com/sofar/xorg-launch-helper.git')
+source=('$_gitname::git+https://github.com/sofar/xorg-launch-helper')
 sha256sums=('SKIP')
 
 pkgver() {
-  cd xorg-launch-helper
-  git rev-list --count HEAD
+	cd $_gitname
+	echo "$(git describe --always --abbrev=0 ).git$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 build () {
-  cd xorg-launch-helper
-
-  ./autogen.sh
-  ./configure --prefix=/usr
-  make
+	cd "$srcdir/$_gitname"
+	./autogen.sh
+	./configure --prefix=/usr --libexecdir=/usr/lib/$_gitname --sbindir=/usr/bin \
+		--libdir=/usr/lib --bindir=/usr/bin
+	make
 }
 
 package() {
-  cd xorg-launch-helper
-
+  cd "$srcdir/$_gitname"
   make DESTDIR="${pkgdir}" install
 }
 
