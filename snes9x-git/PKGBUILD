@@ -2,8 +2,7 @@
 # Contributor: Boohbah <boohbah at gmail.com>
 
 pkgname=snes9x-git
-_gitname=snes9x
-pkgver=1.53.208.gf99daae
+pkgver=1.53.git361
 pkgrel=1
 pkgdesc="A GTK+ port of the Snes9x emulator (git version)"
 arch=('i686' 'x86_64')
@@ -15,16 +14,16 @@ makedepends=('intltool' 'nasm' 'mesa' 'git' 'autogen')
 provides=('snes9x' 'snes9x-gtk')
 conflicts=('snes9x' 'snes9x-gtk')
 install=snes9x-git.install
-source=('$_gitname::git+http://github.com/snes9xgit/snes9x')
+source=('Snes9x::git+http://github.com/snes9xgit/snes9x')
 md5sums=('SKIP')
 
 pkgver() {
-	cd ${_gitname}
+	cd "Snes9x"
 	echo "$(git describe --always --abbrev=0 ).git$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 build() {
-  cd ${srcdir}/${_gitname}/gtk
+  cd "$srcdir/Snes9x/gtk"
   ./autogen.sh
   ./configure --prefix=/usr --with-netplay --with-gtk3 \
 	--sbindir=/usr/bin --libexecdir=/usr/lib/snes9x \
@@ -33,6 +32,6 @@ build() {
 }
 
 package() {
-  cd ${srcdir}/${_gitname}/gtk
+  cd "$srcdir/Snes9x/gtk"
   make DESTDIR=${pkgdir} install
 }
