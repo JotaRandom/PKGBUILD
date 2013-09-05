@@ -31,8 +31,8 @@ build() {
 	ls
     cd $srcdir/$_directory
 
-    ./configure --prefix=$pkgdir/opt || return 1
-    make || return 1
+    ./configure --prefix=$pkgdir/opt
+    make
 }
 
 package() {
@@ -43,12 +43,12 @@ package() {
     install -D -m755 $srcdir/$pkgname.sh $pkgdir/usr/bin/$pkgname
     install -D -m755 $pkgname.desktop $pkgdir/usr/share/applications/$pkgname.desktop
     install -D -m644 Docs/Licenses.txt $pkgdir/usr/share/licenses/$pkgname/Licenses.txt
-    chown -R root:games icons
+    chown -R :games icons
     cp -ar icons $pkgdir/usr/share/
 
     cd $pkgdir/opt/
     mv "stepmania 5" stepmania
-    chown -R root:games stepmania $pkgdir
+    chown -R :games stepmania $pkgdir
 
     # Allow users in the "games" group to copy songs, themes etc., and
     # set the sticky bit on these directories
