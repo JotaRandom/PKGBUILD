@@ -18,7 +18,7 @@ optdepends=('webkitgtk: mdm-theme-emulator' 'xorg-server-xnest: mdmthemetester')
 provides=('gdm' 'gdm-old' "mintdm=$pkgver")
 conflicts=('gdm' 'mintdm')
 replaces=()
-backup=()
+backup=('etc/mdm/custom.conf' 'etc/pam.d/mdm' 'etc/pam.d/mdm-autologin')
 options=('!libtool')
 install='mdm.install'
 changelog=
@@ -87,9 +87,10 @@ msg2 'Adding aplications'
 
 }
 
+
 md5sums=('f1ac7be3d483ad3b18a86a96b32972b4'
-         '091846847a1b3a1d47d4bffd343bfca8'
-         '3ea0952b6d27aabecff1a5a6ef5349fe'
+         '80052ef367704c71addedcdf4e4a54e9'
+         '9a8208efbedcf77c1d5df6dd8a2ca092'
          '51a7cb2140731263ac9cb634fd1ca477'
          'daff2050b02f73f59106e7bfe66e9b3c'
-         'cdf2e199bcfb8bd246657e41e2b29438')
+         'fa711f1dc5bd192cd41fc1ee93c369a5')
