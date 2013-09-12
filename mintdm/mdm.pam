@@ -13,4 +13,4 @@ session		required	pam_systemd.so
 
 password	required	pam_unix.so
 
--session	optional	pam_gnome_keyring.so auto_start
+-session	optional	pam_gnome_keyring.so	auto_start
