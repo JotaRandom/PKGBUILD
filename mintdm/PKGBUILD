@@ -32,7 +32,6 @@ noextract=()
 
 build() {
 	cd ${srcdir}/${pkgname}-${pkgver}
-
 	chmod +x ./autogen.sh
 	export AUTOMAKE=automake
 	./autogen.sh --enable-ipv6=yes --with-prefetch \
@@ -41,10 +40,8 @@ build() {
 	--disable-static --with-xevie=yes --disable-scrollkeeper \
 	--enable-secureremote=yes --enable-ipv6=yes \
 	--enable-compile-warnings=no --sbindir=/usr/bin \
-
-	sed -i -e 's|${prefix}|/usr|' config.h
-
 	LDFLAGS="-lXau -lm"
+	sed -i -e 's|${prefix}|/usr|' config.h
 	make DESTDIR=$pkgdir
 }
 
@@ -69,9 +66,6 @@ msg2 'Adding config files'
 	install -m444 "${srcdir}/defaults.conf" "${pkgdir}/usr/share/mdm/"
 	rm -f ${pkgdir}/usr/share/xsessions/gnome.desktop || true
 
-#Why on the hay this directory is created empty in etc, remove it
-	rmdir $pkgdir/etc/dm
-
 msg2 'Adding faces'
 	#Fix mdm files conflict with gnome-control-center (usr/share/pixmaps/faces/*)
 	install -m755 -d $pkgdir/usr/share/pixmaps/faces/
@@ -81,7 +75,9 @@ msg2 'Adding faces'
 msg2 'Adding aplications'
 	#Fix gdmsetup.desktop
 	sed -i -e 's|^Exec=gksu|Exec=xdg-su |' $pkgdir/usr/share/mdm/applications/mdmsetup.desktop
+	sed -i -e 's|^Categories=|Categories=GNOME;GTK;System;Settings;X-GNOME-Settings-Panel;X-GNOME-SystemSettings;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;|' $pkgdir/usr/share/mdm/applications/mdmsetup.desktop	
 	sed -i -e 's|^NoDisplay=true|NoDisplay=false |' $pkgdir/usr/share/mdm/applications/mdmphotosetup.desktop
+	sed -i -e 's|^Categories=|Categories=GNOME;GTK;Settings;DesktopSettings;X-XFCE-SettingsDialog;X-XFCE-PersonalSettings;|' $pkgdir/usr/share/mdm/applications/mdmphotosetup.desktop
 
 #Fix erroneous path for certain aplications
 	install -m755 -d $pkgdir/usr/share/applications
