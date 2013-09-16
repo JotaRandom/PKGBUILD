@@ -17,7 +17,7 @@
 #include "macmenu-tslist.h"
 
 typedef XfcePanelPlugin AppletType;
-const gchar* MAIN_LABEL_TEXT = "Escritorio";
+const gchar* MAIN_LABEL_TEXT = "Thunar";
 
 const char* TS_LIST_FILENAME = ".macmenu-tslist";
 const int MAX_LABEL_WIDTH_N_CHARS = 64;

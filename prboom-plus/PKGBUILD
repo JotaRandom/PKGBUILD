@@ -31,7 +31,7 @@ build() {
 
   sh bootstrap
   ./configure --prefix=/usr --with-waddir=/usr/share/freedoom
-  make || return 1
+  make
 
   for i in stf{god,ouch}0; do
     deutex -doom data -bmp -get $i

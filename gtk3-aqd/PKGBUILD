@@ -2,7 +2,7 @@
 # Maintainer: Victor Aurélio <victoraur.santos@gmail.com>
 
 pkgname=gtk3-aqd
-pkgver=3.8.2
+pkgver=3.8.4
 pkgrel=1
 pkgdesc="GObject-based multi-platform GUI toolkit (v3)"
 arch=('i686' 'x86_64')
@@ -49,6 +49,7 @@ package() {
 
     install -Dm644 "$srcdir/settings.ini" "$pkgdir/etc/gtk-3.0/settings.ini"
 }
-md5sums=('8e878e18fc385f2b813419dc7b40a968'
+
+md5sums=('2b232d76c01ceb626948bcbe70b05269'
          '085ece008fa3a0b7a72e9fe3dda3631a'
          '54b6bf2d97ca977de248a38eae8e9619')

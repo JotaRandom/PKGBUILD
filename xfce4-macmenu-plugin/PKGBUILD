@@ -29,6 +29,6 @@ package(){
   cp -f $srcdir/$pkgname $pkgdir/usr/lib/xfce4/panel-plugins/
   cp -f $srcdir/$pkgname.desktop $pkgdir/usr/share/xfce4/panel-plugins/
 }
-md5sums=('b0792f81cd87aa7338fe362e40f98f97'
+md5sums=('SKIP'
          '442128110d99a35da54df6fd58b8c405'
          '79d6be381c15ca0ecddf71310218b252')
