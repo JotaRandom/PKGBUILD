@@ -5,7 +5,7 @@
 
 pkgname=squeeze-git
 realname=squeeze
-pkgver=0.2.0.git958
+pkgver=0.2.0.git964
 pkgrel=1
 epoch=1
 pkgdesc="Squeeze is  a modern and advanced archive manager for the Xfce Desktop Environment"
@@ -19,7 +19,8 @@ conflicts=('squeeze')
 provides=("squeeze" "squeeze-git")
 options=('!libtool')
 install=squeeze.install
-branch=("stephan/new-ui")
+#branch=("stephan/new-ui")
+branch=("master")
 source=("$realname::git+http://git.xfce.org/apps/squeeze#branch=$branch")
 #source=("$realname::git+http://git.xfce.org/apps/squeeze")
 md5sums=('SKIP')

@@ -11,11 +11,12 @@ license=("GPL")
 depends=("linux")
 makedepends=("b43-fwcutter")
 options=(!emptydirs)
+
 source=(http://downloads.openwrt.org/sources/${realname}-${pkgver}.o)
 sha1sums=('b1f61d283bd7d05ade313da522cb0d0ad4033652')
 
 
-package() {
+build() {
 	cd ${srcdir}
 
 	# Create directories

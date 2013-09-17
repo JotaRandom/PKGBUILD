@@ -4,6 +4,7 @@
 pkgname=pa-applet-git
 pkgver=2013.09.13.git15
 pkgrel=1
+epoch=1
 pkgdesc="PulseAudio system tray applet with volume bar"
 arch=(i686 x86_64)
 url="https://github.com/fernandotcl/pa-applet"
