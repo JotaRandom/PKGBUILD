@@ -1,45 +1,42 @@
-post_install() {
-cat <<EOT
+build() {
+    theme="$(get_theme "/etc/plymouth/plymouthd.conf")"
+    if [[ "$theme" ]]; then
+    	add_file /etc/plymouth/plymouthd.conf
+    else
+    	# fallback
+    	theme="$(get_theme "/usr/share/plymouth/plymouthd.defaults")"
+    	if [[ ! "$theme" ]]; then
+    		echo "no theme set for plymouth"
+    		exit 1
+    	fi
+    	add_file /usr/share/plymouth/plymouthd.defaults
+    fi
 
-==================================================================================
-1. To make Plymouth work:
-     1.1. Add "plymouth" to HOOKS after "base" and "udev" in /etc/mkinitcpio.conf
-     1.2. Add 'quiet splash' to the grub command line
-     1.3. Rebuild your initrd image (# mkinitcpio -p [kernel preset name]).
-          E.g.: sudo mkinitcpio -p linux
+    if [[ ! -d "/usr/share/plymouth/themes/$theme" ]]; then
+    	echo "invalid plymouth theme: $theme"
+    	exit 1
+    fi
 
-2. To enable encryption, replace "encrypt" with "plymouth-encrypt" in
-   mkinitcpio.conf and rebuild your initrd image.
+    module="$(get_module "$theme")"
 
-3. You will also need to rebuild your initrd image every time you change your theme
-   (the default is set as 'spinfinity').
+    add_binary /usr/bin/plymouthd
+    add_binary /usr/bin/plymouth
 
-   To list all plymouth themes:
-       plymouth-set-default-theme -l
+	add_binary /usr/lib/plymouth/renderers/drm.so
+    add_binary /usr/lib/plymouth/renderers/frame-buffer.so
 
-   To change theme:
-       # plymouth-set-default-theme <theme>
+	add_binary /usr/lib/plymouth/${module}.so
+    add_full_dir /usr/share/plymouth/themes/$theme
 
-   To rebuild initrd image:
-       # mkinitcpio -p linux
-
-4. For Smooth Transition to Display Manager you have to:
-     4.1. See the Wiki Page (link in 5) to prepare your Display Manager
-     4.2. Disable your Display Manager Unit 
-          E.g. : systemctl disable kdm.service
-     4.3. Enable the respective DM-plymouth Unit (GDM,KDM,Lightdm,LXDM units provided)
-          E.g. : systemctl enable kdm-plymouth.service
-
-5. For more information please visit the Wiki page:
-   https://wiki.archlinux.org/index.php/Plymouth
-
-OBS. If you have any leftover "kill Plymouth" lines in /etc/rc.local or ~/.xinitrc
-     they are no longer required.
-==================================================================================
-
-EOT
+    add_runscript
 }
 
-post_upgrade() {
-  post_install
+# $1 = file
+get_theme() {
+	grep ^Theme= "$1" | cut -d = -f 2-
+}
+
+# $1 = theme
+get_module() {
+	grep ^ModuleName= "/usr/share/plymouth/themes/$1/$1.plymouth" | cut -d = -f 2-
 }
