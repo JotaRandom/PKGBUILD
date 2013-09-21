@@ -2,7 +2,7 @@
 # Contributor: Boohbah <boohbah at gmail.com>
 
 pkgname=snes9x-git
-pkgver=1.53.git361
+pkgver=1.53_210_g3d47021
 pkgrel=1
 pkgdesc="A GTK+ port of the Snes9x emulator (git version)"
 arch=('i686' 'x86_64')
@@ -19,7 +19,7 @@ md5sums=('SKIP')
 
 pkgver() {
 	cd "Snes9x"
-	echo "$(git describe --always --abbrev=0 ).git$(git rev-list --count HEAD | sed 's/-/./g' )"
+	git describe --always | sed 's#-#_#g;s#v##'
 }
 
 build() {

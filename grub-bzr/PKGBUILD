@@ -11,7 +11,7 @@ _pkgver="2.00"
 
 pkgname="${_pkgname}-bzr"
 pkgdesc="GNU GRand Unified Bootloader (2) - BZR Version"
-pkgver=5112
+pkgver=5152
 pkgrel=1
 url="https://www.gnu.org/software/grub/"
 arch=('x86_64' 'i686')
