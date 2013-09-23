@@ -1,0 +1,56 @@
+#! /bin/bash
+# Maintainer: Jorge Barroso <jorge.barroso.11@gmail.com>
+
+# We're getting this from Debian Experimental
+ 
+_debname=iceweasel
+_debver=23.0
+_debrel=2
+_debrepo=http://ftp.de.debian.org/debian/pool/main/i/
+ 
+pkgname=iceweasel-bin
+pkgver=${_debver}.deb${_debrel}
+pkgrel=1
+pkgdesc="Debian Browser based on Mozilla Firefox (bin version)"
+arch=('i686' 'x86_64')
+url=("http://www.geticeweasel.org")
+license=('MPL' 'GPL' 'LGPL')
+conflicts=("$_debname")
+provides=("$_debname"="$_debver")
+
+depends=("xulrunner=${_debver}" 'gtk2' 'mozilla-common' 'libxt' 'startup-notification' 'mime-types' 'dbus-glib' 'alsa-lib'
+         'libnotify' 'desktop-file-utils' 'hicolor-icon-theme' 'libvpx' 'libevent' 'nss>=3.14.1' 'hunspell' 'sqlite')
+
+optdepends=('iceweasel-sync: Speed up Iceweasel using tmpfs'
+	          'mozplugger: A Mozilla & Firefox multimedia plugin.'
+	          'mozilla-searchplugins: extra search plugins'
+	          'iceweasel-extension-globalmenu: Global dbusmenu/appmenu extension for Iceweasel'
+	          'iceweasel-extension-archsearch: Iceweasel Arch search engines (AUR, Pkgs, BBS, Wiki, etc.)'
+            'iceweasel-extension-archforumsearch-it: Iceweasel search engines for Arch Linux Italian forum'
+	          'iceweasel-i18n-it: Language Pack for Iceweasel'
+	          'iceweasel-i18n-es: Spanish language pack for Iceweasel'
+            'iceweasel-i18n-fr: French language pack for Iceweasel')
+
+install=iceweasel.install
+ 
+ if [ "$CARCH" = "x86_64" ]; then
+    _debarch=amd64
+    sha512sums=('59d59e956b7b979983d39c194086d7d8d13da58f11313ee864518a5419bb48da29e38a319b7e438ac3c3a6d6bc8466cd288381e1553d64d8dd6a526ec19981aa')
+else
+    _debarch=i386
+    sha512sums=('f97c9286ea72499133a68e22dee685956576862933aa006f56daaebf74d6d9435c2b85847470bb20016f97a4cd3f6ae012f4fe70032e7360434ddbd0cbb05343')
+ fi
+ 
+source=("${_debrepo}/${_debname}/${_debname}_${_debver}-${_debrel}_${_debarch}.deb")
+ 
+package() {
+      msg2 "Installing Iceweasel..."
+      tar Jxvf "${srcdir}"/data.tar.xz -C "$pkgdir"/
+           
+      msg2 "Cleaning up unwanted files..."
+      rm -rv "${pkgdir}"/usr/lib/{mozilla,mime}
+      rm -rv "${pkgdir}"/usr/share/{bug,mozilla,doc}
+      rm -v "${pkgdir}"/usr/bin/firefox
+}
+ 
+# vim:set ts=2 sw=2 et:
