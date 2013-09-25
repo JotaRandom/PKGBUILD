@@ -1,0 +1,52 @@
+# Maintainer: Wei-Ning Huang <aitjcize@gmail.com>
+# COntributor: Limao Luo <luolimao+AUR@gmail.com>
+# Contributor: Tom < tomgparchaur at gmail dot com >
+
+pkgname=copy-agent
+pkgver=1.37.0546
+pkgrel=1
+pkgdesc="Copy.com sync agent"
+arch=("i686" "x86_64")
+url="http://www.copy.com"
+license=(custom)
+depends=("qt4" "gtk2")
+options=('!strip' '!upx')
+install=$pkgname.install
+sha256sums=('9be3afa6f0df6ce77625c358ca5b0cadc8c1e68a9cb9642e370810ac34f020ce'
+            'ef1767720b5e5eff6567e537f3fed1c1d7da17e4f4248479816cab924f62e431'
+            'b69bc2f8b4315a43d3b60b11ec9c226c2060d14ac4d5702140260961c74620cb'
+            'abbf5d4d6cd9cf5b7645c0ba98ac535e30eb0b634a1ae2d09aa34959823dae47'
+            'e7268b8de848fcfae720ec6f861b4cff0205e2920b9bea2eb63414c6c6f4ace3'
+            'c328ddfce46fb5577b1d3d4f67258aa1caee671214e335d802cdc9a065a1595a')
+
+source=(https://copy.com/install/linux/Copy.tgz
+        $pkgname.desktop
+        $pkgname.png
+        $pkgname.service
+        copy-console.service
+        TERMS)
+
+package() {
+  cd ${srcdir}
+  desktop-file-install $pkgname.desktop --dir "$pkgdir/usr/share/applications/"
+  install -Dm0644 $pkgname.png "$pkgdir/usr/share/pixmaps/$pkgname.png"
+  install -Dm0644 $pkgname.service "$pkgdir/usr/lib/systemd/system/$pkgname@.service"
+  install -Dm0644 copy-console.service "$pkgdir/usr/lib/systemd/system/copy-console@.service"
+  install -Dm0644 $pkgname.desktop "$pkgdir/usr/share/applications/$pkgname.desktop"
+  install -Dm644 TERMS "$pkgdir/usr/share/licenses/$pkgname/TERMS"
+
+  if [ "$CARCH" == "x86_64" ]; then
+    cd copy/x86_64
+  else
+    cd copy/x86
+  fi
+
+  for i in Copy{Agent,Cmd,Console}; do
+      install -Dm755 $i "$pkgdir/usr/bin/$i"
+  done
+  for i in lib{Gui,CloudSync,CloudMount,Brt}.so; do
+      install -Dm755 $i "$pkgdir/usr/lib/$i"
+  done
+  install -Dm755 libnautilus-copy.so "$pkgdir/usr/lib/nautilus/extensions-3.0/libnautilus-copy.so"
+  install -Dm755 libcaja-copy.so "$pkgdir/usr/lib/caja/extensions-2.0/libcaja-copy.so"
+}
