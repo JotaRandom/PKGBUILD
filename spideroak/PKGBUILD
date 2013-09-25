@@ -1,0 +1,58 @@
+# Contributor: Alessio Sergi <asergi at archlinux dot us>
+# Contributor: Limao Luo <luolimao@gmail.com>
+# Maintainer: ava1ar (mail(dot)avatar(at)gmail(dot)com)
+
+pkgname=spideroak
+_PkgName=SpiderOak
+pkgver=5.0.3
+pkgrel=1
+pkgdesc="Secure file backup, sync and sharing client"
+arch=('i686' 'x86_64')
+url="https://spideroak.com/"
+license=('custom')
+depends=()
+provides=(${pkgname})
+conflicts=(${pkgname}-beta)
+options=('!strip')
+install=${pkgname}.install
+source=(terms.txt)
+sha1sums=('f287fdbad966ac9ae4951a1932e9be7e82112728')
+if [ "$CARCH" == x86_64 ]; then
+        source+=("${pkgname}_${pkgver}_x86_64.rpm::https://spideroak.com/directdownload?platform=fedora&arch=x86_64")
+        sha1sums+=('fdec54db96d749179221e1e8a8e96293ffc9045c')
+elif [ "$CARCH" == i686 ]; then
+        source+=("${pkgname}_${pkgver}_i386.rpm::https://spideroak.com/directdownload?platform=fedora&arch=i386")
+        sha1sums+=('2d074a54f0858afbe45495835e6d51c8a80e421b')
+fi
+
+package() {
+    # install config file
+    install -Dm644 ${srcdir}/etc/dbus-1/system.d/${_PkgName}.dbus.conf ${pkgdir}/etc/dbus-1/system.d/${pkgname}.dbus.conf
+
+    # install app in /opt
+    install -dm755 ${pkgdir}/opt/
+    cp -r ${srcdir}/opt/* ${pkgdir}/opt/
+
+    # install start script file
+    install -Dm755 ${srcdir}/usr/bin/${_PkgName} ${pkgdir}/usr/bin/${_PkgName}
+
+    # install desktop and pixmap files
+    install -Dm644 ${srcdir}/usr/share/applications/${_PkgName}.desktop ${pkgdir}/usr/share/applications/${_PkgName}.desktop
+    install -Dm644 ${srcdir}/usr/share/pixmaps/${_PkgName}.png ${pkgdir}/usr/share/pixmaps/${_PkgName}.png
+
+    # fix desktop file
+    sed -i \
+	-e "/Encoding=UTF-8/d" \
+	-e "/^Name=/s: Backup::" \
+	-e "/^Comment=/s:${_PkgName} ::" \
+	-e "/^Categories=/s:${_PkgName};::" \
+	-e "/^Icon=/s:=.*$:=${_PkgName}:" \
+	-e "/^Exec=/s:=.*$:=${_PkgName}:" \
+	${pkgdir}/usr/share/applications/${_PkgName}.desktop
+
+    # install man page
+    install -Dm644 ${srcdir}/usr/share/man/man1/${_PkgName}.1.gz ${pkgdir}/usr/share/man/man1/${_PkgName}.1.gz
+
+    # install custom license file
+    install -Dm644 terms.txt ${pkgdir}/usr/share/licenses/${pkgname}/terms.txt
+}
