@@ -1,0 +1,12 @@
+post_install() {
+printf "Updating Ubuntu icons"
+  gtk-update-icon-cache -q -t -f /usr/share/icons/fs-icons-ubuntu
+}
+
+post_upgrade() {
+  post_install
+}
+
+post_remove() {
+  post_install
+}
