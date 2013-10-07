@@ -39,7 +39,7 @@ package() {
 
   install -Dm755 rar ${pkgdir}/usr/bin/rar
   #install -Dm755 unrar ${pkgdir}/usr/bin/unrar
-  install -Dm755 rar_static ${pkgdir}/usr/bin/rar_static
+  #install -Dm755 rar_static ${pkgdir}/usr/bin/rar_static
 
   install -Dm755 default.sfx ${pkgdir}/usr/lib/default.sfx
 

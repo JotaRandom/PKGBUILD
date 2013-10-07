@@ -16,13 +16,15 @@ sha256sums=('SKIP')
 
 pkgver() {
 	cd systemd-xorg-launch-helper
-	echo "$(git describe --always --abbrev=0 ).git$(git rev-list --count HEAD | sed 's/-/./g' )"
+	#echo "$(git describe --tags --abbrev=0 | sed 's/v//g' ).git
+	echo "$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 build () {
 	cd "$srcdir/systemd-xorg-launch-helper"
 	./autogen.sh
-	./configure --prefix=/usr --libexecdir=/usr/lib/$_gitname --sbindir=/usr/bin \
+	./configure --prefix=/usr --libexecdir=/usr/lib/systemd-xorg-launch-helper \
+		--sbindir=/usr/bin --sysconfdir=/etc --localstatedir=/var \
 		--libdir=/usr/lib --bindir=/usr/bin
 	make
 }
