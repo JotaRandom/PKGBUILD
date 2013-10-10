@@ -1,6 +1,6 @@
 # Contributor: Kyle Keen <keenerd@gmail.com>
 pkgname=razor-qt-git
-pkgver=20130926_0.5.0_588_g0e733c6
+pkgver=20131007_0.5.0_588_g0e733c6
 pkgrel=1
 pkgdesc="A lightweight desktop environemnt written in Qt"
 url="http://razor-qt.org"

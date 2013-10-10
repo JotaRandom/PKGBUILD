@@ -43,7 +43,8 @@ pony-creator/pony_creator_full_version_by_generalzoi-d47efz4.png
 # icc profiles
 *.icc
 
-# verioning number standalone
+# verioning number standalone and images....
+# I hope this isn't a bad use of this function
 util-say/3.*
 *minuette.png
 *ata*ony.png
@@ -101,3 +102,5 @@ lximage-qt/lximage-qt
 libfm-qt/pcmanfm-qt
 ultrastardx-svn/ultrastardx
 freeciv-svn/freeciv
+gtk-theme-orion-git/Orion
+zsh-syntax-highlighting-git/zsh-syntax-highlighting
