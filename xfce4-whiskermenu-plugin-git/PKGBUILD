@@ -2,7 +2,7 @@
 
 _pkgname=xfce4-whiskermenu-plugin
 pkgname=xfce4-whiskermenu-plugin-git
-pkgver=1.1.0.44.gf762
+pkgver=1.1.0.48.g3fa101
 pkgrel=1
 pkgdesc="Alternate Xfce menu"
 arch=('i686' 'x86_64')
