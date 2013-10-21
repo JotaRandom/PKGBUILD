@@ -3,11 +3,11 @@
 pkgname=powerdown-git
 pkgver=136.f8e5ccd
 pkgrel=1
-pkgdesc="taylorchu's powerdown repo (git version)"
+pkgdesc="simple linux powersaving script (git version)"
 arch=('any')
 url="http://github.com/taylorchu/powerdown"
 license=('GPL2')
-depends=('bash' 'iw' 'hdparm' 'bc')
+depends=('bash' 'iw' 'hdparm' 'bc' 'x86_energy_perf_policy')
 makedepends=('git')
 conflicts=('pm-utils')
 provides=('pm-utils')

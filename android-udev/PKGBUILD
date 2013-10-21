@@ -2,7 +2,7 @@
 # Contributor: marlock
 
 pkgname=android-udev
-pkgver=58.8dfd1cd
+pkgver=62.7a2f8bb
 pkgrel=1
 pkgdesc="Udev rules to connect Android devices to your linux box"
 arch=('any')
