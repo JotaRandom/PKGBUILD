@@ -4,7 +4,7 @@
 
 pkgname=zsh-git
 _pkgname=zsh
-pkgver=5.0.2.199.gf6967bb
+pkgver=5.0.2.231.g0c97990
 pkgver(){
     cd "$srcdir/$pkgname"
     git describe --tags --long | sed 's/zsh-\(.*\)-\(.*\)-/\1.\2./' 

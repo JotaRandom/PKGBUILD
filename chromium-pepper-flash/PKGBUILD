@@ -16,10 +16,10 @@ install=pepper.install
 
 if [ "$CARCH" = 'i686' ]; then
    _arch='i386'
-md5sums=('37cebd3b71534a52cce9a53037c1b5dc')
+md5sums=('4d2bc4cb9ab27d83a4c7a0c46f129f0a')
 elif [ "$CARCH" = 'x86_64' ]; then
    _arch='amd64'
-   md5sums=('564bbff6576a37efa4fb5dedb540feae')
+   md5sums=('09b74a298291efb9c1e35c1823955227')
 fi
 md5sums[1]='3abf4a038d0525c6d17e5bfefbcfee91'
 
