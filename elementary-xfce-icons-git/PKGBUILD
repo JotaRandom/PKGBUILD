@@ -1,30 +1,35 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=elementary-xfce-icons-git
-pkgver=0.3_58_gd54b969
+pkgver=0.3_59_gf7085c5
 pkgrel=1
-pkgdesc='Elementary icons with better Xfce support'
+pkgdesc='Elementary icon-theme with improved Xfce support'
 arch=('any')
 url='https://github.com/shimmerproject/elementary-xfce'
 license=('GPL2')
 makedepends=('git')
 depends=('gnome-icon-theme')
 conflicts=('elementary-xfce-icons')
-install='elementary-xfce-icons.install'
+install="${pkgname}.install"
 source=("git+${url}")
-md5sums=("SKIP")
+md5sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}/elementary-xfce"
+  cd "elementary-xfce"
   echo "$(git describe --always |sed 's#-#_#g;s#v##')"
 }
 
 package() {
-  cd "${srcdir}/elementary-xfce"
   mkdir -p "${pkgdir}/usr/share/icons"
-  cp -r elementary-xfce{,-dark{,er}} "${pkgdir}/usr/share/icons"
 
-  # Remove unneeded files
+  cd "elementary-xfce"
+  find ./ -type d -name "elementary-xfce*" -execdir cp -r {} "${pkgdir}/usr/share/icons/" \;
+
   cd "${pkgdir}/usr/share/icons"
-  rm elementary-xfce{,-dark{,er}}/{AUTHORS,CONTRIBUTORS,LICENSE}
+  find ./ -type f \( \
+      -name "AUTHORS" \
+      -o -name "CONTRIBUTORS" \
+      -o -name "LICENSE" \
+    \) \
+    -delete
 }
 # vim:set ts=2 sw=2 et:

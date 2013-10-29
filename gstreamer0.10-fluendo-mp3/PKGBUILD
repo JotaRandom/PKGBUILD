@@ -1,3 +1,4 @@
+# Maintainer: Pablo Lezaeta <prflr88 (arroba) gmail (dot) com>
 # Contributor: goten002 <goten002@gmail.com>
 # Contributor: Peace4all
 
@@ -12,7 +13,7 @@ makedepends=('pkgconfig')
 url="http://www.fluendo.com/shop/product/fluendo-mp3-decoder/"
 groups=('gstreamer0.10-plugins')
 source=(http://core.fluendo.com/gstreamer/src/gst-fluendo-mp3/gst-fluendo-mp3-${pkgver}.tar.bz2)
-md5sums=('')
+md5sums=('325f751c21fc1780c0ff58027a738527')
 
 
 build() {
@@ -23,14 +24,14 @@ build() {
   -e "s|gstreamer-1.0 >= 1.0.0|gstreamer-0.0 >= 0.0.0|" \
   $(find . -name 'configure')
 
-  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+	--libexecdir=/usr/lib/gstreamer-0.10 --sbindir=/usr/bin --bindir=/usr/bin
   make
 }
 
 package() {
 
   cd $srcdir/gst-fluendo-mp3-$pkgver
-  make DESTDIR="$pkgdir/" install
-  rm -f $pkgdir/usr/lib/gstreamer-0.10/*.{l,}a
+  make DESTDIR="$pkgdir/" install sbindir=/usr/bin
   install -Dm644 LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
 }
