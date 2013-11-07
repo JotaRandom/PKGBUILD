@@ -1,7 +1,7 @@
 # Maintainer: Diego Principe <cdprincipe@at@gmail@dot@com>
 
 pkgname=xfce-theme-orion-git
-pkgver=1.3.git93.79e435f
+pkgver=1.3.git95.5b92bc3
 pkgrel=1
 pkgdesc="Modern light theme. It supports Gnome, Unity, XFCE and Openbox."
 arch=('any')

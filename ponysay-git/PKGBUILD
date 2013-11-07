@@ -3,7 +3,7 @@
 
 pkgname=ponysay-git
 _pkgname=ponysay
-pkgver=3.0.1.git2175
+pkgver=3.0.1.git2185
 pkgrel=1
 epoch=2
 pkgdesc="Cowsay reimplementation for ponies."
@@ -21,7 +21,7 @@ md5sums=("SKIP")
 
 pkgver(){
 	cd $_pkgname
-	echo "$(git describe --always --abbrev=0 ).git$(git rev-list --count HEAD | sed 's/-/./g' )"
+	echo "$(git describe --always --abbrev=0 ).r$(git rev-list --count HEAD | sed 's/-/./g' )"
 }
 
 package() {
