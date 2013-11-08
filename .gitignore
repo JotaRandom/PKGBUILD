@@ -46,6 +46,11 @@ pony-creator/pony_creator_full_version_by_generalzoi-d47efz4.png
 # Virtualbox
 *.vbox-extpack
 
+# Plugins for browser
+*.oex
+*.xpi
+*.crx
+
 # verioning number standalone and images....
 # I hope this isn't a bad use of this function
 util-say/3.*
