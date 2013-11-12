@@ -1,7 +1,7 @@
 # Maintainer: Slash <demodevil5[at]yahoo[dot]com>
 
 pkgname=freeciv-svn
-pkgver=23686
+pkgver=23732
 pkgrel=1
 pkgdesc="A multiuser clone of the famous Microprose game of Civilization"
 url="http://www.freeciv.org/"
