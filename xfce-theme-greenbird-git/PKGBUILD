@@ -4,7 +4,7 @@
 
 _pkgname=greenbird-theme
 pkgname=xfce-theme-greenbird-git
-pkgver=10.20131013
+pkgver=11.20131109
 pkgrel=1
 pkgdesc="Desktop theme for Xfce based on Graybird, used on Manjaro"
 arch=('any')
