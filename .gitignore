@@ -86,7 +86,7 @@ systemd-user-session-units-git/systemd-user-session-*
 systemd-xorg-launch-helper-git/systemd-xorg-launch-*
 systemd-user-session-units-git/user-session-unit*
 systemd-xorg-launch-helper-git/xorg-launch-helpe*
-grub-bzr/grub*
+grub-*/grub*
 ejre/ejre
 micropolis-git/micropolis
 x265-hg/x265
@@ -119,3 +119,4 @@ gmusicbrowser-git/gmusicbrowser-git
 xfce-theme-greenbird-git/greenbird-theme
 grml-zsh-config-git/grml-etc-core
 qlivestreamer-git/qLiveStreamer
+epsxe-launcher-bash/attachment*

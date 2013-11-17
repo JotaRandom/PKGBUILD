@@ -1,0 +1,80 @@
+# Maintainer: Alexej Magura <agm2819*gmail*>
+# Contributor: Swen Simon <swsimon at gmail dot com>
+#
+pkgname=epsxe-1.5.2
+_realname=epsxe
+pkgver=1.5.2
+pkgrel=12
+pkgdesc="Enhanced PSX emulator"
+url="http://epsxe.com"
+arch=('i686' 'x86_64')
+[ "$CARCH" == "i686" ] && depends=(gtk)
+[ "$CARCH" == "x86_64" ] && depends=(lib32-gtk)
+makedepends=('unzip' 'wget') 
+license=('unknown')
+install=epsxe.install
+options=(!strip)
+provides=(epsxe)
+source=(epsxe.desktop epsxe.png)
+md5sums=('087234e20ae9147f83df24b69fc93bca' 'eb0c46b8ae1355c589792f6be1835e47')
+_e152url='http://www.epsxe.com/files/epsxe152lin.zip'
+_e152sum='5834f34cb904b08d95abda057eff3981'
+prepare () {
+    cd "$srcdir"
+
+	wget -N "$_e152url"
+	md5sum ${_e152url/http:\/\/www.epsxe.com\/files\//} | grep "$_e152sum" -q
+    unzip -qqo epsxe152lin.zip
+
+	(cat << EOF
+#!/bin/sh
+pkgname="$pkgname"
+pkgver="$pkgver"
+pkgdir="/opt/$_realname/$pkgver"
+
+"\$pkgdir/\$pkgname" "\$@"
+EOF
+) > ${pkgname}.sh
+
+    find "$srcdir" -name '*.me' -delete
+}
+
+package () {
+	install -d "$pkgdir/opt/$_realname/"{plugins,bios,memcards,cdimages,$pkgver/{cheats,patches,sstates,cfg,snap}}
+	chmod 674 "$pkgdir/opt/$_realname/"{plugins,bios,memcards,cdimages,$pkgver/{cheats,patches,sstates,cfg,snap}}
+
+	cd "$srcdir"
+
+	install -Dm 644 "docs/${_realname}_linux_en.txt" \
+		"$pkgdir/opt/$_realname/$pkgver/doc/README"
+
+	install -Dm 755 'epsxe' \
+		"$pkgdir/opt/$_realname/$pkgver/$pkgname"
+
+	install -Dm 644 'keycodes.lst' \
+	    "$pkgdir/opt/$_realname/$pkgver/keycodes.lst"
+
+	for item in $(cd cheats && find . -name '*.cht' -print)
+	do
+	    install -Dm 644 "cheats/$item" \
+		"$pkgdir/opt/$_realname/$pkgver/cheats/$item"
+	done
+
+	for things in plugins bios memcards cdimages
+	do
+	    ln -sf "/opt/$_realname/$things" -T "$pkgdir/opt/$_realname/$pkgver/$things"
+	done
+
+	install -Dm 755 ${pkgname}.sh \
+		"$pkgdir/usr/bin/$pkgname"
+
+    install -Dm 644 "$srcdir/epsxe.png" \
+		"$pkgdir/usr/share/pixmaps/${pkgname}.png"
+
+    install -Dm 644 "$srcdir/epsxe.desktop" \
+		"$pkgdir/usr/share/applications/${pkgname}.desktop"
+
+	ln -sf "$HOME/.epsxerc-$pkgver" -T "$pkgdir/opt/$_realname/$pkgver/.epsxerc"
+
+	chgrp -R games "$pkgdir/opt/$_realname"
+}
