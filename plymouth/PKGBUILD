@@ -1,5 +1,5 @@
 pkgname=plymouth
-pkgver=0.8.8.51.g540ae58
+pkgver=0.8.8.52.g37d2e40
 pkgrel=1
 pkgdesc="A graphical boot splash screen with kernel mode-setting support (Git verson for now)"
 url="http://cgit.freedesktop.org/cgit/plymouth/"
