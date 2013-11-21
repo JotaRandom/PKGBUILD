@@ -120,3 +120,6 @@ xfce-theme-greenbird-git/greenbird-theme
 grml-zsh-config-git/grml-etc-core
 qlivestreamer-git/qLiveStreamer
 epsxe-launcher-bash/attachment*
+yaourt-git/yaourt
+package-query-git/package-query
+smc-git/SMC
