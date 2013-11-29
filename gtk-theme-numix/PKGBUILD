@@ -1,0 +1,21 @@
+# Mantainer: Diego <cdprincipe@at@gmail@dot@com>
+# Contributor: Aleessio Sergi
+
+pkgname=gtk-theme-numix
+_theme=Numix
+pkgver=2.0
+pkgrel=1
+pkgdesc="A flat and light theme with a modern look"
+arch=('any')
+url="http://satya164.deviantart.com/art/Numix-GTK3-theme-360223962"
+license=('GPL3')
+depends=('gtk-engine-murrine')
+source=(https://github.com/shimmerproject/${_theme}/archive/v${pkgver}.tar.gz)
+
+package() {
+  install -d "$pkgdir/usr/share/themes/${_theme}"
+  cp -rv ${srcdir}/${_theme}-${pkgver}/* "$pkgdir/usr/share/themes/${_theme}/"
+}
+
+md5sums=('578c5eaaa999e14cdb7c1d9f142732cc')
+
