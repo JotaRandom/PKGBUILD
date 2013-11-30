@@ -3,8 +3,9 @@
 # Contributor: Jan Fader <jan.fader@web.de>
 # Contributor: SanskritFritz (gmail)
 
-pkgname=fishfish-git
-pkgver=20121214
+pkgname=fish-git
+_pkgname=fish
+pkgver=2.1.0.r3413
 pkgrel=1
 pkgdesc="User friendly shell intended mostly for interactive use."
 arch=('i686' 'x86_64')
@@ -16,17 +17,24 @@ makedepends=('doxygen' 'git')
 provides=('fish')
 conflicts=('fish')
 install=fish.install
-source=("fishfish::git+git://github.com/fish-shell/fish-shell.git")
+source=("$_pkgname::git+git://github.com/fish-shell/fish-shell.git")
 md5sums=("SKIP")
 
-build() {
-	cd $srcdir/$_gitname
-	autoconf
-	./configure --prefix=/usr --sysconfdir=/etc --docdir=/usr/share/doc/fish --without-xsel
-	make || return 1
-	make DESTDIR="$pkgdir" install
-	install -D -m644 user_doc/html/license.html "$pkgdir/usr/share/licenses/fish/license.html"
+pkgver() {
+	cd "$_pkgname"
+	echo "$(git describe --tags --abbrev=0 ).r$(git rev-list --count HEAD | sed 's/-/./g' )"
+}
 
-	install -m755 make_completions.py "$pkgdir/usr/bin/make_completions"
-	sed -i "s/python/python2/" "$pkgdir/usr/bin/make_completions"
+build() {
+	cd "$srcdir/$_pkgname"
+	autoconf
+	./configure --prefix=/usr --sysconfdir=/etc --docdir=/usr/share/doc/fish --without-xsel --libexecdir=/usr/lib/fish
+	make
+}
+
+package() {
+	cd "$srcdir/$_pkgname"
+	make DESTDIR="$pkgdir" sbindir=/usr/bin install
+	install -D -m644 user_doc/html/license.html "$pkgdir/usr/share/licenses/fish/license.html"
+	sed -i "s/python/python2/" "$pkgdir/usr/share/fish/tools/"*.py
 }
