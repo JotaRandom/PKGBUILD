@@ -95,7 +95,7 @@ snes9x-git/snes9x
 fontconfig-infinality-ultimate-git/
 packer/packer*
 srgb-icc/ICC_White_Paper_26_Using_the_V4_sRGB_ICC_profile.pdf
-fish-shell-git/fish-shell
+fish*git/fishfish
 flashplayer-standalone/*.pdf
 zsh-z-git/z
 snes9x-git/Snes9x
@@ -114,7 +114,7 @@ gtk-theme-orion-git/Orion
 zsh-syntax-highlighting-git/zsh-syntax-highlighting
 xfce-theme-orion-git/Orion
 zsh-git/zsh-git
-fishfish-git/fishfish
+fish*git/fish-git
 gmusicbrowser-git/gmusicbrowser-git
 xfce-theme-greenbird-git/greenbird-theme
 grml-zsh-config-git/grml-etc-core
