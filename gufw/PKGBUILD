@@ -2,7 +2,7 @@
 # Contributor: Jaroslav Lichtblau <dragonlord@aur.archlinux.org>
 # Contributor: Kessia 'even' Pinheiro <kessiapinheiro at gmail.com>
 # Contributor: peace4all <markspost at rocketmail dot com>
-# Maintainer Pablo Lezaeta <prflr88@gmail.com>
+# Maintainer: Pablo Lezaeta <prflr88@gmail.com>
 
 pkgname=gufw
 pkgver=14.04.0

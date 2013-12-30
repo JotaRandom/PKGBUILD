@@ -7,7 +7,7 @@ pkgdesc="a game where you use your arrow keys to cast a number of different spel
 arch=('any')
 url="http://blog.stabyourself.net/post/33229884169/new-game-order-of-twilight"
 license=('CCPL:by-nc-sa')
-depends=('love')
+depends=('love08')
 _gamepkg="${pkgname}.zip"
 source=(${pkgname}.sh
 	${pkgname}.desktop

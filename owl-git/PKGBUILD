@@ -2,7 +2,7 @@
 
 _pkgname=owl
 pkgname=${_pkgname}-git
-pkgver=166
+pkgver=179
 pkgrel=1
 pkgdesc='A pacman and cower wrapper focused on simplicity'
 arch=('i686' 'x86_64' 'armv7f' 'armv6h')
