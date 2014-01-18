@@ -7,7 +7,7 @@ pkgname=freedoom
 pkgver=0.8.beta1
 pkgrel=2
 pkgdesc="Completely free Doom IWADs (game data)"
-arch=('any')
+arch=('i686' 'x86_64')
 url="http://nongnu.org/freedoom"
 license=('BSD')
 makedepends=('deutex-devel' 'python2' 'imagemagick')
@@ -27,7 +27,8 @@ prepare() {
 
 build() {
     cd "$srcdir"/$pkgname-0.8-beta1
-    make
+    make --sbindir=/usr/bin --bindir=/usr/bin --libexecdir=/usr/lib/doom \
+    --libdir=/usr/lib --prefix=/usr
 }
 
 package() {
