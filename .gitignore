@@ -86,6 +86,7 @@ systemd-user-session-units-git/systemd-user-session-*
 systemd-xorg-launch-helper-git/systemd-xorg-launch-*
 systemd-user-session-units-git/user-session-unit*
 systemd-xorg-launch-helper-git/xorg-launch-helpe*
+<<<<<<< HEAD
 grub-*/grub*
 ejre/ejre
 micropolis-git/micropolis
@@ -123,3 +124,5 @@ epsxe-launcher-bash/attachment*
 yaourt-git/yaourt
 package-query-git/package-query
 smc-git/SMC
+=======
+>>>>>>> parent of 1cd03db... update

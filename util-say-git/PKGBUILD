@@ -9,7 +9,8 @@ pkgdesc="Tools for creating ponies for cowsay and cowsay-like programs"
 arch=('any')
 url="https://github.com/maandree/util-say"
 license=('GPL3')
-makedepends=('git' 'bash')
+depends=('java-runtime>=6')
+makedepends=('git' 'java-environment>=6' 'bash')
 optdepends=('imagemagick: allows imgsrcrecovery to read frames in GIF files' 'perl: required for cowsay import support')
 provides=('util-say')
 conflicts=('util-say')
