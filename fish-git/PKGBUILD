@@ -1,0 +1,40 @@
+# Contributor: Abhishek Dasgupta <abhidg@gmail.com>
+# Contributor: Eric Belanger <eric@archlinux.org>
+# Contributor: Jan Fader <jan.fader@web.de>
+# Contributor: SanskritFritz (gmail)
+
+pkgname=fish-git
+_pkgname=fish
+pkgver=2.1.0.r3421
+pkgrel=1
+pkgdesc="User friendly shell intended mostly for interactive use."
+arch=('i686' 'x86_64')
+url="http://ridiculousfish.com/shell/"
+license=("GPL")
+depends=('ncurses' 'bc')
+optdepends=('python2: make_completions script')
+makedepends=('doxygen' 'git')
+provides=('fish')
+conflicts=('fish')
+install=fish.install
+source=("$_pkgname::git+git://github.com/fish-shell/fish-shell.git")
+md5sums=("SKIP")
+
+pkgver() {
+	cd "$_pkgname"
+	echo "$(git describe --tags --abbrev=0 ).r$(git rev-list --count HEAD | sed 's/-/./g' )"
+}
+
+build() {
+	cd "$srcdir/$_pkgname"
+	autoconf
+	./configure --prefix=/usr --sysconfdir=/etc --docdir=/usr/share/doc/fish --without-xsel --libexecdir=/usr/lib/fish
+	make
+}
+
+package() {
+	cd "$srcdir/$_pkgname"
+	make DESTDIR="$pkgdir" sbindir=/usr/bin install
+	install -D -m644 user_doc/html/license.html "$pkgdir/usr/share/licenses/fish/license.html"
+	sed -i "s/python/python2/" "$pkgdir/usr/share/fish/tools/"*.py
+}

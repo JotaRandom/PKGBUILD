@@ -3,8 +3,8 @@
 
 pkgname=xfce-theme-adwaita-manjaro
 _pkgname=adwaita-manjaro-themes
-pkgver=20131013
-_ver='4271968db9c4c76a7678159cb969e11bfc4798ef'
+pkgver=20131227
+_ver='479147ffbc5dabd114450c83c4d30eb69679afc4'
 pkgrel=1
 pkgdesc="Desktop suite for Xfce"
 arch=('any')
@@ -17,10 +17,10 @@ conflicts=("adwaita-manjaro-themes")
 optdepends=('faenza-green-icon-theme: matching icon theme')
 
 source=("$_pkgname-$pkgver.tar.gz::http://git.manjaro.org/artwork/adwaita-manjaro-themes/repository/archive?ref=$_ver")
-sha256sums=('808d0d51cc922249d9046213ebdc6b2e8aff18c3861b01c3369169a140861f8c')
+sha256sums=('c0ccd39014b8e7d8e34e4fdf656d7ad67f04fc874477aaca0a367badaec9adba')
 
 package() {
-  cd "$srcdir/adwaita-manjaro-themes"
+  cd "$srcdir/adwaita-manjaro-themes.git"
 
   # create theme dirs
   install -d -m 755 "$pkgdir"/usr/share/themes

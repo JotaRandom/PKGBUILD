@@ -30,7 +30,8 @@ build() {
   sed 's|CFLAGS_OPT=.*|:|g' -i configure.ac
 
   sh bootstrap
-  ./configure --prefix=/usr --with-waddir=/usr/share/freedoom
+  ./configure --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib/$pkgname \
+  --sbindir=/usr/bin --bindir=/usr/bin --with-waddir=/usr/share/freedoom
   make
 
   for i in stf{god,ouch}0; do

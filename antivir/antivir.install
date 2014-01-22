@@ -1,0 +1,42 @@
+avdir=/usr/lib/AntiVir
+
+post_install() {
+  groupadd antivir &> /dev/null
+  chown -R root:antivir $avdir/agent $avdir/guard &> /dev/null
+  chmod 4750 $avdir/guard/gui/bin/antivir_start.real &> /dev/null
+
+  useradd -m -d /home/quarantine -g antivir -s /bin/bash antivir &> /dev/null
+  chmod -R 770 /home/quarantine &> /dev/null
+
+  cat <<-EOF
+
+ --- IMPORTANT ---
+  By using this software, you accept the Avira GmbH EULA:
+   /usr/share/licenses/antivir/LICENSE
+
+ --- INITIAL SETUP ---
+  1. Join the 'antivir' group:
+      # gpasswd -a USERNAME antivir
+  2. Relog
+  3. Update the license key and virus definitions:
+      # avupdate-guard
+  4. Start the antivir service:
+      # systemctl enable antivir
+      # systemctl start antivir
+
+EOF
+}
+
+post_upgrade() {
+  post_install $1
+}
+
+pre_remove() {
+  systemctl disable antivir &> /dev/null
+}
+
+post_remove() {
+  rm -rf $avdir
+  userdel -r antivir &> /dev/null
+  groupdel antivir &> /dev/null
+}

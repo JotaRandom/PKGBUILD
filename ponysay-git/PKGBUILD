@@ -4,10 +4,14 @@
 pkgname=ponysay-git
 _pkgname=ponysay
 <<<<<<< HEAD
+<<<<<<< HEAD
 pkgver=3.0.1.r2195
 =======
 pkgver=3.0.1.git2075
 >>>>>>> parent of 1cd03db... update
+=======
+pkgver=3.0.1.r2218
+>>>>>>> b2a7926f3a808c1f28df5b5ff1ab330b42465116
 pkgrel=1
 epoch=2
 pkgdesc="Cowsay reimplementation for ponies."
