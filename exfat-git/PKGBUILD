@@ -14,7 +14,7 @@
 # http://opensource.samsung.com/
 
 pkgname=exfat-git
-pkgver=105.7bfc673
+pkgver=107.1691cda
 pkgrel=1
 url='https://github.com/dorimanx/exfat-nofuse.git'
 pkgdesc='Native kernel module for extended fat support'

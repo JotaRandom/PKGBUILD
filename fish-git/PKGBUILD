@@ -5,7 +5,7 @@
 
 pkgname=fish-git
 _pkgname=fish
-pkgver=2.1.0.r3421
+pkgver=pre_ast_parser.r3630
 pkgrel=1
 pkgdesc="User friendly shell intended mostly for interactive use."
 arch=('i686' 'x86_64')
