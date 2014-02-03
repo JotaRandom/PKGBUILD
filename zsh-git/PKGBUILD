@@ -4,7 +4,7 @@
 
 pkgname=zsh-git
 _pkgname=zsh
-pkgver=5.0.4
+pkgver=5.0.5
 
 pkgver(){
     cd "$srcdir/$pkgname"
