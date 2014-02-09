@@ -17,17 +17,16 @@ _gitname=qLiveStreamer
 
 pkgver() {
 	cd "$_gitname"
-  	git log -1 --format='%cd' --date=short | tr -d -- '-'
+  git log -1 --format='%cd' --date=short | tr -d -- '-'
 }
 
 build() {
 	cd "$_gitname"
-  	qmake-qt4 PREFIX=/usr sbindir=/usr/bin libexecdir=/usr/lib/qlivestreamer
+  qmake-qt4 PREFIX=/usr
 	make
 }
 
 package() {
 	cd "$_gitname"
 	make DESTDIR="$pkgdir" INSTALL_ROOT="$pkgdir" install
-
 }
