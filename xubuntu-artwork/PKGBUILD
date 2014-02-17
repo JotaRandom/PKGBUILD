@@ -11,6 +11,7 @@ license=('GPL')
 depends=('xfce-theme-albatross' 'xfce-theme-bluebird' 'xfce-theme-greybird' 'shimmer-wallpapers')
 optdepends=('plymouth: For plymouth theme to work'
         'lightdm-unity-greeter: For LightDM Unity Greeter theme to work'
+        'lightdm-gtk3-greeter: For LightDM GTK Greeter theme to work'
 	'elementary-xfce-icons: The matching icon theme, or if you want use the git version')
 source=("https://launchpad.net/ubuntu/+archive/primary/+files/xubuntu-artwork_${pkgver}.tar.gz"
         '0001_Plymouth_dir.patch')
