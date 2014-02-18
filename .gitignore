@@ -124,12 +124,8 @@ epsxe-launcher-bash/attachment*
 yaourt-git/yaourt
 package-query-git/package-query
 smc-git/SMC
-<<<<<<< HEAD
-=======
->>>>>>> parent of 1cd03db... update
-=======
 numix-icon-theme-git/numix
 fish-git/fish
 gnome-paint-bzr/gnome-paint
 beast/bseapi.idl?id=0.8.2
->>>>>>> b2a7926f3a808c1f28df5b5ff1ab330b42465116
+owlman-git/owlman
