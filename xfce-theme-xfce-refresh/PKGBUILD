@@ -1,0 +1,36 @@
+# $Id: pkgbuild-mode.el,v 1.23 2007/10/20 16:02:14 juergen Exp $
+# Maintainer: Pablo Lezaeta <prflr88@gmail.com>
+
+pkgname=xfce-theme-xfce-refresh
+pkgver=18630ba
+pkgrel=1
+pkgdesc="Refresh of Xfce's default gtk-theme. Supports Gtk3"
+arch=('any')
+url="https://github.com/shimmerproject/Xfce-refresh"
+license=('GPL')
+groups=('xfce')
+depends=()
+makedepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=
+changelog=
+source=("$pkgname::git+https://github.com/shimmerproject/Xfce-refresh.git")
+noextract=()
+md5sums=(SKIP)
+
+pkgver() {
+ cd "$pkgname"
+ git describe --always | sed 's#-#_#g;s#v##'
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver
+
+}
+
+# vim:set ts=2 sw=2 et:
