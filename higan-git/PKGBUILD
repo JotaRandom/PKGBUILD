@@ -1,7 +1,7 @@
 # Maintainer: Abelardo Ricart
 
 pkgname=higan-git
-pkgver=093.4e2eb23
+pkgver=093.10464b8
 pkgrel=1
 pkgdesc="A Nintendo multi-system emulator formerly known as bsnes"
 arch=('i686' 'x86_64')
