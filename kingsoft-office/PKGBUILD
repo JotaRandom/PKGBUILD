@@ -1,0 +1,32 @@
+# Maintainer: Jove Yu <yushijun110 [at] gmail.com>
+
+pkgname=kingsoft-office
+pkgver=9.1.0.4244_Alpha12Patch3
+_pkgver=9.1.0.4244~a12p3_i386
+pkgrel=1
+pkgdesc="Kingsoft Office (WPS Office), is an office productivity suite."
+arch=('i686' 'x86_64')
+license=("Custom")
+url="http://wps-community.org/"
+conflicts=('wps-office')
+install=${pkgname}.install 
+source=("http://wdl.cache.ijinshan.com/wps/download/Linux/unstable/${pkgname}_${_pkgver}.deb")
+sha1sums=('17ec28b5e4a765c36ad6775c6a7e83aa39753018')
+
+if [ "$CARCH" = "i686" ]; then
+    depends=('fontconfig' 'glib2' 'libpng12' 'libsm' 'libxext' 'libxdmcp' 'libxrender' 'libcups' 'glu' 'libgl')
+elif [ "$CARCH" = "x86_64" ]; then
+    depends=('lib32-fontconfig' 'lib32-glib2' 'lib32-libpng12' 'lib32-libsm' 'lib32-libxext' 'lib32-libxdmcp' 'lib32-libxrender' 'lib32-libcups' 'lib32-glu' 'lib32-libgl')
+fi
+depends+=('desktop-file-utils' 'shared-mime-info' 'xdg-utils')
+
+PKGEXT=".pkg.tar"
+
+package()
+{
+    cd "${srcdir}"
+    tar aJxvf data.tar.lzma -C "${pkgdir}"
+
+    # remove chinese fonts from Founder (方正)
+    #rm -r "${pkgdir}/usr/share/fonts/"
+}
