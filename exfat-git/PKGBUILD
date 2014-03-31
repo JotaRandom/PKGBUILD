@@ -8,20 +8,17 @@
 #
 # This PKGBUILD will be available as long as the repository is public.
 #
-# For discussions about the git repo, see:
-# http://phoronix.com/forums/showthread.php?81642-Native-Linux-Kernel-Module-Is-Out-For-Microsoft-exFAT
-#
 # http://opensource.samsung.com/
 
 pkgname=exfat-git
 pkgver=107.1691cda
-pkgrel=1
+pkgrel=4
 url='https://github.com/dorimanx/exfat-nofuse.git'
-pkgdesc='Native kernel module for extended fat support'
+pkgdesc='Native (nofuse) kernel module for EXtendedFAT support'
 license=('GPL')
 #
 arch=('i686' 'x86_64')
-depends=('linux>=3.0' 'linux<3.13')
+depends=('linux>=3.0') # 'linux<=3.13')
 makedepends=('linux-headers' 'git')
 provides=('exfat')
 conflicts=('exfat')
@@ -36,33 +33,55 @@ pkgver() {
   echo $(git rev-list --count master).$(git rev-parse --short master)
 }
 
-# Find all kernels and extramodule directories
-KERNELS=`cat /usr/lib/modules/extramodules*/version`
-XTRAMOD=`find /usr/lib/modules -name version | sed 's|\/usr\/lib\/modules\/||; s|\/version||'`
-
 build() {
   cd "${pkgname}"
-  for _kernver in $KERNELS; do
-    echo Building module for $_kernver
-    make -f Makefile.module KDIR=/usr/lib/modules/${_kernver}/build
-    mkdir -p ${_kernver}
-    mv exfat.ko ${_kernver}
-    rm *.o .exfat*.cmd
+  # avoid confusing error message
+  sed -i 's/^KREL/#KREL/' Makefile
+  for _kernel in $(find /usr/lib/modules/extramodules* -type f -name version -printf '%h\n'); do
+    _kdir=/usr/lib/modules/$(cat $_kernel/version)/build
+    make KDIR=$_kdir
+    mkdir -p "${srcdir}"/modules/$_kernel
+    gzip -c exfat.ko > "${srcdir}"/modules/$_kernel/exfat.ko.gz
+    make KDIR=$_kdir clean 
   done
 }
 
 package() {
-  cd "${pkgname}"
-  # Loop through all detected kernels
-  for _kernver in $KERNELS; do
-	# Loop through all detected extramodules directories
-	for _mod_dir in $XTRAMOD; do
-	  # Check which extramodules directory corresponds with the built module
-	  if [ $(cat "/usr/lib/modules/${_mod_dir}/version") = ${_kernver} ]; then
-	    gzip ${_kernver}/exfat.ko
-	    install -m755 -d "${pkgdir}/usr/lib/modules/${_mod_dir}/"
-	    install -m644 -t "${pkgdir}/usr/lib/modules/${_mod_dir}/" ${_kernver}/exfat.ko.gz
-	  fi
-	done
+  cd modules
+  for _module in `find . -type f`; do
+    install -m644 -D $_module "${pkgdir}"/$_module
   done
 }
+
+## old version
+
+## Find all kernels and extramodule directories
+#KERNELS=`cat /usr/lib/modules/extramodules*/version`
+#XTRAMOD=`find /usr/lib/modules -name version | sed 's|\/usr\/lib\/modules\/||; s|\/version||'`
+
+#build() {
+#  cd "${pkgname}"
+#  for _kernver in $KERNELS; do
+#    echo Building module for $_kernver
+#    make KDIR=/usr/lib/modules/${_kernver}/build
+#    mkdir -p ${_kernver}
+#    mv exfat.ko ${_kernver}
+#    rm *.o .exfat*.cmd
+#  done
+#}
+
+#package() {
+#  cd "${pkgname}"
+#  # Loop through all detected kernels
+#  for _kernver in $KERNELS; do
+#	# Loop through all detected extramodules directories
+#	for _mod_dir in $XTRAMOD; do
+#	  # Check which extramodules directory corresponds with the built module
+#	  if [ $(cat "/usr/lib/modules/${_mod_dir}/version") = ${_kernver} ]; then
+#	    gzip ${_kernver}/exfat.ko
+#	    install -m755 -d "${pkgdir}/usr/lib/modules/${_mod_dir}/"
+#	    install -m644 -t "${pkgdir}/usr/lib/modules/${_mod_dir}/" ${_kernver}/exfat.ko.gz
+#	  fi
+#	done
+# done
+#}
