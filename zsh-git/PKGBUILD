@@ -4,11 +4,10 @@
 
 pkgname=zsh-git
 _pkgname=zsh
-pkgver=5.0.5
-
+pkgver=5.0.5.100.g4dfe626
 pkgver(){
     cd "$srcdir/$pkgname"
-    git describe --tags --abbrev=0 | sed 's|zsh-||g' | sed 's|-|.|g'
+    git describe --tags --long | sed 's/zsh-\(.*\)-\(.*\)-/\1.\2./' 
 }
 epoch=1
 

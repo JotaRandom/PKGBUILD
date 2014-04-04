@@ -4,37 +4,40 @@
 # Contributor: SanskritFritz (gmail)
 
 pkgname=fish-git
-_pkgname=fish
-pkgver=pre_ast_parser.r3630
+_gitname="fish-shell"
+pkgver=2012.01.31
 pkgrel=1
-pkgdesc="User friendly shell intended mostly for interactive use."
+epoch=1
+pkgdesc="User friendly shell intended mostly for interactive use (gitorius.org legacy version)."
 arch=('i686' 'x86_64')
-url="http://ridiculousfish.com/shell/"
-license=("GPL")
+url="http://gitorious.org/fish-shell"
+license=("GPL" "LGPL" "BSD" "MIT")
 depends=('ncurses' 'bc')
 optdepends=('python2: make_completions script')
 makedepends=('doxygen' 'git')
 provides=('fish')
 conflicts=('fish')
 install=fish.install
-source=("$_pkgname::git+git://github.com/fish-shell/fish-shell.git")
-md5sums=("SKIP")
+source=("git://gitorious.org/fish-shell/fish-shell.git")
+md5sums=('SKIP')
 
 pkgver() {
-	cd "$_pkgname"
-	echo "$(git describe --tags --abbrev=0 ).r$(git rev-list --count HEAD | sed 's/-/./g' )"
+	cd "$_gitname"
+	git log -1 --format="%cd" --date=short | sed 's|-|.|g'
 }
 
 build() {
-	cd "$srcdir/$_pkgname"
+	cd $srcdir/$_gitname
 	autoconf
-	./configure --prefix=/usr --sysconfdir=/etc --docdir=/usr/share/doc/fish --without-xsel --libexecdir=/usr/lib/fish
+	./configure --prefix=/usr --sysconfdir=/etc --docdir=/usr/share/doc/fish --without-xsel
 	make
 }
 
 package() {
-	cd "$srcdir/$_pkgname"
-	make DESTDIR="$pkgdir" sbindir=/usr/bin install
+	cd $srcdir/$_gitname
+	make DESTDIR="$pkgdir" install
 	install -D -m644 user_doc/html/license.html "$pkgdir/usr/share/licenses/fish/license.html"
-	sed -i "s/python/python2/" "$pkgdir/usr/share/fish/tools/"*.py
+
+	install -m755 make_completions.py "$pkgdir/usr/bin/make_completions"
+	sed -i "s/python/python2/" "$pkgdir/usr/bin/make_completions"
 }

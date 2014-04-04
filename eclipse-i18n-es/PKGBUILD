@@ -1,0 +1,23 @@
+# Contributor: Jesus Jerez <jhuss@archlinux.org.ve>
+# Maintainer: Daniel AL Monagas - Zokeber <zokeber@archlinux.org.ve>
+
+pkgname=eclipse-i18n-es
+pkgver=4.3.0
+_release=R0.11.1
+_pkgbuild=v20131123020001
+pkgrel=1
+pkgdesc="Spanish language for eclipse IDE"
+url="http://babel.eclipse.org/"
+arch=('any')
+license=('EPL')
+depends=('eclipse')
+makedepends=('unzip')
+conflicts=('eclipse-i18n-es-pack')
+source=("http://www.mirrorservice.org/sites/download.eclipse.org/eclipseMirror/technology/babel/babel_language_packs/${_release}/kepler/BabelLanguagePack-eclipse-es_${pkgver}.${_pkgbuild}.zip")
+
+package() {
+  mkdir -p "${pkgdir}/usr/share/"
+  cp -R "${srcdir}/eclipse" "${pkgdir}/usr/share/"
+}
+
+md5sums=('057634977cf37658cead893de3492cb3')
