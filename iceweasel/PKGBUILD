@@ -1,6 +1,7 @@
 # Maintainer: superlex
 
 # Based on Parabola GNU/Linux iceweasel-libre PKGBUILD :
+
 # Contributor (ConnochaetOS): Henry Jensen <hjensen@connochaetos.org>
 # Contributor (Parabola): Luke Shumaker <lukeshu@sbcglobal.net>
 # Contributor: Figue <ffigue at gmail>
@@ -9,12 +10,12 @@
 # Contributor (Parabola): André Silva <emulatorman@lavabit.com>
 # Contributor (Parabola): Márcio Silva <coadde@lavabit.com>
 # Contributor (Arch): Jakub Schmidtke <sjakub@gmail.com>
-
 # Thank you very much to the older contributors:
 # Contributor: evr <evanroman at gmail>
 # Contributor: Muhammad 'MJ' Jassim <UnbreakableMJ@gmail.com> 
 
 # Firefox PKGBUILD (Arch Linux):
+
 # Maintainer : Ionut Biru <ibiru@archlinux.org>
 # Contributor: Jakub Schmidtke <sjakub@gmail.com>
 
@@ -22,19 +23,18 @@ _pgo=false
 
 # We're getting this from Debian Experimental
 _debname=iceweasel
-_debver=22.0
+_debver=27.0.1
 _debrel=1
 _debrepo=http://ftp.debian.org/debian/pool/main/i/
 
 pkgname=iceweasel
 pkgver=$_debver.deb$_debrel
-pkgrel=1
+pkgrel=2
 pkgdesc="Debian Browser based on Mozilla Firefox"
 arch=('i686' 'x86_64')
 license=('GPL' 'MPL' 'LGPL')
-depends=('alsa-lib' 'dbus-glib' 'desktop-file-utils' 'gtk2' 'hicolor-icon-theme' 'hunspell' 'libevent' 'libnotify' 'libvpx' 'libxt' 'mime-types' 'mozilla-common' 'nss>=3.14.1' 'sqlite3' 'startup-notification')
-makedepends=(autoconf2.13 diffutils imagemagick libidl2 libpulse librsvg libxslt mesa pkg-config python2 quilt unzip zip)
-[ "$CARCH" != "mips64el" ] && makedepends+=('yasm')
+depends=(alsa-lib dbus-glib desktop-file-utils gtk2 hicolor-icon-theme hunspell libevent libnotify libvpx libxt mime-types mozilla-common nss sqlite startup-notification)
+makedepends=(autoconf2.13 diffutils gstreamer0.10-base imagemagick imake inetutils libidl2 libpulse librsvg libxslt mesa pkg-config python2 quilt unzip zip)
 options=(!emptydirs !makeflags)
 if $_pgo; then
   makedepends+=(xorg-server-xvfb)
@@ -42,40 +42,38 @@ if $_pgo; then
 fi
 
 optdepends=('networkmanager: Location detection via available WiFi networks'
-         'iceweasel-sync: Speed up Iceweasel using tmpfs'
-         'mozplugger: A Mozilla & Firefox multimedia plugin'
-         'iceweasel-extension-globalmenu: Globalmenu Extension for Iceweasel'
-         'iceweasel-extension-archsearch: Iceweasel Arch search engines'
-         'iceweasel-extension-archforumsearch-it: Iceweasel search engines for Arch Linux Italian forum'
-         'iceweasel-i18n-it: Italian language pack for Iceweasel'
-         'iceweasel-i18n-es: Spanish language pack for Iceweasel'
-         'iceweasel-i18n-fr: French language pack for Iceweasel')
-url="http://www.geticeweasel.org/"
+            'gstreamer0.10-base-plugins: vorbis decoding, ogg demuxing'
+            'gstreamer0.10-good-plugins: webm and mp4 demuxing'
+            'gstreamer0.10-bad-plugins: aac, vp8 and opus decoding'
+            'gstreamer0.10-ugly-plugins: h.264 and mp3 decoding'
+            'gstreamer0.10-ffmpeg: more decoders'
+            'libpulse: PulseAudio audio driver'
+            'iceweasel-extension-archsearch: Iceweasel Arch search engines'
+            'iceweasel-extension-archforumsearch-it: Iceweasel search engines for Arch Linux Italian forum')
+url="http://packages.debian.org/experimental/iceweasel"
 install=iceweasel.install
 provides=("$_debname"="$_debver")
 source=("${_debrepo}/${_debname}/${_debname}_${_debver}.orig.tar.bz2"
-        "${_debrepo}/${_debname}/${_debname}_${_debver}-${_debrel}.debian.tar.gz"
+	"${_debrepo}/${_debname}/${_debname}_${_debver}-${_debrel}.debian.tar.xz"
         'mozconfig'
         'mozconfig.pgo'
         'iceweasel.desktop'
         'iceweasel-install-dir.patch'
         'vendor.js'
-        'shared-libs.patch'
-        'iceweasel-22.0-do-not-fallback-to-manual-proxy-settings.patch'
-        'iceweasel-20.0-fixed-loading-icon.png'
-        'Bug-756390-Make-the-Reset-Firefox-feature-more-gener.patch')
-md5sums=('45d7121606cc3b21cd2797c87b5dc3bd'
-         'bf0440dd8c31527359d797daaf0d3edd'
-         '8a3736a53720afeddeb90b2034bf7f00'
-         'b9a306d05465050397a79930fdaf904b'
+        'Bug-756390-Make-the-Reset-Firefox-feature-more-gener.patch'
+	'iceweasel-20.0.1-fixed-loading-icon.png'
+	'Fixup-Reset-Firefox-after-bad-merge.patch')
+md5sums=('fba1a8bfef502635593e2e1b0a653cda'
+         'ea2638a17254cda6cf8b85c39505b6af'
+         '4d9783f9ad3dc5d9844151ffde482474'
+         'a621ecd7d711844211a6569fdd17fa74'
          '7b9e5996dd9fe0b186a43a297db1c6b5'
-         'abf5ecb74caa857abb42bcfbb3442d9c'
-         '5c17980a124d9fa8b83af548f49e3629'
-         '52e52f840a49eb1d14be1c0065b03a93'
-         'bc27a39d08ab3f6705e487c85598d8bf'
+         '6620e724ec9a1be74e65089d81d802f7'
+         '6ab2ebce2f70bf2da3280637546242b2'
+         '73f5e92eef1aa9f644f5ac4422236b23'
          '6e335a517c68488941340ee1c23f97b0'
-         '86d4045285a9a15c20a62f46535809cb')
-         
+         '8e165ef85ddd72491f0b48f8954afca6')
+
 prepare() {
   export DEBIAN_BUILD="mozilla-release"
   
@@ -95,14 +93,18 @@ prepare() {
   # This patch doesn't works in some parts due that has patches for others locales languages, source code hasn't it
   rm -v debian/patches/debian-hacks/Bug-756390-Make-the-Reset-Firefox-feature-more-gener.patch || true
 
-  quilt push -av
+  # It needs to be patched after Bug-756390-Make-the-Reset-Firefox-feature-more-gener.patch
+  rm -v debian/patches/debian-hacks/Fixup-Reset-Firefox-after-bad-merge.patch || true
+
+quilt push -av
 
   # Adding fixed Bug-756390-Make-the-Reset-Firefox-feature-more-gener.patch
-  patch -Np1 -i "$srcdir/Bug-756390-Make-the-Reset-Firefox-feature-more-gener.patch" 
+  patch -Np1 -i "$srcdir/Bug-756390-Make-the-Reset-Firefox-feature-more-gener.patch"
+
+  patch -Np1 -i "$srcdir/Fixup-Reset-Firefox-after-bad-merge.patch" 
   
   # Install to /usr/lib/$pkgname
   patch -Np1 -i "$srcdir/iceweasel-install-dir.patch"
-  patch -Np1 -i "$srcdir/shared-libs.patch"
 
   # Load our build config
   cp "$srcdir/mozconfig" .mozconfig
@@ -110,11 +112,7 @@ prepare() {
   if $_pgo; then
     cat "$srcdir/mozconfig.pgo" >> .mozconfig
   fi
-
-  # Should be fixed in Iceweasel 23
-  # https://bugzilla.mozilla.org/show_bug.cgi?id=817533
-  patch -Np1 -i ../iceweasel-22.0-do-not-fallback-to-manual-proxy-settings.patch
-  
+ 
   # Fix PRE_RELEASE_SUFFIX
   sed -i '/^PRE_RELEASE_SUFFIX := ""/s/ ""//' \
     browser/base/Makefile.in
@@ -124,14 +122,21 @@ prepare() {
   # WebRTC build tries to execute "python" and expects Python 2
   ln -s /usr/bin/python2 "$srcdir/python2-path/python"
 
+  # Use gold, as Mozilla can use some of its features, such as safe ICF
+  #ln -s /usr/bin/ld.gold "$srcdir/path/ld"
+
   # configure script misdetects the preprocessor without an optimization level
   # https://bugs.archlinux.org/task/34644
   sed -i '/ac_cpp=/s/$CPPFLAGS/& -O2/' configure
-  
+
   # Fix tab loading icon (flickers with libpng 1.6)
   # https://bugzilla.mozilla.org/show_bug.cgi?id=841734
-  cp "$srcdir/iceweasel-20.0-fixed-loading-icon.png" \
+  cp "$srcdir/iceweasel-20.0.1-fixed-loading-icon.png" \
     browser/themes/linux/tabbrowser/loading.png
+
+  # Remove non-existent file on Makefile.in
+  sed -i '\|build/pgo/blueprint/valid.png|d' build/Makefile.in
+
 }
 
 build() {
@@ -144,20 +149,26 @@ build() {
   export MOZ_MAKE_FLAGS="$MAKEFLAGS"
   unset MAKEFLAGS
   
-  # Work around memory address space exhaustion during linking on i686
   if [[ $CARCH == i686 ]]; then
+    # Work around memory address space exhaustion during linking on i686
     LDFLAGS+=' -Wl,--no-keep-memory'
   fi
-  
+
   if $_pgo; then
-    export DISPLAY=:99
-    Xvfb -nolisten tcp -extension GLX -screen 0 1280x1024x24 $DISPLAY &
-    _fail=0
+    if [[ $CARCH != i686 ]]; then
+      # Set up PGO
+      export DISPLAY=:99
+      Xvfb -nolisten tcp -extension GLX -screen 0 1280x1024x24 $DISPLAY &
 
-    make -f client.mk build MOZ_PGO=1 || _fail=1
+      if ! make -f client.mk build MOZ_PGO=1; then
+        kill $!
+        return 1
+      fi
 
-    kill $! || true
-    return $_fail
+      kill $! || true
+    else
+      make -f client.mk build
+    fi
   else
     make -f client.mk build
   fi
