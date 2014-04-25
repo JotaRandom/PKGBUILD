@@ -4,7 +4,7 @@
 # Contributor: Andres Perera <aepd87@gmail.com>
 
 pkgname=pacman-git
-pkgver=4.1.2.r207.rga15fd48
+pkgver=4.1.2.r328.rg912ea36
 pkgrel=1
 pkgdesc="A library-based package manager with dependency support. git version."
 arch=('i686' 'x86_64')
