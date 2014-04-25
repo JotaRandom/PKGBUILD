@@ -5,6 +5,7 @@
 # no build stuff
 src/
 pkg/
+*/*.msi
 */*.bz2
 */*.deb
 */*.exe
@@ -86,7 +87,6 @@ systemd-user-session-units-git/systemd-user-session-*
 systemd-xorg-launch-helper-git/systemd-xorg-launch-*
 systemd-user-session-units-git/user-session-unit*
 systemd-xorg-launch-helper-git/xorg-launch-helpe*
-<<<<<<< HEAD
 grub-*/grub*
 ejre/ejre
 micropolis-git/micropolis
@@ -133,3 +133,4 @@ pkgbuild-watch/pkgbuild-watch/
 plymouth-git/plymouth
 fish-git/fish-shell/
 prey-git/prey
+*/pkgbuild-introspection
