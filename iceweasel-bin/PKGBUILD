@@ -6,10 +6,10 @@
 _libmozjs=24
 _libmozver=24.4.0esr
 _debname=iceweasel
-_debver=28.0
+_debver=29.0
 _debrel=1
 _debrepo=http://ftp.de.debian.org/debian/pool/main/i/
-_xulver=28
+_xulver=29
 
 pkgname=iceweasel-bin
 pkgver=${_debver}.deb${_debrel}
