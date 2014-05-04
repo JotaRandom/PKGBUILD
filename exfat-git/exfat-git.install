@@ -1,0 +1,20 @@
+
+_KERNELS=`cat /usr/lib/modules/extramodules*/version`
+
+_depmod() {
+    for _kernver in $_KERNELS; do  
+        depmod $_kernver
+    done
+}
+
+post_install() {
+    _depmod
+}
+
+post_upgrade() {
+    _depmod
+}
+
+post_remove() {
+    _depmod
+}
