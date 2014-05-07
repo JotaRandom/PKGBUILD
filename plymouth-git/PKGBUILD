@@ -19,7 +19,7 @@
 
 pkgname=plymouth-git
 
-pkgver=0.8.8.143.g4813889
+pkgver=0.8.8.147.g9932f26
 pkgrel=1
 pkgdesc="A graphical boot splash screen with kernel mode-setting support (Git version)"
 url="http://www.freedesktop.org/wiki/Software/Plymouth/"
@@ -37,13 +37,13 @@ provides=('plymouth')
 conflicts=('plymouth' 'plymouth-release')
 backup=('etc/plymouth/plymouthd.conf')
 
-source=('git://anongit.freedesktop.org/plymouth' 
+source=('plymouth::git+git://anongit.freedesktop.org/plymouth' 
         'arch-logo.png'
         'plymouth.encrypt_hook'
         'plymouth.encrypt_install'
         'gdm-plymouth.service'
         'kdm-plymouth.service'
-	    'lxdm-plymouth.service'
+	'lxdm-plymouth.service'
         'lightdm-plymouth.service'
         'slim-plymouth.service'
         'plymouth.initcpio_hook'
