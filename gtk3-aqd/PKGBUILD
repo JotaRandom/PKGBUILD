@@ -1,55 +1,50 @@
-# $Id$
-# Maintainer: Victor Aurélio <victoraur.santos@gmail.com>
+# $Id: PKGBUILD 204833 2014-01-28 08:59:57Z heftig $
+# Maintainer: Ionut Biru <ibiru@archlinux.org>
+# Maintainer: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
 
 pkgname=gtk3-aqd
-pkgver=3.8.4
+pkgver=3.12.2
 pkgrel=1
 pkgdesc="GObject-based multi-platform GUI toolkit (v3)"
-arch=('i686' 'x86_64')
+arch=(i686 x86_64)
 url="http://www.gtk.org/"
 install=gtk3.install
-depends=('atk>=2.7.5' 'glib2>=2.35.3' 'gdk-pixbuf2>=2.27.1' 'cairo' 'gtk-update-icon-cache' 'libcups' 'libxcursor' 'libxinerama' 'libxrandr' 'libxi' 'libxcomposite' 'libxdamage' 'pango' 'shared-mime-info' 'colord' 'at-spi2-atk')
-makedepends=('gobject-introspection')
+depends=(atk cairo gtk-update-icon-cache libcups libxcursor libxinerama libxrandr libxi
+         libxcomposite libxdamage pango shared-mime-info colord at-spi2-atk wayland libxkbcommon)
+makedepends=(gobject-introspection)
 provides=('gtk3')
 replaces=('gtk3')
 conflicts=('gtk3')
-options=('!libtool')
-backup=(etc/gtk-3.0/settings.ini)
-license=('LGPL')
-source=(http://ftp.gnome.org/pub/gnome/sources/gtk+/${pkgver%.*}/gtk+-$pkgver.tar.xz
-        settings.ini
-        gtk-gtkmenubar.patch)
+optdepends=('gnome-themes-standard: Default widget theme'
+            'gnome-icon-theme: Default icon theme')
+license=(LGPL)
+source=(http://ftp.gnome.org/pub/gnome/sources/gtk+/${pkgver:0:4}/gtk+-$pkgver.tar.xz
+        settings.ini gtk-gtkmenubar.patch)
+sha256sums=('61d74eea74231b1ea4b53084a9d6fc9917ab0e1d71b69d92cbf60a4b4fb385d0'
+            '14369dfd1d325c393e17c105d5d5cc5501663277bd4047ea04a50abb3cfbd119'
+            '02e99a345785947df62f7cab42404a7cd2343a5fa05c0c71ddd32844fbcbf580')
 
-prepare() {
-    cd $srcdir/gtk+-$pkgver
+build() {
+    cd "gtk+-$pkgver"
 
-    ## Apply "aqd" patch
-    patch -Np0 < $srcdir/gtk-gtkmenubar.patch
-}
+    patch -Np0 -i $srcdir/gtk-gtkmenubar.patch
+    CXX=/bin/false ./configure --prefix=/usr \
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        --enable-gtk2-dependency \
+        --disable-schemas-compile \
+        --enable-x11-backend \
+        --enable-broadway-backend \
+        --enable-wayland-backend
 
-build(){
-cd $srcdir/gtk+-$pkgver
-CXX=/bin/false ./configure --prefix=/usr \
-        --sysconfdir=/etc --libdir=/usr/lib \
-        --localstatedir=/var --libexecdir=/usr/lib/gtk-3.0 \
-        --enable-gtk2-dependency --sbindir=/usr/bin \
-        --disable-schemas-compile --bindir=/usr/bin \
-	--enable-x11-backend --enable-broadway-backend \
-	--enable-wayland-backend
-    
-#https://bugzilla.gnome.org/show_bug.cgi?id=655517
-sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+    #https://bugzilla.gnome.org/show_bug.cgi?id=655517
+    sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
 
-make
+    make
 }
 
 package() {
     cd "gtk+-$pkgver"
-    make DESTDIR="$pkgdir" sbindir=/usr/bin install
-
-    install -Dm644 "$srcdir/settings.ini" "$pkgdir/etc/gtk-3.0/settings.ini"
+    make DESTDIR="$pkgdir" install
+    install -Dm644 ../settings.ini "$pkgdir/usr/share/gtk-3.0/settings.ini"
 }
-
-md5sums=('2b232d76c01ceb626948bcbe70b05269'
-         '085ece008fa3a0b7a72e9fe3dda3631a'
-         '54b6bf2d97ca977de248a38eae8e9619')
