@@ -1,7 +1,7 @@
 # Maintainer: alucryd <alucryd at gmail dot dom>
 
 pkgname=numix-circle-icon-theme-git
-pkgver=0.r735.8f03aed
+pkgver=0.r759.fb2e963
 pkgrel=1
 pkgdesc='Circle icon theme from the Numix project'
 arch=('any')
