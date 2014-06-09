@@ -4,7 +4,7 @@
 
 pkgname=ultrastardx-svn
 epoch=1
-pkgver=3008
+pkgver=3069
 pkgrel=1
 pkgdesc='Free and open source karaoke game.'
 arch=('i686' 'x86_64')

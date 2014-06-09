@@ -1,7 +1,7 @@
 # Maintainer: RobbeR49 <robertsna@gmail.com>
 
 pkgname=gmusicbrowser-git
-pkgver=1.1.12.1199
+pkgver=1.1.12.1230
 pkgrel=1
 pkgdesc="An open-source jukebox for large collections of mp3/ogg/flac files, written in perl."
 arch=('i686' 'x86_64')

@@ -3,7 +3,7 @@
 
 pkgname=zsh-z-git
 pkgrel=1
-pkgver=1.8.git148
+pkgver=1.8.git152
 pkgdesc="Jump to frecently-used dirs in zsh"
 arch=('any')
 url="https://github.com/rupa/z"

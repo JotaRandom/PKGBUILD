@@ -2,7 +2,7 @@
 # Contributor: dorkfish <dork dot fish dot wat at gmail dot com>
 
 pkgname=bamf-bzr
-pkgver=585
+pkgver=601
 pkgrel=1
 pkgdesc="Application matching framework"
 arch=('i686' 'x86_64')

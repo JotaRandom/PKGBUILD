@@ -3,7 +3,7 @@
 
 pkgname=ponysay-dev-git
 _pkgname=ponysay
-pkgver=3.0.1.git2147
+pkgver=3.0.1.git2243
 pkgrel=1
 pkgdesc="Pony wrapper for cowsay. (develop branch)"
 arch=('any')
