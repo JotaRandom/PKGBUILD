@@ -33,10 +33,16 @@ install=$pkgname.install
 source=($url/download/$pkgname-$pkgver.tar.gz)
 md5sums=('348029d561be345540198cb415c6cd25')
 
-package() {
-  cd "$srcdir"/$pkgname-$pkgver
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+  #configure --prefirx=/usr --bindir=/usr/bin --sbindir=/usr/bin --libexecdir=/usr/lib
+  make prefir=/usr
+}
 
-  make DESTDIR="$pkgdir/" install
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  make DESTDIR="$pkgdir/" sbindir=/usr/bin libexecdir=/usr/lib install
 
   # put some images in sane locations
   install -Dm644 pix/trayicon.png "$pkgdir"/usr/share/icons/hicolor/16x16/apps/gmusicbrowser.png
