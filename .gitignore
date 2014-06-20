@@ -1,3 +1,6 @@
+# Git thing
+*/.git
+
 # no pkg or src.pkg
 *.pkg.tar*
 *.src.tar.gz
@@ -142,3 +145,4 @@ numix-shine-icon-theme-git/numix-icon-theme-shine
 gigolo-git/gigolo-git
 android-udev-git/android-udev/
 firefox-extension-globalmenu/globalmenu-extension
+easyrpg-testgame-git/easyrpg-testgame-git

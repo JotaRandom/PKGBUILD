@@ -1,7 +1,7 @@
 # Maintainer: fresh24 <pascher dot christian at gmail dot com>
 
 pkgname=egtk-bzr
-pkgver=291
+pkgver=293
 pkgrel=1
 pkgdesc="Development branch of the elementary GTK theme."
 arch=('i686' 'x86_64')

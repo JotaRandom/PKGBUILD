@@ -1,7 +1,7 @@
 # Maintainer: Diego Principe <cdprincipe@at@gmail@dot@com>
 
 pkgname=lximage-qt
-pkgver=6174e71_26
+pkgver=11ce3de_78
 pkgrel=1
 pkgdesc="A simple and fast image viewer."
 arch=('i686' 'x86_64')
