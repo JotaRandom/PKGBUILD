@@ -2,8 +2,8 @@
 
 pkgname=fedora-icon-theme
 pkgver=1.0.0
-_pkgver=1.0.0-15.fc20
-pkgrel=2
+_pkgver=1.0.0-16.fc21
+pkgrel=3
 pkgdesc="Set of icons based from Fedora and RedHat"
 arch=('any')
 url="http://http://www.redhat.com/"
@@ -24,5 +24,4 @@ package(){
 	make install DESTDIR=$pkgdir sbindir=/usr/bin
 }
 
-
-md5sums=('78d48b3be5dbf1790be62da0d1fb7bfa')
+md5sums=('19bd3dd378e9cc32c085722419897370')
