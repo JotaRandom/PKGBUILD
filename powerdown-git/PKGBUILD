@@ -1,7 +1,7 @@
 # Maintainer: tailinchu <use_my_id at gmail dot com>
 
 pkgname=powerdown-git
-pkgver=143.98bf2dc
+pkgver=144.38c4372
 pkgrel=1
 pkgdesc="simple linux powersaving script (git version)"
 arch=('any')

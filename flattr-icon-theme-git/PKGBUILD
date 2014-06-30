@@ -1,7 +1,7 @@
 # Maintainer: Steffen L. Norgren (incongruous) <steffen@norgren.ca>
 
 pkgname=flattr-icon-theme-git
-pkgver=0.r435.737ea1e
+pkgver=0.r436.c486bce
 pkgrel=1
 pkgdesc="Flattr is an icon theme for GTK based desktops. The set is inspired by the latest flat design trend."
 arch=('i686' 'x86_64')
