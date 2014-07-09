@@ -1,17 +1,20 @@
-pkgbase = pacaur
+pkgbase = pacaur-git
 	pkgdesc = A fast workflow AUR helper using cower as backend
-	pkgver = 4.2.6
+	pkgver = 4.2.5
 	pkgrel = 1
 	url = https://github.com/Spyhawk/pacaur
 	arch = any
 	license = GPL
+	makedepends = git
 	makedepends = perl
 	depends = cower
 	depends = expac
 	depends = sudo
 	depends = pacman
-	source = https://github.com/Spyhawk/pacaur/archive/4.2.6.tar.gz
+	provides = pacaur
+	conflicts = pacaur
+	source = git://github.com/Spyhawk/pacaur.git
 	backup = etc/xdg/pacaur/config
 
-pkgname = pacaur
+pkgname = pacaur-git
 
