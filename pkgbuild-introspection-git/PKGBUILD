@@ -2,7 +2,7 @@
 
 pkgname=pkgbuild-introspection-git
 _pkgname=pkgbuild-introspection
-pkgver=0.0.77.bfb715c
+pkgver=0.0.87.8b84cf9
 pkgrel=1
 pkgdesc='Tools for generating .AURINFO files and PKGBUILD data extraction (mkaurball)'
 url="https://github.com/falconindy/${_pkgname}"

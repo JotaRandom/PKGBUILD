@@ -2,7 +2,7 @@
 
 _pkgname=owlman
 pkgname=${_pkgname}-git
-pkgver=199
+pkgver=203
 pkgrel=1
 pkgdesc='A pacman and cower wrapper focused on simplicity, Git version'
 arch=('i686' 'x86_64' 'armv7f' 'armv6h')
