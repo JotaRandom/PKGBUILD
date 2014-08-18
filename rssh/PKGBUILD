@@ -61,7 +61,7 @@ package() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
 
 	make DESTDIR="${pkgdir}" install
-	mv ${pkgdir}/etc/rssh.conf.default ${pkgdir}/etc/rssh.conf
+	mv "${pkgdir}"/etc/rssh.conf.default "${pkgdir}"/etc/rssh.conf
 
 	install -D -m0644 LICENSE "${pkgdir}"/usr/share/licenses/rssh/LICENSE
 

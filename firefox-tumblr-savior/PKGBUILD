@@ -2,9 +2,9 @@
 # Maintainer: Pablo Lezaeta <prflr88@gmail.com>
 
 pkgname=firefox-tumblr-savior
-pkgver=0.4.11
+pkgver=0.4.12
 pkgrel=1
-pkgdesc="Extension for firefox which block post with predefined tags from Tumblr"
+pkgdesc="Extension for firefox which block post with predefined tags in Tumblr"
 arch=('any')
 url="http://bjornstar.com/tumblr-savior"
 license=('MIT')
