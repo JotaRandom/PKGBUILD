@@ -4,12 +4,12 @@
 pkgname=firefox-tumblr-savior
 pkgver=0.4.12
 pkgrel=1
+_ver=242508
 pkgdesc="Extension for firefox which block post with predefined tags in Tumblr"
 arch=('any')
 url="http://bjornstar.com/tumblr-savior"
 license=('MIT')
-source=("https://addons.mozilla.org/firefox/downloads/file/242508/tumblr_savior-${pkgver}-fx.xpi")
-md5sums=('7010aa4dd7b07d147c38e44a642d29d6')
+source=("https://addons.mozilla.org/firefox/downloads/file/${_ver}/tumblr_savior-${pkgver}-fx.xpi")
 
 package() {
 	depends=("firefox")
