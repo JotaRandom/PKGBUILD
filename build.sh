@@ -1,6 +1,6 @@
 #/usr/bin/sh
 
-for i in ./*
+for i in $HOME/Proyectos/Jristz/PKGBUILD/*
 do
 	cd "$i"
 	#chown -R ct:users ./*
