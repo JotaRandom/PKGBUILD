@@ -1,4 +1,4 @@
-#/usr/bin/sh
+#!/usr/bin/env bash
 
 for i in $HOME/Proyectos/Jristz/PKGBUILD/*
 do
@@ -9,4 +9,3 @@ do
 	cd $HOME/Proyectos/Jristz/PKGBUILD
 	
 done
-
