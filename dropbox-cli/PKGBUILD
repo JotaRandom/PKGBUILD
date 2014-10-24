@@ -1,0 +1,29 @@
+# Maintainer: Joel Teichroeb <joel@teichroeb.net>
+# Contributor: Matthias Maennich < arch .at. maennich.net >
+# Contributor: bruce < b_a_g99 .at. hotmail.com >
+# Contributor: carstene1ns <arch carsten-teibes de>
+
+pkgname=dropbox-cli
+pkgver=1.6.2
+pkgrel=4
+pkgdesc='Command line interface for dropbox'
+arch=('any')
+url='http://www.dropbox.com'
+license=('GPL')
+depends=('python2' 'dropbox')
+makedepends=("patch")
+source=("https://linux.dropbox.com/packages/dropbox.py"
+        "$pkgname-arch.patch")
+md5sums=('f368b6bfd67c4009c1fe4a6de978474d'
+         'f48ce021cf70cdde419a57656133827a')
+
+build(){
+    mkdir -p "$srcdir/build"
+    cp -L "$srcdir/dropbox.py" "$srcdir/build/"
+    cd "$srcdir/build"
+    patch -i "$srcdir/$pkgname-arch.patch"
+}
+
+package() {
+    install -D -m 755 "$srcdir/build/dropbox.py" "$pkgdir/usr/bin/dropbox"
+}
