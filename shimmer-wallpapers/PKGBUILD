@@ -9,11 +9,14 @@
 # This wallpaper collection is complementary to the
 # Shimmer Project Xfce themes
 
-pkgname=shimmer-wallpapers
+pkgname=shimmer-wallpapers-git
 _pkgname=Wallpapers
 _pkgnamelong="Shimmer Wallpapers"
 pkgver=1.0
 pkgrel=2
+conflicts=("shimmer-wallpapers")
+provides=("shimmer-wallpapers")
+reemplaces=("shimmer-wallpapers")
 pkgdesc="Complementary wallpaper collection for the Shimmer Project Xfce themes"
 arch=(any)
 url=http://shimmerproject.org
@@ -25,8 +28,8 @@ optdepends=('elementary-xfce-icons: matching icon set'
     'xfce-theme-bluebird: matching Shimmer Project Xfce theme'
     'xfce-theme-greybird: matching Shimmer Project Xfce theme')
 commit=ba134cbfa7130e88822f07b18c454a8791d504b8
-source=(git://github.com/shimmerproject/$_pkgname.git#commit=$commit)
-#source=(git://github.com/shimmerproject/$_pkgname.git)
+#source=(git+http://github.com/shimmerproject/$_pkgname.git#commit=$commit)
+source=(git+http://github.com/shimmerproject/$_pkgname.git)
 sha256sums=('SKIP')
 sha512sums=('SKIP')
 

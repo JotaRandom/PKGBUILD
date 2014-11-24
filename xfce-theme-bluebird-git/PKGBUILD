@@ -12,7 +12,7 @@ depends=('gtk-engine-murrine')
 makedepends=('git')
 provides=('xfce-theme-bluebird')
 conflicts=('xfce-theme-bluebird')
-source=($pkgname::git://github.com/shimmerproject/Bluebird.git)
+source=("git+http://github.com/shimmerproject/Bluebird")
 md5sums=('SKIP')
 
 pkgver() {

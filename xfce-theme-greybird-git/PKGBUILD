@@ -1,7 +1,7 @@
 # Maintainer: Alessio Sergi <asergi at archlinux dot us>
 
 pkgname=xfce-theme-greybird-git
-pkgver=1.4
+pkgver=1.4_2_g98d9182
 pkgrel=1
 pkgdesc="Desktop suite for Xfce"
 arch=('any')
@@ -15,7 +15,7 @@ optdepends=('elementary-xfce-icons: matching icon theme'
             'lightdm-unity-greeter: lightdm unity theme')
 provides=('xfce-theme-greybird')
 conflicts=('xfce-theme-greybird')
-source=('git://github.com/shimmerproject/Greybird.git')
+source=('git+http://github.com/shimmerproject/Greybird')
 md5sums=('SKIP')
 
 pkgver() {

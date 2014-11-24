@@ -1,16 +1,17 @@
+# Maintainer: Matt Warner <mattwarner2@gmail.com>
 # Contributor: Alessio Sergi <asergi at archlinux dot us>
 # Contributor: Limao Luo <luolimao@gmail.com>
-# Maintainer: ava1ar (mail(dot)avatar(at)gmail(dot)com)
 
 pkgname=spideroak
 _PkgName=SpiderOak
-pkgver=5.0.3
+pkgver=5.1.8
 pkgrel=1
 pkgdesc="Secure file backup, sync and sharing client"
 arch=('i686' 'x86_64')
 url="https://spideroak.com/"
 license=('custom')
 depends=()
+makedepends=('desktop-file-utils')
 provides=(${pkgname})
 conflicts=(${pkgname}-beta)
 options=('!strip')
@@ -18,11 +19,11 @@ install=${pkgname}.install
 source=(terms.txt)
 sha1sums=('f287fdbad966ac9ae4951a1932e9be7e82112728')
 if [ "$CARCH" == x86_64 ]; then
-        source+=("${pkgname}_${pkgver}_x86_64.rpm::https://spideroak.com/directdownload?platform=fedora&arch=x86_64")
-        sha1sums+=('fdec54db96d749179221e1e8a8e96293ffc9045c')
+        source+=("${_PkgName}-${pkgver}-1.x86_64.rpm::https://spideroak.com/getbuild?platform=fedora&arch=x86_64")
+        sha1sums+=('2a2a9eda6b68d3ca7ca70f1a04e4d3b34f952f25')
 elif [ "$CARCH" == i686 ]; then
-        source+=("${pkgname}_${pkgver}_i386.rpm::https://spideroak.com/directdownload?platform=fedora&arch=i386")
-        sha1sums+=('2d074a54f0858afbe45495835e6d51c8a80e421b')
+        source+=("${_PkgName}-${pkgver}-1.i386.rpm::https://spideroak.com/getbuild?platform=fedora&arch=i386")
+        sha1sums+=('125086535cf5e32e8db55805b123bde8ec361f40')
 fi
 
 package() {
