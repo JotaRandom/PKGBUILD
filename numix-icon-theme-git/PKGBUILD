@@ -2,7 +2,7 @@
 # Contributor: Diego <cdprincipe at gmail dot com>
 
 pkgname=numix-icon-theme-git
-pkgver=0.r230.0a72d61
+pkgver=0.r245.7041c50
 pkgrel=1
 pkgdesc="Base icon theme from the Numix project"
 arch=('any')

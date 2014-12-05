@@ -2,7 +2,7 @@
 
 _themename=Bluebird
 pkgname=xfce-theme-bluebird-git
-pkgver=1.2
+pkgver=1.2_1_ga3560d8
 pkgrel=1
 pkgdesc="A light blue Xfce theme, introduced in the release of Xubuntu 10.10"
 arch=('any')
@@ -16,12 +16,12 @@ source=("git+http://github.com/shimmerproject/Bluebird")
 md5sums=('SKIP')
 
 pkgver() {
-  cd $pkgname
+  cd $_themename
   git describe --always | sed 's#-#_#g;s#v##'
 }
 
 package() {
-  cd $pkgname
+  cd "$srcdir/$_themename"
 
   # create theme dirs
   install -d -m 755 "$pkgdir"/usr/share/themes/$_themename
