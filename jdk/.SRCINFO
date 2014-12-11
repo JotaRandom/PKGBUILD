@@ -1,7 +1,7 @@
 pkgbase = jdk
 	pkgdesc = Oracle Java Development Kit
 	pkgver = 8u25
-	pkgrel = 1
+	pkgrel = 2
 	url = http://www.oracle.com/technetwork/java/javase/downloads/index.html
 	install = jdk.install
 	arch = i686
@@ -19,11 +19,9 @@ pkgbase = jdk
 	depends = shared-mime-info
 	depends = xdg-utils
 	optdepends = alsa-lib: for basic sound support
-	optdepends = derby: for Oracle Apache Derby Java database (AUR)
-	optdepends = eclipse: "Oracle Java Mission Control" plugins for Eclipse
+	optdepends = eclipse: to use "Oracle Java Mission Control" plugins in Eclipse
 	optdepends = gtk2: for Gtk+ look and feel (desktop)
 	optdepends = ttf-font: fonts
-	optdepends = visualvm: for lightweight profiling capabilities
 	provides = java-runtime=8
 	provides = java-runtime-headless=8
 	provides = java-web-start=8
@@ -32,6 +30,7 @@ pkgbase = jdk
 	provides = java-runtime-headless-jre=8
 	provides = java-web-start-jre=8
 	provides = java-environment-jdk=8
+	options = !strip
 	backup = etc/java-jdk8/amd64/jvm.cfg
 	backup = etc/java-jdk8/amd64/server/Xusage.txt
 	backup = etc/java-jdk8/images/cursors/cursors.properties
@@ -60,10 +59,10 @@ pkgbase = jdk
 	source = jvisualvm-jdk8.desktop
 	source = policytool-jdk8.desktop
 	md5sums = e145c03a7edc845215092786bcfba77e
-	md5sums = b4f0da18e03f7a9623cb073b65dde6c1
-	md5sums = 8f0ebcead2aecad67fbd12ef8ced1503
-	md5sums = a4a21b064ff9f3c3f3fdb95edf5ac6f3
-	md5sums = 98245ddb13914a74f0cc5a028fffddca
+	md5sums = b78e61e404d0189d7622c093966dc8d9
+	md5sums = bee5f2ad4ed589a1bebbb5768e74f434
+	md5sums = 7206dcf95cd3fd194ae45a1cb82d0b50
+	md5sums = 3f4f5290cdce3d326fd77ba7954dcac6
 
 pkgname = jdk
 
