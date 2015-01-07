@@ -3,7 +3,7 @@
 
 pkgname=grml-zsh-config-git
 _pkgname=grml-etc-core
-pkgver=0.9.6.r1096
+pkgver=0.10.3.r1135
 pkgrel=1
 pkgdesc="grml's zsh setup - from git repositories"
 arch=('any')
