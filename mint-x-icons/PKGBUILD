@@ -1,23 +1,24 @@
-# Maintainer: Carl George <carl@carlgeorge.us>
-# Contributor:  Ryan Peters <sloshy45@sbcglobal.net>
+# Maintainer: Carl George < arch at cgtx dot us >
+# Contributor:  Ryan Peters < sloshy at sbcglobal dot net >
 # Special thanks to the Linux Mint project, without them this would not exist.
 
-pkgname=mint-x-icons
-pkgver=1.1.8
-pkgrel=1
-pkgdesc="Mint-X Icon themes.  A mint/metal theme based on mintified versions of Clearlooks Revamp, Elementary and Faenza."
+pkgname='mint-x-icons'
+pkgver='1.2.6'
+pkgrel='1'
+pkgdesc='Mint-X Icon themes.  A mint/metal theme based on mintified versions of Clearlooks Revamp, Elementary and Faenza.'
 arch=('any')
 url="http://packages.linuxmint.com/pool/main/m/${pkgname}"
 license=('GPL3')
 source=("${url}/${pkgname}_${pkgver}.tar.gz")
-install=${pkgname}.install
-sha256sums=('aa0af041f1b5d99ce30bd9bbd3be3f9c884e9deffae3992688643b82702ebbd6')
+options=('!strip')
+install="${pkgname}.install"
+sha256sums=('6dd9ec56e78a9185a8c79f666517e8023feea0dfe2d7603bdd626ab9493acd4e')
 
 prepare() {
-	find ${srcdir} -type d ! -perm 755 -exec chmod 755 {} +
-	find ${srcdir} -type f ! -perm 644 -exec chmod 644 {} +
+	find "${srcdir}" -type d ! -perm 755 -exec chmod 755 {} +
+	find "${srcdir}" -type f ! -perm 644 -exec chmod 644 {} +
 }
 
 package() {
-	cp -dr --no-preserve=ownership ${srcdir}/${pkgname}/usr ${pkgdir}/
+	cp -dr --no-preserve=ownership "${srcdir}/${pkgname}/usr" "${pkgdir}/"
 }
