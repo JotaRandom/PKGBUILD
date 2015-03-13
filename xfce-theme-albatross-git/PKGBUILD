@@ -1,7 +1,7 @@
 # Maintainer: Diego <cdprincipe atgmaildot com>
 
 pkgname=xfce-theme-albatross-git
-pkgver=1.7.3_3_gbb27784
+pkgver=1.7.3_5_g735e8f2
 pkgrel=1
 pkgdesc="A dark, smooth Xfce theme, introduced in the release of Xubuntu 9.10"
 arch=('any')

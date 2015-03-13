@@ -1,7 +1,7 @@
 # Maintainer: Ner0
 
 pkgname=elementary-icon-theme-bzr
-pkgver=1436
+pkgver=1445
 pkgrel=1
 pkgdesc="An icon theme designed to be smooth, sexy, clear, and efficient (Development branch)"
 arch=('any')
