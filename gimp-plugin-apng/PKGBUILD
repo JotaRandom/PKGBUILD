@@ -1,0 +1,30 @@
+# Contributor: maz-1 <loveayawaka_at_gmail_dot_com>
+# Contributor:
+# Maintainer: Pablo Lezaeta <prflr88@gmail.com>
+
+pkgname=gimp-plugin-apng
+_pkgname=gimp-apng
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="A GIMP plugin to support animated PNG (APNG)."
+url="http://sourceforge.net/projects/gimp-apng/"
+depends=("gimp>=2.3.0" "libpng")
+source=("http://tcpdiag.dl.sourceforge.net/project/${_pkgname}/${_pkgname}-dev/${pkgver}/${_pkgname}-${pkgver}.tar.bz2")
+arch=("i686" "x86_64")
+license=("GPL")
+
+# Remove warning that in some systems make impossible to continue the building
+LDFLAGS="${LDFLAGS},-lm"
+
+build() {
+  cd "${srcdir}/${_pkgname}-${pkgver}"
+  ./configure --prefix=/usr --bindir=/usr/bin --sbindir=/usr/bin --libdir=/usr/lib --libexecdir=/usr/lib
+  make prefix=/usr bindir=/usr/bin sbindir=/usr/bin libdir=/usr/lib libexecdir=/usr/lib DESTDIR="${pkgdir}"
+}
+
+package() {
+  cd "${srcdir}/${_pkgname}-${pkgver}"
+  make prefix=/usr bindir=/usr/bin sbindir=/usr/bin libdir=/usr/lib libexecdir=/usr/lib DESTDIR="${pkgdir}" install
+}
+
+md5sums=("af83f8dfc6cfedc9ce3e898d1eef1768")
