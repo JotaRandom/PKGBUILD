@@ -1,8 +1,7 @@
 # Maintainer: Felix Wolff <felix.stefan.wolff+aur - at - gmail.com>
-
 pkgname=ozon-gtk-theme-git
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Official GTK theme for OZON OS"
 arch=('any')
 url="https://github.com/ozonos/ozon-gtk-theme"

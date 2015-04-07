@@ -1,31 +1,85 @@
-# Maintainer: Romain Labolle <ravomavian@gmail.com>
+# $Id: PKGBUILD 122581 2014-11-14 20:19:16Z muflone $
+# Maintainer: Muflone http://www.muflone.com/contacts/english/
+# Contributor: Balló György <ballogyor+arch at gmail dot com>
 
 pkgname=bluegriffon
 pkgver=1.7.2
+_mozilla_ver=9db46ddfb517
 pkgrel=1
-pkgdesc='The next-generation Web Editor'
-url="http://bluegriffon.org/"
+pkgdesc="The next-generation Web Editor based on the rendering engine of Firefox"
 arch=('i686' 'x86_64')
+url="http://bluegriffon.org/"
 license=('MPL' 'GPL' 'LGPL')
-depends=('libpng' 'libjpeg' 'desktop-file-utils' 'libxt' 'mime-types' 'nss' 'shared-mime-info' )
-makedepends=('wget')
-install='bluegriffon.install'
-source=("http://bluegriffon.org/freshmeat/${pkgver}/bluegriffon-${pkgver}.Ubuntu13.04.$CARCH.tar.bz2"
-        'bluegriffon.desktop'
-        'bluegriffon.install'
-       )
-md5sums=('33ed2194189b012bb36a02a30aeb52df'
-         'e532ce3a2163d91b11a19176dcf2dbe1'
-         '42d885a1665f32babc8045b2041949ea'
-        )
-[ "$CARCH" = "x86_64" ] && md5sums[0]='fbae6365980d87dde5e4ce044d55be38'
+depends=('alsa-lib' 'desktop-file-utils' 'dbus-glib' 'gtk2' 'hunspell' 'mozilla-common'
+         'nss' 'libevent' 'libvpx' 'libxt' 'python2' 'startup-notification')
+makedepends=('autoconf2.13' 'libpulse' 'subversion' 'unzip' 'xorg-server-xvfb' 'zip')
+options=('!emptydirs')
+install="${pkgname}.install"
+source=("${pkgname}-${pkgver}"::"svn+http://sources.disruptive-innovations.com/${pkgname}/tags/${pkgver}"
+        "${pkgname}-l10n-${pkgver}"::"svn+http://sources.disruptive-innovations.com/${pkgname}-l10n/tags/${pkgver}"
+        "http://hg.mozilla.org/mozilla-central/archive/${_mozilla_ver}.tar.bz2"
+        "mozconfig"
+        "bluegriffon.desktop"
+        "freetype.patch")
+md5sums=('SKIP'
+         'SKIP'
+         'ced0be4498f9b29b68148af38bdd2f6d'
+         '7a39b0d261604c50d314acb115fc17fe'
+         'b508d3a028380595d25c8039a217768b'
+         'f19745a7e94053a5252e35f6cbf7b94f')
+
+prepare() {
+  cd "${srcdir}/mozilla-central-${_mozilla_ver}"
+
+  # Move files to their correct location
+  mv "${srcdir}/${pkgname}-${pkgver}" bluegriffon
+  mv "${srcdir}/${pkgname}-l10n-${pkgver}" bluegriffon/locales
+  mv "${srcdir}/mozconfig" .mozconfig
+
+  # Apply BlueGriffon's upstream customizations
+  patch -Np1 -i bluegriffon/config/content.patch
+
+  # Fix build with freetype 2.5
+  patch -Np1 -i ../freetype.patch
+
+  # python2 fix
+  find . -name \*.py -exec sed -i 's@^#.*python$@#!/usr/bin/python2@' '{}' \;
+}
+
+build() {
+  cd "${srcdir}/mozilla-central-${_mozilla_ver}"
+
+  # configure script misdetects the preprocessor without an optimization level
+  # https://bugs.archlinux.org/task/34644
+  export CPPFLAGS+=' -O2'
+  export PYTHON=python2
+
+  xvfb-run -a -s "-extension GLX -screen 0 1280x1024x24" \
+    make -f client.mk build
+}
 
 package() {
-	cd ${srcdir}
-	mkdir -p ${pkgdir}/{usr/{bin,share/{applications,pixmaps}},opt}
-	cp -R bluegriffon ${pkgdir}/opt/${pkgname}
+  cd "${srcdir}/mozilla-central-${_mozilla_ver}"
 
-	ln -s /opt/${pkgname}/bluegriffon ${pkgdir}/usr/bin/${pkgname}
-	install -m644 ${srcdir}/${pkgname}.desktop ${pkgdir}/usr/share/applications/
-	install -m644 ${srcdir}/bluegriffon/chrome/icons/default/default48.png ${pkgdir}/usr/share/pixmaps/${pkgname}-icon.png
+  mkdir -p "${pkgdir}/usr/lib/bluegriffon"
+  cp -LR bg/dist/bin/* "${pkgdir}/usr/lib/bluegriffon"
+
+  mkdir -p "${pkgdir}/usr/bin"
+  ln -sf /usr/lib/bluegriffon/bluegriffon "${pkgdir}/usr/bin/bluegriffon"
+
+  for i in 16x16 32x32 48x48; do
+      install -Dm644 bg/dist/branding/default${i/x*/}.png \
+        "${pkgdir}/usr/share/icons/hicolor/${i}/apps/bluegriffon.png"
+  done
+
+  install -Dm644 bg/dist/branding/mozicon128.png \
+    "${pkgdir}/usr/share/icons/hicolor/128x128/apps/bluegriffon.png"
+
+  install -Dm644 ../bluegriffon.desktop \
+    "${pkgdir}/usr/share/applications/bluegriffon.desktop"
+
+  # Use system-provided dictionaries
+  rm -rf "${pkgdir}"/usr/lib/bluegriffon/{dictionaries,hyphenation}
+  ln -sf /usr/share/hunspell "${pkgdir}/usr/lib/bluegriffon/dictionaries"
+  ln -sf /usr/share/hyphen "${pkgdir}/usr/lib/bluegriffon/hyphenation"
 }
