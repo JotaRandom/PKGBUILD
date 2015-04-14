@@ -1,4 +1,5 @@
 # Maintainer: Matthias Maennich <arch@maennich.net>
+
 pkgname=command-not-found
 pkgver=0.4.5
 pkgrel=1
