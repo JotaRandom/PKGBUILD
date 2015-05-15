@@ -1,5 +1,6 @@
 # Git thing
 */.git
+*.ttf
 
 # no pkg or src.pkg
 *.pkg.tar*
@@ -172,3 +173,8 @@ ozon-icon-theme-git/ozon-icon-theme
 ozon-gtk-theme-git/ozon-gtk-theme
 bluegriffon/bluegriffon-*
 gimp-gtk3-git/gimp
+xfce-icon-theme-ivy-svn/xfce-icon-theme-ivy-svn
+sddm-numix-theme-git/intialonso
+plymouth-theme-numix-bzr/plymouth-theme-numix
+birdfont-git/birdfont
+archdroid-icon-theme-git/archdroid-icon-theme

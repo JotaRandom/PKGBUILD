@@ -1,56 +1,52 @@
 # Maintainer: Artefact2 <artefact2@gmail.com>
+# Contributor: Philip Sequeira <phsequei@gmail.com>
 # Contributor: Lauri Niskanen <ape@ape3000.com>
 # Contributor: Travis Nickles <ryoohki7@yahoo.com>
 # Contributor: Stefan Lohmaier <noneuss at gmail dot com>
 # Contributor: ZipFile <lin.aaa.lin@gmail.com>
+# Contributor: Carlos Solis <csolisr at gmail dot com>
 
 pkgname=stepmania
-pkgver=5.0b2
+pkgver=5.0.7
 pkgrel=1
-pkgdesc="A free dance and rhythm game (was previously sm-ssc)"
-url="http://www.stepmania.com/"
-license="MIT"
+pkgdesc='A free dance and rhythm game (was previously sm-ssc)'
+url='http://www.stepmania.com/'
+license=('MIT')
 arch=(i686 x86_64)
-depends=('gtk2' 'libmad' 'mesa' 'glew' 'ffmpeg' 'libpng')
+depends=('gtk2' 'libmad' 'mesa' 'glew' 'libpng' 'libvorbis')
 replaces=('sm-ssc')
-makedepends=('pkgconfig')
+makedepends=('pkgconfig' 'yasm')
 install='stepmania.install'
 source=(stepmania.sh
         stepmania.install
-        http://downloads.sourceforge.net/project/stepmania/stepmania/5.0%20beta%202/stepmania-5.0b2-src.tar.bz2
-)
-
-md5sums=('2bd765651419c12a5b678e62309ee3c5'
-         '086d8476c1aed78ee2c4278a2e6d9dbc'
-         '4275db99e1861e6915ce205e018deb14')
-
-_directory="stepmania-SM5-beta2"
+        https://github.com/stepmania/stepmania/archive/v$pkgver.tar.gz)
+sha512sums=('e066ac27932e795078a3a9b1073f280f10f140b2dd776f12efdc469d327d13c2fccdc87f823a32d91c9896b5ea1e98fca404cfadcf55c97ea22a179e5ca21412'
+            'a136c74c71730bbac0d90e876d0f8de066c5f4cfba1923f649d085c7590a3624bd469d03daacc7e4ff5f23c1de2907c015c5a9b6df66f5fce584cf912e9e5c58'
+            '820dd2dffb7b1287afe0ab817abea797e9157713b4123371f4bc869cc9851749cf4af1f794bd7d2a086d20adf13a44e263582596d76c754b97c0aa8bb53dc660')
 
 build() {
-	cd $srcdir
-	ls
-    cd $srcdir/$_directory
+  cd "$srcdir/$pkgname-$pkgver"
 
-    ./configure --prefix=$pkgdir/opt
-    make
+  # this fixes the build with noexec /tmp
+  mkdir "$srcdir/temp"
+  export TEMPDIR="$srcdir/temp"
+
+  ./autogen.sh
+  ./configure --prefix="$pkgdir/opt" 
+  make
 }
 
 package() {
-    cd $srcdir/$_directory
-    mkdir -p "$pkgdir/opt/stepmania 5"
+  cd "$srcdir/$pkgname-$pkgver"
 
-    make install
-    install -D -m755 $srcdir/$pkgname.sh $pkgdir/usr/bin/$pkgname
-    install -D -m755 $pkgname.desktop $pkgdir/usr/share/applications/$pkgname.desktop
-    install -D -m644 Docs/Licenses.txt $pkgdir/usr/share/licenses/$pkgname/Licenses.txt
-    chown -R :games icons
-    cp -ar icons $pkgdir/usr/share/
+  make install
+  install -D -m755 "$srcdir/$pkgname.sh" "$pkgdir/usr/bin/$pkgname"
+  install -D -m755 "$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+  install -D -m644 Docs/Licenses.txt "$pkgdir/usr/share/licenses/$pkgname/Licenses.txt"
+  cp -ar icons "$pkgdir/usr/share/"
 
-    cd $pkgdir/opt/
-    mv "stepmania 5" stepmania
-    chown -R :games stepmania $pkgdir
+  cd "$pkgdir/opt/"
+  mv stepmania-5.0 stepmania
 
-    # Allow users in the "games" group to copy songs, themes etc., and
-    # set the sticky bit on these directories
-    chmod 2775 stepmania/{Songs,Themes,NoteSkins}
+  cp -r -t "$pkgdir/opt/stepmania" "$srcdir/$pkgname-$pkgver/Songs"
 }

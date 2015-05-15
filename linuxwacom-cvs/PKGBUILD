@@ -16,8 +16,7 @@ depends=("libxi" "ncurses" "pixman" "inputproto")
 makedepends=("cvs" "tk")
 optdepends=("tk: for use of wacomcpl")
 options=("!libtool" "!emptydirs")
-source=("10-wacom.rules" "10-wacom.fdi" "xorg-1.7.patch"
-#":pserver:anonymous@linuxwacom.cvs.sourceforge.net:/cvsroot/linuxwacom")
+source=("10-wacom.rules" "10-wacom.fdi" "xorg-1.7.patch")
 md5sums=("02d3262b7dd10791b0c74abbaac1b933" \
 	"1e558d31fb6eea4b6a8486f5882b168d" \
 	"638c8fde9f6bf15e364d46ed31be6994")
