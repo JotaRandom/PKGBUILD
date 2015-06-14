@@ -1,6 +1,6 @@
 # Maintainer: tuxce <tuxce.net@gmail.com>
 pkgname=package-query-git
-pkgver=1.5
+pkgver=1.5.12.g3a44c44
 pkgrel=1
 pkgdesc="Query ALPM and AUR"
 arch=('i686' 'x86_64' 'mips64el' 'armv6h' 'armv7h' 'arm')

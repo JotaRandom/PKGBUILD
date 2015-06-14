@@ -2,7 +2,7 @@
 # Contributor: Julien MISCHKOWITZ <wain@archlinux.fr>
  
 pkgname=yaourt-git
-pkgver=1.3.21.gcac2796
+pkgver=1.5.64.g14ad272
 pkgrel=1
 pkgdesc="A pacman wrapper with extended features and AUR support"
 arch=('any')
