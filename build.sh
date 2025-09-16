@@ -2,9 +2,10 @@
 
 for i in "$HOME/Público/PKGBUILD/"*
 do
-	yay -G "$i"
-#	cd "$i"
-#	makepkg -sc -d --nobuild -e --verifysource
+
+	git rm "$i/"*
+	git submodule add ssh://aur@aur.archlinux.org/"$i".git "$i"
+
 	cd "$HOME/Público/PKGBUILD/"
 	
 done

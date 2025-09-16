@@ -1,0 +1,9 @@
+[submodule "aacskeys"]
+	path = aacskeys
+	url = ssh://aur@aur.archlinux.org/aacskeys.git
+[submodule "abr2gbr"]
+	path = abr2gbr
+	url = ssh://aur@aur.archlinux.org/abr2gbr.git
+[submodule "adduser"]
+	path = adduser
+	url = ssh://aur@aur.archlinux.org/adduser.git
