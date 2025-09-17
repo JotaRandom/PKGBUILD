@@ -1,0 +1,50 @@
+# Maintainer: Balló György <ballogyor+arch at gmail dot com>
+
+pkgname=indicator-appmenu
+pkgver=12.10.3
+pkgrel=3
+pkgdesc="Indicator to host the menus from an application"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/indicator-appmenu"
+license=('GPL')
+depends=('libindicator3' 'libdbusmenu-gtk3' 'bamf' 'dconf')
+makedepends=('intltool')
+options=('!libtool')
+install=$pkgname.install
+source=(http://launchpad.net/$pkgname/${pkgver%.*}/$pkgver/+download/$pkgname-$pkgver.tar.gz
+        http://pkgbuild.com/~bgyorgy/sources/$pkgname-translations-20130310.tar.gz
+        218_217.diff
+        216_215.diff
+        fix-build.patch)
+md5sums=('ecfc6812069b85ab8f998ddda8c3478a'
+         'a17bf23049b3859cf83fe866b8ce53b4'
+         '6efba2838fb64454fab30f07c888f20b'
+         '48fceba76a067a874ea61fa0dbd4be71'
+         '785e55f2da3d2410226ff422a7b2f312')
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  # Upstream fixes
+  patch -Np0 -i "$srcdir/218_217.diff"
+  patch -Np0 -i "$srcdir/216_215.diff"
+
+  # Fix build
+  patch -Np1 -i "$srcdir/fix-build.patch"
+  sed -i 's/-Werror//' */Makefile.{am,in}
+
+  # Install updated language files
+  rename $pkgname- '' ../po/$pkgname-*.po
+  mv -f -t po ../po/*
+  printf "%s\n" po/*.po | sed -e 's/po\///g' -e 's/\.po//g' >po/LINGUAS
+
+  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/$pkgname \
+              --disable-static
+  make
+}
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  make DESTDIR="$pkgdir/" install
+}

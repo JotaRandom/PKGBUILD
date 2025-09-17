@@ -1,0 +1,90 @@
+[submodule "aacskeys"]
+	path = aacskeys
+	url = ssh://aur@aur.archlinux.org/aacskeys.git
+[submodule "abr2gbr"]
+	path = abr2gbr
+	url = ssh://aur@aur.archlinux.org/abr2gbr.git
+[submodule "adduser"]
+	path = adduser
+	url = ssh://aur@aur.archlinux.org/adduser.git
+[submodule "apngopt"]
+	path = apngopt
+	url = ssh://aur@aur.archlinux.org/apngopt.git
+[submodule "archlinux-artwork"]
+	path = archlinux-artwork
+	url = ssh://aur@aur.archlinux.org/archlinux-artwork.git
+[submodule "atmel-firmware"]
+	path = atmel-firmware
+	url = ssh://aur@aur.archlinux.org/atmel-firmware.git
+[submodule "b43-firmware-lts"]
+	path = b43-firmware-lts
+	url = ssh://aur@aur.archlinux.org/b43-firmware-lts.git
+[submodule "dvb-firmware"]
+	path = dvb-firmware
+	url = ssh://aur@aur.archlinux.org/dvb-firmware.git
+[submodule "eclipse-i18n-es"]
+	path = eclipse-i18n-es
+	url = ssh://aur@aur.archlinux.org/eclipse-i18n-es.git
+[submodule "faenza-green-icon-theme"]
+	path = faenza-green-icon-theme
+	url = ssh://aur@aur.archlinux.org/faenza-green-icon-theme.git
+[submodule "fedora-icon-theme"]
+	path = fedora-icon-theme
+	url = ssh://aur@aur.archlinux.org/fedora-icon-theme.git
+[submodule "gstreamer0.10-fluendo"]
+	path = gstreamer0.10-fluendo
+	url = ssh://aur@aur.archlinux.org/gstreamer0.10-fluendo.git
+[submodule "gstreamer-fluendo-mp3"]
+	path = gstreamer-fluendo-mp3
+	url = ssh://aur@aur.archlinux.org/gstreamer-fluendo-mp3.git
+[submodule "hfsutils"]
+	path = hfsutils
+	url = ssh://aur@aur.archlinux.org/hfsutils.git
+[submodule "libertas-firmware"]
+	path = libertas-firmware
+	url = ssh://aur@aur.archlinux.org/libertas-firmware.git
+[submodule "micropolis-java"]
+	path = micropolis-java
+	url = ssh://aur@aur.archlinux.org/micropolis-java.git
+[submodule "mint-backgrounds-xfce"]
+	path = mint-backgrounds-xfce
+	url = ssh://aur@aur.archlinux.org/mint-backgrounds-xfce.git
+[submodule "pony-creator"]
+	path = pony-creator
+	url = ssh://aur@aur.archlinux.org/pony-creator.git
+[submodule "ponysay-devel-git"]
+	path = ponysay-devel-git
+	url = ssh://aur@aur.archlinux.org/ponysay-devel-git.git
+[submodule "redhat-artwork"]
+	path = redhat-artwork
+	url = ssh://aur@aur.archlinux.org/redhat-artwork.git
+[submodule "sonar-icon-theme"]
+	path = sonar-icon-theme
+	url = ssh://aur@aur.archlinux.org/sonar-icon-theme.git
+[submodule "sozi-git"]
+	path = sozi-git
+	url = ssh://aur@aur.archlinux.org/sozi-git.git
+[submodule "thunar-nilfs2-plugin-git"]
+	path = thunar-nilfs2-plugin-git
+	url = ssh://aur@aur.archlinux.org/thunar-nilfs2-plugin-git.git
+[submodule "toybox"]
+	path = toybox
+	url = ssh://aur@aur.archlinux.org/toybox.git
+[submodule "ttf-celestia"]
+	path = ttf-celestia
+	url = ssh://aur@aur.archlinux.org/ttf-celestia.git
+[submodule "xfce4-whiskermenu-plugin-git"]
+	path = xfce4-whiskermenu-plugin-git
+	url = ssh://aur@aur.archlinux.org/xfce4-whiskermenu-plugin-git.git
+[submodule "xfce-theme-albatross-git"]
+	path = xfce-theme-albatross-git
+	url = ssh://aur@aur.archlinux.org/xfce-theme-albatross-git.git
+[submodule "xfce-theme-bluebird-git"]
+	path = xfce-theme-bluebird-git
+	url = ssh://aur@aur.archlinux.org/xfce-theme-bluebird-git.git
+[submodule "xubuntu-artwork"]
+	path = xubuntu-artwork
+	url = ssh://aur@aur.archlinux.org/xubuntu-artwork.git
+[submodule "yash"]
+	path = yash
+	url = ssh://aur@aur.archlinux.org/yash.git

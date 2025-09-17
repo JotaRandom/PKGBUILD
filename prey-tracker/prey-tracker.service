@@ -1,0 +1,7 @@
+[Unit]
+Description=Prey Tracker Service
+Documentation=file:/usr/share/prey/README
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c '/usr/share/prey/prey.sh > /var/log/prey.log'

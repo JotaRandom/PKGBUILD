@@ -1,0 +1,29 @@
+# $Id: pkgbuild-mode.el,v 1.23 2007/10/20 16:02:14 juergen Exp $
+# Maintainer: Pablo Lezaeta <prflr 88 (arroba) gmail (dot) com>
+# Contributor: Ner0
+
+pkgname=fs-icons-ubuntu
+pkgver=0.6.0.alpha4.r1
+pkgrel=3
+pkgdesc="An icon theme based on possible new icons for Ubuntu by Yellowicon"
+arch=('any')
+url="http://franksouza183.deviantart.com/art/FS-Icons-Ubuntu-288407674"
+license=('GPL3')
+source=("http://ppa.launchpad.net/fs-icons-ubuntu/unstable/ubuntu/pool/main/f/fs-icons-ubuntu/fs-icons-ubuntu_0.6-0~alpha4+r1+pkg40+tmp1~quantal1.tar.gz")
+md5sums=('a55fefd24b119626a55e41b8b5abb6f7')
+options=('!strip' '!emptydirs')
+install='fs-icons-ubuntu.install'
+
+package() {
+# Create directory
+  mkdir -p "${pkgdir}"/usr/share/icons
+  mkdir -p "${pkgdir}"/usr/share/doc/${pkgname}
+  chmod 755 "${pkgdir}"/usr/share/*
+# move things
+  cp -dprv --no-preserve=ownership "${srcdir}"/recipe-{debversion}+r{revno}+pkg{revno:packaging}+tmp1/AUTHORS "${pkgdir}"/usr/share/doc/${pkgname}/AUTHORS
+  cp -dprv --no-preserve=ownership "${srcdir}"/recipe-{debversion}+r{revno}+pkg{revno:packaging}+tmp1/fs-* "${pkgdir}"/usr/share/icons/
+  chown -R :users "${pkgdir}"/usr/share/icons/*
+  chmod 755 -R "${pkgdir}"/usr/share/icons/*
+}
+
+# vim:set ts=2 sw=2 et:

@@ -1,0 +1,9 @@
+[Unit]
+DefaultDependencies=no
+Conflicts=umount.target
+Before=umount.target
+
+[Mount]
+What=/dev/disk/by-uuid/335A31C2780665EF
+Where=/mnt/backup
+Type=ntfs

@@ -1,0 +1,26 @@
+# Contributor: Frank Ickstadt (frank dot ickstadt at gmail dot com)
+# adpoted from mOLOk since pkgver=0.7
+
+pkgname=xcalib
+pkgver=0.8
+pkgrel=4
+pkgdesc="A tiny monitor calibration loader for X.org"
+arch=(i686 x86_64)
+url="http://www.etg.e-technik.uni-erlangen.de/web/doe/xcalib/"
+license=('GPL')
+depends=(libxxf86vm)
+source=(http://downloads.sourceforge.net/xcalib/xcalib-source-$pkgver.tar.gz
+        makefile-ldflags.patch)
+md5sums=('1fbcae44ad8d754512fdd1e5f1b3a7e7'
+         '6c74457011515dd1cc7f2474af761142')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver/
+  patch -p0 < ../makefile-ldflags.patch
+  make || return 1
+  install -Dm755 xcalib $pkgdir/usr/bin/xcalib
+
+  for i in README *.icc *.icm; do
+      install -Dm644 $i $pkgdir/usr/share/xcalib/$i
+  done
+}

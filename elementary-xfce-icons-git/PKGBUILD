@@ -1,0 +1,35 @@
+# Maintainer: Raphael Scholer <rscholer@gmx.de>
+pkgname=elementary-xfce-icons-git
+pkgver=0.5_16_g245ce2f
+pkgrel=1
+pkgdesc='Elementary icon-theme with improved Xfce support'
+arch=('any')
+url='https://github.com/shimmerproject/elementary-xfce'
+license=('GPL2')
+makedepends=('git')
+depends=('gtk-update-icon-cache')
+conflicts=('elementary-xfce-icons')
+install="${pkgname}.install"
+source=("git+${url}")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "elementary-xfce"
+  echo "$(git describe --always |sed 's#-#_#g;s#v##')"
+}
+
+package() {
+  mkdir -p "${pkgdir}/usr/share/icons"
+
+  cd "elementary-xfce"
+  find ./ -type d -name "elementary-xfce*" -execdir cp -r {} "${pkgdir}/usr/share/icons/" \;
+
+  cd "${pkgdir}/usr/share/icons"
+  find ./ -type f \( \
+      -name "AUTHORS" \
+      -o -name "CONTRIBUTORS" \
+      -o -name "LICENSE" \
+    \) \
+    -delete
+}
+# vim:set ts=2 sw=2 et:

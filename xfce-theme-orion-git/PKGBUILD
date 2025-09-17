@@ -1,0 +1,34 @@
+# Maintainer: Diego Principe <cdprincipe@at@gmail@dot@com>
+
+pkgname=xfce-theme-orion-git
+pkgver=1.5.git110.31819fe
+pkgrel=1
+pkgdesc="Modern light theme. It supports Gnome, Unity, XFCE and Openbox."
+arch=('any')
+url="https://github.com/shimmerproject/Orion"
+license=('GPL3')
+depends=('gtk-engine-murrine')
+makedepends=('git')
+provides=('gtk-theme-orion')
+conflicts=('gtk-theme-orion')
+source=('Orion::git://github.com/shimmerproject/Orion.git')
+md5sums=('SKIP')
+
+
+pkgver() {
+  cd Orion
+  echo $(git describe --tags --abbrev=0 | sed 's#-#_#g;s#v##').git$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+}
+
+package() {
+  cd ${srcdir}/Orion
+
+  # create theme dir
+  install -d -m 755 "$pkgdir"/usr/share/themes/Orion
+
+  # clean up
+  rm -rf {.git,.gitignore,CREDITS,LICENSE,README}
+
+  # install theme
+  cp -r . "$pkgdir"/usr/share/themes/Orion/
+}

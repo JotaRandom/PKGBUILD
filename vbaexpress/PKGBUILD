@@ -1,0 +1,32 @@
+# Maintainer: 
+# Contributor: Lex Black <autumn-wind at web.de>
+# Contributor: Brad Fanella
+# Contributor: Achraf cherti <achrafcherti@gmail.com>
+# Contributor: Thomas Dziedzic
+
+pkgname=vbaexpress
+pkgver=1.2
+pkgrel=8
+pkgdesc="A VisualBoyAdvance frontend to configure the emulator easily."
+arch=('i686' 'x86_64')
+license="GPL2"
+url="http://vbaexpress.tuxfamily.org"
+depends=('sdl' 'fltk' 'libxpm' 'visualboyadvance')
+source=($url/$pkgname-$pkgver.tar.gz 'configdir.patch')
+md5sums=('09aa109c9adf2b1e70fed04016546d89'
+         'ce14b15c412e193ea7e2dd82ed76db36')
+
+build() {
+	cd "$srcdir/$pkgname-$pkgver"
+	
+	# This patch changes the default config dir from $HOME to $XDG_CONFIG_HOME
+	patch -p2 < "$srcdir/configdir.patch"
+	
+	make CFLAGS='-Os -DLINUX `fltk-config --cxxflags` `sdl-config --cflags` -Isrc' \
+		LIBS='`fltk-config --use-images --ldflags` `sdl-config --libs` -lXpm'
+}
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+	make PREFIX="$pkgdir/usr" install
+}

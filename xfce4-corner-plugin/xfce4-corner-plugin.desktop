@@ -1,0 +1,8 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+Name=Corner
+Comment=Round Corner
+Icon=xfce4-panel
+X-XFCE-Exec=/usr/lib/xfce4/panel-plugins/xfce4-corner-plugin
+ 

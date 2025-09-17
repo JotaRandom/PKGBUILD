@@ -1,0 +1,26 @@
+# Maintainer: Menche <menche_mt at yahoo dot com>
+
+pkgname=minetest-classic
+pkgver=1311.00
+pkgrel=1
+pkgdesc="A fork of Minetest, an Infiniminer/Minecraft inspired game"
+url="http://minetest-classic.com"
+arch=('i686' 'x86_64')
+license=('GPL')
+depends=('libgl' 'libxxf86vm' 'sqlite')
+makedepends=('cmake' 'irrlicht')
+conflicts=('minetest-classic-next-git')
+
+source=("http://minetest-classic.com/downloads/${pkgname}-${pkgver}-src.tar.gz")
+sha256sums=('cedbf5d43f9529e596ed446cf5dee03a34ff811f8453bb94e5588e9b7fcc8d27')
+
+build() {
+	cd "${srcdir}/${pkgname}-${pkgname}"
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG	
+	make
+}
+
+package() {
+	cd "${srcdir}/${pkgname}-${pkgname}"
+	make DESTDIR="${pkgdir}" install
+}

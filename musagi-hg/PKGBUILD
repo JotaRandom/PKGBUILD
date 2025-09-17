@@ -1,0 +1,35 @@
+# Maintainer: Pablo Lezaeta <prflr88@gmail.com>
+# Contributor: Realitygaps <realitygaps yahoo com>
+
+pkgname=musagi-stqn-hg
+_realname=musagi-stqn
+pkgver=18
+pkgrel=1
+pkgdesc='Multiplatform music composition software'
+arch=(i686)
+url=http://bitbucket.org/stqn/musagi-stqn
+license=(custom)
+depends=('portaudio' 'sdl' 'gtk2' 'libgl')
+makedepends=('mercurial')
+_branch=("$_realname")
+source=("$_realname::hg+http://bitbucket.org/stqn")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$_realname"
+
+}
+
+package() {
+  cd "$srcdir/$_realname"
+  make
+  mkdir -p $pkgdir/opt/musagi
+  cp $srcdir/$_realname/musagi $pkgdir/opt/musagi/
+  cp $srcdir/$_realname/NEWS $pkgdir/opt/musagi/
+  cp $srcdir/$_realname/README $pkgdir/opt/musagi/
+  cp $srcdir/$_realname/license.txt $pkgdir/opt/musagi/
+  cp -r $srcdir/$_realname/documentation $pkgdir/opt/musagi/
+  cp -r $srcdir/$_realname/skins $pkgdir/opt/musagi/
+  cp -r $srcdir/$_realname/songs $pkgdir/opt/musagi/
+  cp -r $srcdir/$_realname/instruments $pkgdir/opt/musagi/
+}
