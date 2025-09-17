@@ -1,1 +1,0 @@
-KERNEL=="sd*", ATTRS{serial}=="0000:00:1d.7", TAG+="systemd", ENV{SYSTEMD_WANTS}+="backup.service"

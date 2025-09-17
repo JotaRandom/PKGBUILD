@@ -1,5 +1,0 @@
-post_install() {
-    cat <<EOF
-To enable systemd-emacs-daemon, use \`systemctl enable emacs@user.service'.
-EOF
-}

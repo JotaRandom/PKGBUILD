@@ -1,5 +1,11 @@
 #!/usr/bin/bash
 
+# Ensure curl is available
+if ! command -v curl >/dev/null 2>&1; then
+    echo "Error: curl is required but not installed. Please install curl and rerun the script."
+    exit 1
+fi
+
 # Change to the target directory
 cd "$HOME/Público/PKGBUILD/" || {
     echo "Error: Could not change to $HOME/Público/PKGBUILD/"
@@ -8,6 +14,12 @@ cd "$HOME/Público/PKGBUILD/" || {
 
 # Process each item in the directory
 for i in *; do
+    # Skip build.sh and README.md
+    if [ "$i" = "build.sh" ] || [ "$i" = "README.md" ]; then
+        echo "Skipping: $i (reserved file)"
+        continue
+    fi
+
     echo "Processing directory: $i"
 
     # Skip if not a directory or symbolic link
@@ -26,6 +38,23 @@ for i in *; do
             continue
         fi
     fi
+
+    # Check if the package exists on AUR via HTTP status
+    page_url="https://aur.archlinux.org/packages/$i/"
+    echo "  Checking AUR package page: $page_url"
+    status=$(curl -s -o /dev/null -w "%{http_code}" "$page_url")
+    if [ "$status" != "200" ]; then
+        echo "  Package $i does not exist on AUR (HTTP $status), cleaning up local if present"
+        if git submodule status "$i" >/dev/null 2>&1; then
+            echo "  Removing existing submodule $i"
+            git submodule deinit -f "$i" >/dev/null 2>&1
+            git rm -f "$i" >/dev/null 2>&1
+            rm -rf ".git/modules/$i"
+        fi
+        rm -rf "$i"
+        continue
+    fi
+    echo "  Package $i exists on AUR (HTTP 200), proceeding"
 
     # Check if the directory is already a submodule
     if git submodule status "$i" >/dev/null 2>&1; then

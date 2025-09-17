@@ -1,8 +1,0 @@
-# Maintainer: Pablo Lezaeta <prflr88 (aroba) gmail (dot) com>
-
-pkgname=trotmania
-pkgdesc="Stepmania stages and songs inspired on MLP:Frienship is Magic with music from they fandom"
-pkgver=crystalizer
-pkrel=1
-epoch=2
-depend=("stepmania")

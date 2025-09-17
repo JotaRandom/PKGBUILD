@@ -1,8 +1,0 @@
-[Unit]
-Description=Runs backintime to backup.
-RefuseManualStart=yes
-BindsTo=dev-disk-by\x2duuid-335A31C2780665EF.device mnt-backup.mount
-After=dev-disk-by\x2duuid-335A31C2780665EF.device mnt-backup.mount
-
-[Service]
-ExecStart=/usr/bin/backintime -b
